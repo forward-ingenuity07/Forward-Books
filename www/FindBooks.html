@@ -15,32 +15,36 @@
         var url1 = "https://learnwebcode.github.io/json-example/animals-1.json";
         var ourRequest = new XMLHttpRequest();
         ourRequest.open("GET", url);
-        ourRequest.onreadystatechange = function () {
-            if (ourRequest.readyState === 4) {
-                //var response = JSON.parse(xmlhttp.responseText);
-                
-                
-                if (xmlhttp.status === 200 && response.status === 'OK') {
-                    ourRequest.onload = function () {
+        var type = 0;
+          //  if (ourRequest.readyState === 4) {
 
-                        var ourData = JSON.parse(ourRequest.responseText);
-                        document.getElementById("par").innerHTML = ourData[0].Faculty;
-                        //console.log(ourData[0].name);
-                    };
-                    ourRequest.send();
-                } else {
-                    document.getElementById("par").innerHTML = "Connection unsuccessful";
+        //var response = JSON.parse(xmlhttp.responseText);
+        
+                ourRequest.onload = function () {
+                    type = 1;
+                    var ourData = JSON.parse(ourRequest.responseText);
+                    document.getElementById("par").innerHTML =  ourData[0].Faculty;
                 }
+                ourRequest.send();
+                if(type!=1)
+                {
+                    document.getElementById("par").innerHTML = "Connecting...";
+
+                }
+            //}
+           /* else {
+                document.getElementById("par").innerHTML = "Connection failed";
+
             }
-        }
+        */
         //if(another){
-        ourRequest.onload = function () {
+      /*  ourRequest.onload = function () {
             
             var ourData = JSON.parse(ourRequest.responseText);
             document.getElementById("par").innerHTML = ourData[0].Faculty;
             //console.log(ourData[0].name);
         };
-        ourRequest.send();
+        ourRequest.send();*/
         //}
         //else {
           //  document.getElementById("par").innerHTML = "Could not open";
