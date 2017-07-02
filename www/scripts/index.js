@@ -15,8 +15,6 @@
         document.getElementById("FindBooks").onclick = function () {
         //comment
             location.href = 'FindBooks.html';
-
-
         }
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         var parentElement = document.getElementById('deviceready');
