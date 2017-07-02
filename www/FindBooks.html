@@ -11,12 +11,14 @@
     <div id="list"><p id="par"></p></div>
 	<script type="text/javascript">
         var url = "http://192.168.88.240/tuksbooks/json.php";
+        var url1 = "https://learnwebcode.github.io/json-example/animals-1.json";
         var ourRequest = new XMLHttpRequest();
-        ourRequest.open("GET", url);
+        ourRequest.open("GET", url1);
         ourRequest.onload = function () {
             
             var ourData = JSON.parse(ourRequest.responseText);
-            document.getElementById("par").innerHTML = ourData[0].Faculty;
+            document.getElementById("par").innerHTML = ourData[0].name
+            //console.log(ourData[0].name);
         };
         ourRequest.send();
 
