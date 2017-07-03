@@ -1,5 +1,7 @@
-﻿(function () {
+﻿document.addEventListener('deviceready', onDeviceReady.bind(this), false);
 
+(function () {
+    "use strict";
     var url = "http://192.168.88.240:80/tuksbooks/json.php";
     var url1 = "http://gobooks.000webhostapp.com/json.php";
     var ourRequest = new XMLHttpRequest();
