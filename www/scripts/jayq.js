@@ -4,7 +4,7 @@
         
         if($(window).scrollTop().valueOf()==start)
         {
-            $(".navbar-default").css('background-color', '#222');
+            $(".navbar-default").css('background-color', '#f8f8f8');
 
 
         }
