@@ -11,6 +11,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
     <link href="css/feco.css" rel="stylesheet">
+    <link href="css/anime.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
 
@@ -18,7 +19,7 @@
 </head>
 <body id="bod">
     <div class="container" id="containment">
-        <h2>Faculty of Economic and Management Sciences</h2>
+        <h3 class="animated fadeInLeft" id="headi">Faculty of Economic and Management Sciences</h3>
         <br/>
         <hr />
         
@@ -38,7 +39,7 @@
             //window.localStorage.setItem("Holding", ourRequest.responseText);
             var ourData = JSON.parse(ourRequest.responseText);      //change the received response text to an actuall array of objects
             
-
+            
 
             //var ourData2 = JSON.parse(window.localStorage.getItem("Holding"));
             var info_length = (ourData.length);
@@ -46,12 +47,13 @@
                 var par = document.createElement('p');
                 var hzr = document.createElement('hr');
                 par.id = "paragraph" + i;
-                par.style.fontSize = "x-large";
+                par.style.fontSize = "large";
+                par.className += "animated fadeInLeft";
                 par.innerHTML = '<strong>' + ourData[i].title + '</strong>' + '<br />' + 'R400' + '<span class="pull-right">0739995999</span>';
                 outDiv.appendChild(par);
                 outDiv.appendChild(hzr);
                
-
+                
 
             }
 
