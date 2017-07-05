@@ -22,13 +22,87 @@
         
     </div>
     <script type="text/javascript">
+        "use strict";
         var url1 = "http://gobooks.000webhostapp.com/json.php"; //Get url of php file containing json
-        
-        
+          
+        var ourRequest = new XMLHttpRequest(); //create XMLHttpRequest object to request for the JSON data
+        ourRequest.open("GET", url1);   //Opening...    
+        var outDiv = document.getElementById("containment");
+        ourRequest.onload = function () {
+            console.log("Here");
+            
+            //request has loaded
+            //window.localStorage.setItem("Holding", ourRequest.responseText);
+            var ourData = JSON.parse(ourRequest.responseText);      //change the received response text to an actuall array of objects
+
+
+
+            //var ourData2 = JSON.parse(window.localStorage.getItem("Holding"));
+            var info_length = (ourData.length);
+            for (var i = 0; i < info_length; i++) {
+                var par = document.createElement('p');
+                par.id = "paragraph" + i;
+                par.innerHTML = '<strong>' + ourData[i].title + '</strong>' + '<br />' + 'R400' + '&nbsp &nbsp &nbsp' + '0739995999';
+                outDiv.appendChild(par);
+
+
+            }
+
+
+            /*var par = document.createElement('p');
+            par.id = "paragraph" + i;
+            par.innerHTML = '<strong>' + ourData2[1].title + '</strong>' + '<br />' + 'R400' + '&nbsp &nbsp &nbsp' + '0739995999';
+            outDiv.appendChild(par);
+          */
+            
+        }
+        ourRequest.send();
+       /* var ourData2 = JSON.parse(window.localStorage.getItem("Holding"));
+        var info_length = ourData2.lenght;
+        for(var i=0;i<info_length;i++)
+        {
+            var par = document.createElement('p');
+            par.id = "paragraph" + i;
+            par.innerHTML = '<strong>' + ourData2[i].title + '</strong>' + '<br />' + 'R400' + '&nbsp &nbsp &nbsp' + '0739995999';
+            outDiv.appendChild(par);
+
+
+        }
+
+
+
+        */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /*var JSlength = 0;
         
         
-        var ourRequest = new XMLHttpRequest(); //create XMLHttpRequest object to request for the JSON data
+        /*var ourRequest = new XMLHttpRequest(); //create XMLHttpRequest object to request for the JSON data
         ourRequest.open("GET", url1);   //Opening...    
           
         /*
@@ -64,30 +138,28 @@
         */
 
 
-        "use strict";
-        var url = "http://192.168.88.240:80/tuksbooks/json.php";
-        var url1 = "http://gobooks.000webhostapp.com/json.php";
-        var ourReques = new XMLHttpRequest();
-        ourReques.open("GET", url1);
-        var type = 0;
+        
+        
+        /*var ourReques = new XMLHttpRequest();
+        ourReques.open("GET", url1,true);
+        
+       
         ourReques.onload = function () {
-            type = 1;
             
             
+            alert("Here");
             window.localStorage.setItem("let", ourReques.responseText);
             
         };
         
 
-        if (type != 1) {
-            
-
-        }
-
-        var ourData2 = JSON.parse(window.localStorage.getItem("let"));
+        var ourData2 = [];
+        ourData2 = JSON.parse(window.localStorage.getItem("let"));
         var outDiv = document.getElementById("containment");
                    //request has loaded
-                          //change the received response text to an actuall array of objects
+        //change the received response text to an actuall array of objects
+        if (ourData2 != null)
+            {
             JSlength = ourData2.length;
             
             for (var i = 0; i < JSlength; i++) {
@@ -98,7 +170,12 @@
                 outDiv.appendChild(par);
                // ourReques.send();
             }
+        
+        }
+        else {
+            console.log("could not read");
 
+        }*/
     </script>
 
     <script type="text/javascript" src="scripts/FindBooks.js"></script>
