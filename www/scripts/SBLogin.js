@@ -1,12 +1,5 @@
 ﻿"use Strict";
 
-$(document).ready(function () {
-
-    window.localStorage.setItem("Check", "0");
-
-});
-
-
 var Login = document.getElementById("login");
 if (window.localStorage.getItem("Check") == null) {
     window.localStorage.setItem("Check", "0");
@@ -38,12 +31,14 @@ if (window.localStorage.getItem("Check") == "1")
     var isEmpty = document.getElementById("Par_empty");
 
     isEmpty.innerHTML = "Email cannot be empty";
+    window.location.href = "index.html";
     window.location.href = "SellBooksLogin.html";
 }
 else if (window.localStorage.getItem("Check") == "2") {
     var isEmpty = document.getElementById("Par_empty");
 
     isEmpty.innerHTML = "Password cannot be empty";
+    window.location.href = "index.html";
     window.location.href = "SellBooksLogin.html";
 
 }
@@ -51,6 +46,7 @@ else if (window.localStorage.getItem("Check") == "3") {
     var isEmpty = document.getElementById("Par_empty");
 
     isEmpty.innerHTML = "Password and Email cannot be empty";
+    window.location.href = "index.html";
     window.location.href = "SellBooksLogin.html";
 }
 else {
