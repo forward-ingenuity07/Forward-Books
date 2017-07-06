@@ -38,20 +38,20 @@ if (window.localStorage.getItem("Check") == "1")
     var isEmpty = document.getElementById("Par_empty");
 
     isEmpty.innerHTML = "Email cannot be empty";
-
+    window.location.href = "SellBooksLogin.html";
 }
 else if (window.localStorage.getItem("Check") == "2") {
     var isEmpty = document.getElementById("Par_empty");
 
     isEmpty.innerHTML = "Password cannot be empty";
-
+    window.location.href = "SellBooksLogin.html";
 
 }
 else if (window.localStorage.getItem("Check") == "3") {
     var isEmpty = document.getElementById("Par_empty");
 
     isEmpty.innerHTML = "Password and Email cannot be empty";
-
+    window.location.href = "SellBooksLogin.html";
 }
 else {
     isEmpty.innerHTML = "";
