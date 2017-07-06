@@ -1,4 +1,12 @@
 ﻿"use Strict";
+
+$(document).ready(function () {
+
+    window.localStorage.setItem("Check", "0");
+
+});
+
+
 var Login = document.getElementById("login");
 if (window.localStorage.getItem("Check") == null) {
     window.localStorage.setItem("Check", "0");
