@@ -2,6 +2,13 @@
 // http://go.microsoft.com/fwlink/?LinkID=397704
 // To debug code on page load in Ripple or on Android devices/emulators: launch your app, set breakpoints, 
 // and then run "window.location.reload()" in the JavaScript Console.
+
+
+function clickFunc() {
+
+    window.location.href = 'SellBooksLogin.html';
+}
+
 (function () {
     "use strict";
 
@@ -15,10 +22,7 @@
             window.location.href = 'FindBooks.html';
         });
         var butSellBooks = document.getElementById("SellBooks");
-        function clickFunc() { 
         
-            window.location.href = 'SellBooksLogin.html';
-        }
 
         
         document.addEventListener( 'pause', onPause.bind( this ), false );
