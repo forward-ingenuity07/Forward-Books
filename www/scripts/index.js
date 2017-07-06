@@ -15,11 +15,12 @@
             window.location.href = 'FindBooks.html';
         });
         var butSellBooks = document.getElementById("SellBooks");
-        butSellBooks.onclick = function () {
+        function clickFunc() { 
+        
             window.location.href = 'SellBooksLogin.html';
-
-
         }
+
+        
         document.addEventListener( 'pause', onPause.bind( this ), false );
         document.addEventListener( 'resume', onResume.bind( this ), false );
         
