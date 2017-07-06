@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
     start = 0;          //Value at top of scroll bar
     $(document).scroll(function () {        //Upon scroll event
         
@@ -20,3 +21,4 @@
 
     });
 });
+window.localStorage.setItem("Check", "0");
