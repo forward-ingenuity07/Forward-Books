@@ -10,10 +10,16 @@
     function onDeviceReady() {
         // Handle the Cordova pause and resume events
 
-        var but = document.getElementById("FindBooks");
-        but.addEventListener("click", function () {
+        var butFindBooks = document.getElementById("FindBooks");
+        butFindBooks.addEventListener("click", function () {
             window.location.href = 'FindBooks.html';
         });
+        var butSellBooks = document.getElementById("SellBooks");
+        butSellBooks.onclick = function () {
+            window.location.href = 'SellBooksLogin.html';
+
+
+        }
         document.addEventListener( 'pause', onPause.bind( this ), false );
         document.addEventListener( 'resume', onResume.bind( this ), false );
         
