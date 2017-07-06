@@ -5,7 +5,7 @@
 
 
 function clickFunc() {
-
+    window.localStorage.setItem("Check", "0");
     window.location.href = 'SellBooksLogin.html';
 }
 

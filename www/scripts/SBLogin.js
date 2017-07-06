@@ -1,6 +1,15 @@
-﻿"use Strict";
+﻿function signClick() {
+
+    window.localStorage.setItem("Check", "0");
+    window.location.href = "signUp.html";
+}
+
+
+
+"use Strict";
 
 var Login = document.getElementById("login");
+var sign = document.getElementById("sign");
 if (window.localStorage.getItem("Check") == null) {
     window.localStorage.setItem("Check", "0");
 
@@ -50,7 +59,6 @@ else {
     isEmpty.innerHTML = "";
 
 }
-
 
 
 
