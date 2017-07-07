@@ -58,13 +58,13 @@
             
 
         });
-        Logout_button = document.getElementById("logout");
-        Logout_button.onclick = function () {
-            window.localStorage.setItem("logged_in", "0");
-            window.location.replace("index.html");
-            
+      
+      function logout() {
+          var Logout_button = document.getElementById("logout");
+          window.localStorage.setItem("logged_in", "0");
+          window.location.replace("index.html");
 
-        }
+      }
 
     </script>
 
@@ -79,7 +79,7 @@
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="glyphicon glyphicon-plus white"></span>
                     </button>
-                    <button type="button" id="logout" aria-expanded="false">
+                    <button class="navbar" type="button" id="logout" aria-expanded="false" onclick="logout()">
                         Logout
                     </button>
 
