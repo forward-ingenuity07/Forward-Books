@@ -50,57 +50,69 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+
             window.localStorage.setItem("succeeding", "0");
-            $("#insert").click(function () {
+            if (window.localStorage.getItem("logged_in") != "1")
+                {
+            
+                $("#insert").click(function () {
 
-                var email = $("#ema").val();
-                var password = $("#pas").val();
-                var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;   //Regexp to check if email is valid
-                var confirm_password = $("#pas_conf").val();
-                var dataString = "email=" + email + "&password=" + password + "&insert=";
-                window.localStorage.setItem("emai", email);
-                window.localStorage.setItem("pass", password);
-                window.localStorage.setItem("datstr", dataString);
-                if ($.trim(email).length > 0 & $.trim(password).length > 0 & email.match(re) !== null & password == confirm_password) {
-                    /*$.ajax({
-                        type: "POST",
-                        url: "http://forwardingenuity.com/insert_user.php",
-                        data: dataString,
-                        crossDomain: true,
-                        cache: false,
-                        beforeSend: function () { $("#insert").val('Connecting...'); },
-                        success: function (data) {
-                            if (data == "success") {
-                                alert("inserted");                      
-                                $("#Par_empty").text("");
-                                $("#insert").val('submit');
-
+                    var email = $("#ema").val();
+                    var password = $("#pas").val();
+                    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;   //Regexp to check if email is valid
+                    var confirm_password = $("#pas_conf").val();
+                    var dataString = "email=" + email + "&password=" + password + "&insert=";
+                    window.localStorage.setItem("emai", email);
+                    window.localStorage.setItem("pass", password);
+                    window.localStorage.setItem("datstr", dataString);
+                    if ($.trim(email).length > 0 & $.trim(password).length > 0 & email.match(re) !== null & password == confirm_password) {
+                        /*$.ajax({
+                            type: "POST",
+                            url: "http://forwardingenuity.com/insert_user.php",
+                            data: dataString,
+                            crossDomain: true,
+                            cache: false,
+                            beforeSend: function () { $("#insert").val('Connecting...'); },
+                            success: function (data) {
+                                if (data == "success") {
+                                    alert("inserted");                      
+                                    $("#Par_empty").text("");
+                                    $("#insert").val('submit');
+    
+                                }
+                                else if (data == "error") {
+                                    alert("error");
+                                }
                             }
-                            else if (data == "error") {
-                                alert("error");
-                            }
-                        }
-                    });*/
-                    window.location.href = "userPage.html";            //Go to succeeded page
-                }
-                else if (email.match(re) === null & $.trim(email).length > 0) {
-                    $("#Par_empty").text("Email is not valid");
+                        });*/
+                        window.location.href = "userPage.html";            //Go to succeeded page
+                    }
+                    else if (email.match(re) === null & $.trim(email).length > 0) {
+                        $("#Par_empty").text("Email is not valid");
 
-                }
-                else if ($.trim(email).length == 0 | $.trim(password).length == 0) {
-                    $("#Par_empty").text("Email and Password cannot be empty");
+                    }
+                    else if ($.trim(email).length == 0 | $.trim(password).length == 0) {
+                        $("#Par_empty").text("Email and Password cannot be empty");
 
-                }
-                
-                else if (password != confirm_password) {
-                    $("#Par_empty").text("Password and confirmed password do not match");
+                    }
 
-                }
+                    else if (password != confirm_password) {
+                        $("#Par_empty").text("Password and confirmed password do not match");
 
-                
-                return false;
+                    }
 
-            });
+
+                    return false;
+
+                });
+
+}
+            else
+            {
+                window.location.replace("index.html");
+
+
+            }
             
 
             });
