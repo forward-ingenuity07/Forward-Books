@@ -1,1 +1,1 @@
-﻿window.localStorage.setItem("Check", "0");
+﻿
