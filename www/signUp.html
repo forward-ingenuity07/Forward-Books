@@ -62,7 +62,7 @@
                 window.localStorage.setItem("pass", password);
                 window.localStorage.setItem("datstr", dataString);
                 if ($.trim(email).length > 0 & $.trim(password).length > 0 & email.match(re) !== null & password == confirm_password) {
-                    $.ajax({
+                    /*$.ajax({
                         type: "POST",
                         url: "http://forwardingenuity.com/insert_user.php",
                         data: dataString,
@@ -80,7 +80,7 @@
                                 alert("error");
                             }
                         }
-                    });
+                    });*/
                     window.location.href = "userPage.html";            //Go to succeeded page
                 }
                 else if (email.match(re) === null & $.trim(email).length > 0) {
