@@ -36,7 +36,7 @@
                         <input type="password" class="form-control" placeholder="Confirm Password" id="pas_conf" />
 
                     </div>
-                    <button type="submit" class="btn btn-primary form-control" id="login">Submit</button>
+                    <button type="submit" class="btn btn-primary form-control" id="insert">Submit</button>
                 </form>
             </div>
 
@@ -48,6 +48,44 @@
 
     </div>
 
-    <script type="text/javascript" src="scripts/SBLogin.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#insert").click(function () {
+
+                var email = $("#ema").val();
+                var password = $("#pas").val();
+            
+                var dataString = "email=" + email + "&password=" + password + "&insert=";
+                if ($.trim(email).length > 0 & $.trim(password).length > 0) {
+                    $.ajax({
+                        type: "POST",
+                        url: "http://forwardingenuity.com/insert_user.php",
+                        data: dataString,
+                        crossDomain: true,
+                        cache: false,
+                        beforeSend: function () { $("#insert").val('Connecting...'); },
+                        success: function (data) {
+                            if (data == "success") {
+                                alert("inserted");
+                                $("#insert").val('submit');
+                            }
+                            else if (data == "error") {
+                                alert("error");
+                            }
+                        }
+                    });
+                    window.location.href = "signUp.html";
+                }
+                else {
+                    $("#Par_empty").text("Email and Password cannot be left empty");
+
+
+                }
+
+                return false;
+            });
+        });
+
+    </script>
 </body>
 </html>
