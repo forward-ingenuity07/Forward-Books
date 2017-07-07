@@ -6,7 +6,14 @@
 
 function clickFunc() {
     window.localStorage.setItem("Check", "0");
-    window.location.href = 'SellBooksLogin.html';
+    if (window.localStorage.getItem("logged_in") != "1")
+        {
+        window.location.href = 'SellBooksLogin.html';
+    }
+    else {
+        window.location.href = "userPage.html";
+
+    }
 }
 
 (function () {
