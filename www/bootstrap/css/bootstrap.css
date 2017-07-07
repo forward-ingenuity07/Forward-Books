@@ -3061,6 +3061,10 @@ fieldset[disabled] a.btn {
   background-color: #fff;
   border-color: #ccc;
 }
+
+.white{
+    color:white;
+}
 .btn-black {
   color: white;
   background-color: black;
