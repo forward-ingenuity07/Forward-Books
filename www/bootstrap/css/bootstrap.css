@@ -6530,6 +6530,17 @@ button.close {
 .pull-right {
   float: right !important;
 }
+.pull-center {
+
+    display: block;
+    display: inline-block;
+     width: 30px;
+     height: 30px;
+    float: left;
+     margin-left: 3px;
+     background: url(/images/structure/pagination-button.png);
+ }
+}
 .pull-left {
   float: left !important;
 }
