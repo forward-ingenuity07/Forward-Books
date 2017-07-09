@@ -1639,7 +1639,7 @@ pre code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
-  text-align:justify;
+  
 }
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
   float: left;
@@ -3128,6 +3128,16 @@ fieldset[disabled] a.btn {
   border-color: white;
 
 }
+
+.btn-black1 {
+  color: white;
+  background-color: #222;
+  border-color: white;
+
+}
+
+
+#222;
 .btn-default:focus,
 .btn-default.focus {
   color: #333;
@@ -4351,6 +4361,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding: 15px 15px;
   font-size: 12px;
   line-height: 20px;
+  border-color:white;
 }
 .navbar-brand3 {
   float:right;
