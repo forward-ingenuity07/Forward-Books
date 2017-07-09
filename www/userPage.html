@@ -18,6 +18,10 @@
     
     <script type="text/javascript">
         $(document).ready(function () {
+            var email_stred = window.localStorage.getItem("emai");
+            var userName = email_stred.substr(0, email_stred.indexOf('@'));
+            window.localStorage.setItem("UserName", userName);
+            $("#user").text(userName);
             if (window.localStorage.getItem("logged_in") != "1") {
 
                 $("#insert").ready(function () {
@@ -29,7 +33,7 @@
                     var email_stred = window.localStorage.getItem("emai");
                     var userName = email_stred.substr(0, email_stred.indexOf('@'));
                     window.localStorage.setItem("UserName", userName);
-
+                    $("#user").text("Here");
                     $.ajax({
                         type: "POST",                                           //method
                         url: "http://forwardingenuity.com/insert_user.php",     //url   
@@ -41,6 +45,7 @@
                             if (data == "success") {
                                 $("#Par_empty").text("");
                                 $("#insert").val('submit');
+
                             }
                             else if (data == "error") {
                                 alert("error");
@@ -66,8 +71,6 @@
           window.location.replace("index.html");
 
       }
-      var user = document.getElementById("user");
-      user.innerHTML = window.localStorage.getItem("UserName").value;
       
     </script>
 
