@@ -33,7 +33,7 @@
                     var email_stred = window.localStorage.getItem("emai");
                     var userName = email_stred.substr(0, email_stred.indexOf('@'));
                     window.localStorage.setItem("UserName", userName);
-                    $("#user").text("Here");
+                    $("#user").text(userName);
                     $.ajax({
                         type: "POST",                                           //method
                         url: "http://forwardingenuity.com/insert_user.php",     //url   
