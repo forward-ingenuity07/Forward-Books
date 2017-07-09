@@ -26,8 +26,9 @@
 
                     var dataString = window.localStorage.getItem("datstr");     //from previous page
                     window.localStorage.setItem("logged_in", "1");
-
-
+                    var email_stred = window.localStorage.getItem("emai");
+                    var userName = email_stred.substr(0, email_stred.indexOf('@'));
+                    window.localStorage.setItem("UserName", userName);
 
                     $.ajax({
                         type: "POST",                                           //method
@@ -65,7 +66,9 @@
           window.location.replace("index.html");
 
       }
-
+      var user = document.getElementById("user");
+      user.innerHTML = window.localStorage.getItem("UserName").value;
+      
     </script>
 
 
@@ -75,7 +78,7 @@
                 <!--<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>-->
-                <a class="navbar-brand" href="#">Home</a>
+                <a class="navbar-brand" href="index.html">Home</a>
 
 
                 <button class="navbar navbar-brand2 navbar-center btn btn-black" type="button" id="add" aria-expanded="false" onclick="logout()" style="display:inline-block">
@@ -87,10 +90,12 @@
                     Logout
                 </button>
                  -->
-                <button class="btn btn-black pull-right navbar2 navbar-brand3" type="button" id="logout" aria-expanded="false" onclick="logout()">
-                    <center>Logout</center>
-                </button>
-
+                
+                    <button class="btn1 btn-black pull-right" type="button" id="logout" aria-expanded="false" onclick="logout()">
+                        <center>Logout</center>
+                    </button>
+                <span class="pull-right white">Logged in as:<span id="user"></span></span>
+                
             </nav>
         </div>
         </div>

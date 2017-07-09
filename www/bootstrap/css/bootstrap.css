@@ -3044,6 +3044,39 @@ select[multiple].input-lg {
   border-radius: 4px;
 
 }
+
+.btn1 {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 10px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+}
+
+
+
+
+
+
+
+
+
+
 .btn:focus,
 .btn:active:focus,
 .btn.active:focus,
@@ -4315,7 +4348,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   display:inline-block;
   height: 50px;
   padding: 15px 15px;
-  font-size: 18px;
+  font-size: 12px;
   line-height: 20px;
 }
 .navbar-brand3 {
