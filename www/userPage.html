@@ -107,7 +107,27 @@
 
       });
 
+        /*
+      $("#add_more").click(function () {
+          var max_fields = 10; //maximum input boxes allowed
+          var wrapper = $(".input_fields_wrap"); //Fields wrapper
+          var add_button = $(".add_field_button"); //Add button ID
 
+          var x = 1; //initlal text box count
+          $(add_button).click(function (e) { //on add input button click
+              e.preventDefault();
+              if (x < max_fields) { //max input box allowed
+                  x++; //text box increment
+                  $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+              }
+          });
+
+          $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+              e.preventDefault(); $(this).parent('div').remove(); x--;
+          })
+      });
+
+      */
     </script>
 
     
@@ -120,7 +140,7 @@
                 <a class="navbar-brand" href="index.html">Home</a>
 
 
-                <button class="navbar navbar-brand2 navbar-center btn btn-black1 btn-lg" type="button" id="add" style="display:inline-block" data-toggle="modal" data-target="#myModal" aria-expanded="false">
+                <button class="navbar navbar-brand2 navbar-center btn btn-black1 btn-lg" type="button" id="add" style="display:inline-block" data-toggle="modal" data-target="#myModal">
                     <span class="glyphicon glyphicon-plus white" ></span>
                 </button>
 
@@ -139,7 +159,6 @@
         </div>
         </div>
 
-    
 
 
     <div id="myModal" class="modal fade" role="dialog">
@@ -150,20 +169,32 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Modal Header</h4>
+                    
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Enter title" id="title" />
+                        <div class="form-group input_fields_wrap">
+                            <label>Title
+                            <span class="pull-right"><button class="btn3 btn-white add_field_button" type="button" id="#add_more" style="display:inline-block">
+                                        <span class="glyphicon glyphicon-plus gray"></span>
+                                        </button>
+                                <button class="btn3 btn-white remove_field_button" type="button" id="#remove" style="display:inline-block">
+                                    <span class="glyphicon glyphicon-minus gray"></span>
+                                </button>
+                                
+                                </span>
+                            </label>
+                            <input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="title" />
 
                         </div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Enter Price" id="price" />
+                        <div class="form-group input_fields_wrap1">
+                            <label>Price</label>
+                            <input class="form-control" name="mytext[]" placeholder="Enter Price" id="price" />
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group input_fields_wrap2">
                             <label>Faculty</label>
-                            <select class="form-control" id="faculty_chosen">
+                            <select class="form-control" id="faculty_chosen" name="mytext[]">
                                 <option value="Economic and Management Sciences">Economic and Management Sciences</option>
                                 <option value="Education">Education</option>
                                 <option value="Engineering, Built Environment & IT">Engineering, Built Environment & IT</option>
@@ -184,7 +215,62 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var max_fields = 5; //maximum input boxes allowed
+            var wrapper = $(".input_fields_wrap"); //Fields wrapper
+            var wrapper1 = $(".input_fields_wrap1");
+            var wrapper2 = $(".input_fields_wrap2");
+            var add_button = $(".add_field_button"); //Add button ID
+            var rmv_button = $(".remove_field_button");
+            var x = 1; //initlal text box count
+            $(add_button).click(function (e) { //on add input button click
+                e.preventDefault();
+                if (x < max_fields) { //max input box allowed
+                    x++; //text box increment
+                    $(wrapper).append('<div id="titl' + x + '"><input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="title" /></div>'); //add input box
+                    $(wrapper1).append('<div id="pri'+x+'"><input class="form-control" name="mytext[]" placeholder="Enter Price" id="price" /></div>');
+                    $(wrapper2).append('<div id="facul' + x + '"><select class="form-control" id="faculty_chosen" name="mytext[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment & IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural & Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div>');
+                }
+            });
 
+            $(rmv_button).click(function(e){ //user click on remove text
+                //e.preventDefault(); $(this).parent('div').remove();
+                var wrapper = $(".input_fields_wrap");
+                var wrapper1 = $(".input_fields_wrap1");
+                var wrapper2 = $(".input_fields_wrap2");
+                if (x == 2) {
+                    $('#titl2').remove();
+                    $('#pri2').remove();
+                    $('#facul2').remove();
+
+                }
+                if (x == 3) {
+                    $('#titl3').remove();
+                    $('#pri3').remove();
+                    $('#facul3').remove();
+
+                }
+                if (x == 4) {
+                    $('#titl4').remove();
+                    $('#pri4').remove();
+                    $('#facul4').remove();
+
+                }
+                if (x == 5) {
+                    $('#titl5').remove();
+                    $('#pri5').remove();
+                    $('#facul5').remove();
+
+                }
+                if(x!=1){
+                    x--;
+                }
+            });
+           
+        });
+
+    </script>
 
     
 

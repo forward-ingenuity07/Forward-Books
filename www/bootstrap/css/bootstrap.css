@@ -3070,7 +3070,28 @@ select[multiple].input-lg {
 }
 
 
+.btn3 {
+  display: inline-block;
+  padding: 1px 3px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
 
+}
 
 
 
@@ -3122,12 +3143,26 @@ fieldset[disabled] a.btn {
 .white{
     color:white;
 }
+.black{
+    color:black;
+}
+.gray{
+    color:gray;
+}
+
 .btn-black {
   color: white;
   background-color: black;
   border-color: white;
 
 }
+.btn-white {
+  color: gray;
+  background-color: white;
+  border-color: gray;
+
+}
+
 
 .btn-black1 {
   color: white;
