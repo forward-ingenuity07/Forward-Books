@@ -32,6 +32,7 @@
                         if (ourData[i].email == email && ourData[i].password == password)    //find books under faculty
                         {
                             window.localStorage.setItem("emai", ourData[i].email);
+                            window.localStorage.setItem("Alreadr_member", "1");
                             window.location.replace("userPage.html");
 
                         }

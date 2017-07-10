@@ -4,13 +4,14 @@
     <title>After</title>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <script type="text/javascript" src="scripts/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <link rel="stylesheet" type="text/css" href="css/anime.css">
+    
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
 
 </head>
@@ -34,6 +35,7 @@
                     var userName = email_stred.substr(0, email_stred.indexOf('@'));
                     window.localStorage.setItem("UserName", userName);
                     $("#user").text(userName);
+                    if(window.localStorage.getItem("Alreadr_member")!="1"){
                     $.ajax({
                         type: "POST",                                           //method
                         url: "http://forwardingenuity.com/insert_user.php",     //url   
@@ -52,9 +54,9 @@
                             }
                         }
                     });
-
+                    
                     return false;
-
+                    }
 
 
 
@@ -72,9 +74,43 @@
 
       }
       
+      $("#sub").click(function () {
+
+          //Regexp to check if email is valid
+
+          var dataString = window.localStorage.getItem("datstr");     //from previous page
+          window.localStorage.setItem("logged_in", "1");
+          
+          $.ajax({
+              type: "POST",                                           //method
+              url: "http://forwardingenuity.com/insert_book.php",     //url   
+              data: dataString,                                       //data sent as concatinated string
+              crossDomain: true,
+              cache: false,
+              beforeSend: function () { $("#insert").val('Connecting...'); },
+              success: function (data) {
+                  if (data == "success") {
+                      $("#Par_empty").text("");
+                      $("#insert").val('submit');
+
+                  }
+                  else if (data == "error") {
+                      alert("error");
+                  }
+              }
+          });
+
+          return false;
+
+
+
+
+      });
+
+
     </script>
 
-
+    
     <div class="bd-example">
         <div id="wrapper" style="text-align: center">
             <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
@@ -84,7 +120,7 @@
                 <a class="navbar-brand" href="index.html">Home</a>
 
 
-                <button class="navbar navbar-brand2 navbar-center btn btn-black1 btn-lg" type="button" id="add" style="display:inline-block" data-toggle="modal" data-target="#myModal">
+                <button class="navbar navbar-brand2 navbar-center btn btn-black1 btn-lg" type="button" id="add" style="display:inline-block" data-toggle="modal" data-target="#myModal" aria-expanded="false">
                     <span class="glyphicon glyphicon-plus white" ></span>
                 </button>
 
@@ -103,6 +139,9 @@
         </div>
         </div>
 
+    
+
+
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -113,10 +152,32 @@
                     <h4 class="modal-title">Modal Header</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Some text in the modal.</p>
+                    <form>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Enter title" id="title" />
+
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Enter Price" id="price" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Faculty</label>
+                            <select class="form-control" id="faculty_chosen">
+                                <option value="Economic and Management Sciences">Economic and Management Sciences</option>
+                                <option value="Education">Education</option>
+                                <option value="Engineering, Built Environment & IT">Engineering, Built Environment & IT</option>
+                                <option value="Health Sciences">Health Sciences</option>
+                                <option value="Humanities">Humanities</option>
+                                <option value="Natural & Agricultural Sciences">Natural & Agricultural Sciences</option>
+                                <option value="Theology">Theology</option>
+                                <option value="Vertinary Science">Vertinary Science</option>
+                            </select>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="sub">Submit</button>
                 </div>
             </div>
 
@@ -125,7 +186,7 @@
 
 
 
-
+    
 
 
 
