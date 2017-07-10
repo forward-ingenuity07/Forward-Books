@@ -169,7 +169,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Modal Header</h4>
-                    
+                    <p class="danger" id="message"></p>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -208,7 +208,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" id="sub">Submit</button>
+                    <button type="button" class="btn btn-default" id="sub" onclick="submitBooks">Submit</button>
                 </div>
             </div>
 
@@ -224,13 +224,16 @@
             var add_button = $(".add_field_button"); //Add button ID
             var rmv_button = $(".remove_field_button");
             var x = 1; //initlal text box count
+            
             $(add_button).click(function (e) { //on add input button click
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
+                    
                     x++; //text box increment
-                    $(wrapper).append('<div id="titl' + x + '"><input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="title" /></div>'); //add input box
-                    $(wrapper1).append('<div id="pri'+x+'"><input class="form-control" name="mytext[]" placeholder="Enter Price" id="price" /></div>');
-                    $(wrapper2).append('<div id="facul' + x + '"><select class="form-control" id="faculty_chosen" name="mytext[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment & IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural & Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div>');
+                    $(wrapper).append('<div id="titl' + x + '"><input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="title'+x+'" /></div>'); //add input box
+                    $(wrapper1).append('<div id="pri' + x + '"><input class="form-control" name="mytext[]" placeholder="Enter Price" id="price' + x + '" /></div>');
+                    $(wrapper2).append('<div id="facul' + x + '"><select class="form-control" id="faculty_chosen' + x + '" name="mytext[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment & IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural & Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div>');
+                    window.localStorage.setItem("elems", x);
                 }
             });
 
@@ -265,10 +268,53 @@
                 }
                 if(x!=1){
                     x--;
+                    window.localStorage.setItem("elems", x);
                 }
             });
            
         });
+        function submitBooks() {
+
+            var el = document.getElementById("faculty_chosen");
+            var title = $("#title").val();
+            var price = $("#price").val();
+            var faculty = el.options[el.selectedIndex].value
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;   //Regexp to check if email is valid
+          
+            var dataString = "title=" + title + "&price=" + price + "&faculty=" + faculty + "&insert=";
+            
+            if ($.trim(title).length > 0 & $.trim(price).length > 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "http://forwardingenuity.com/insert_book.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    beforeSend: function () { $("#insert").val('Connecting...'); },
+                    success: function (data) {
+                        if (data == "success") {
+                            alert("inserted");                      
+                            $("#message").text("");
+                            $("#insert").val('submit');
+
+                        }
+                        else if (data == "error") {
+                            alert("error");
+                        }
+                    }
+                });
+                            //Go to succeeded page
+            }
+            else {
+                $("#message").text("Invalid");
+
+            }
+
+            return false;
+
+
+        }
+        
 
     </script>
 
