@@ -84,8 +84,8 @@
                 <a class="navbar-brand" href="index.html">Home</a>
 
 
-                <button class="navbar navbar-brand2 navbar-center btn btn-black1" type="button" id="add" aria-expanded="false" onclick="logout()" style="display:inline-block">
-                    <span class="glyphicon glyphicon-plus white"></span>
+                <button class="navbar navbar-brand2 navbar-center btn btn-black1 btn-lg" type="button" id="add" style="display:inline-block" data-toggle="modal" data-target="#myModal">
+                    <span class="glyphicon glyphicon-plus white" ></span>
                 </button>
 
 
@@ -103,47 +103,25 @@
         </div>
         </div>
 
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-        <!--<div class="wrapper fade-in">
-
-            <nav class="navbar navbar-inverse ">
-                <div class="container">
-                    <!-- Brand and toggle get grouped for better mobile display !-->
-        <!-- <div class="navbar-header">
-
-             <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                 <span class="glyphicon glyphicon-plus white"></span>
-             </button>-->
-        <!-- <button class="navbar btn btn-black pull-left" type="button" id="Home" aria-expanded="false" onclick="logout()">
-             Home
-         </button>
-
-         <center class="navbar navbar-center">
-             <button class="navbar navbar-center btn btn-black" type="button" id="add" aria-expanded="false" onclick="logout()">
-                 <span class="glyphicon glyphicon-plus white"></span>
-             </button>
-         </center>
-
-         <button class="btn btn-black pull-right" type="button" id="logout" aria-expanded="false" onclick="logout()">
-             Logout
-         </button>
-
-
-         <!--<a class="navbar-brand" href="index.html" role="button" id="back"><span class="glyphicon glyphicon-chevron-left"></span>Return to Home</a>-->
-        <!-- </div>-->
-        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li><a role="button" data-toggle="collapse" data-target=".bs-example-modal-lg" aria-expanded="false" id="ButPlus">Add event</a></li>
-                            <li><a role="button" data-toggle="collapse" data-target=".bs-are-you-sure-modal" aria-expanded="false" id="ButClear">Clear table</a></li>
-
-                        </ul>
-                    </div>
-                </div><!-- /.container-fluid
-            </nav>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
 
         </div>
-                        -->
-
+    </div>
 
 
 
