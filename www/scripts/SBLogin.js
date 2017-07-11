@@ -33,6 +33,7 @@
                         {
                             window.localStorage.setItem("emai", ourData[i].email);
                             window.localStorage.setItem("Alreadr_member", "1");
+                            window.localStorage.setItem("id", ourData[i].id);
                             window.location.replace("userPage.html");
 
                         }

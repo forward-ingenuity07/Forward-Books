@@ -65,6 +65,62 @@
             }
             
 
+               var url1 = "http://forwardingenuity.com/json_users.php"; //Get url of php file containing json
+
+                var ourRequest = new XMLHttpRequest(); //create XMLHttpRequest object to request for the JSON data
+                ourRequest.open("GET", url1);   //Opening...    
+                 //container div
+                ourRequest.onload = function () {
+                   
+
+
+                    //request has loaded
+                    //window.localStorage.setItem("Holding", ourRequest.responseText);
+                    var ourData = JSON.parse(ourRequest.responseText);      //change the received response text to an actuall array of objects
+                    var books = 0;        //any books under the faculty?
+                    console.log(ourData);
+
+                    //var ourData2 = JSON.parse(window.localStorage.getItem("Holding"));
+                    var info_length = (ourData.length);
+                    
+                    for (var i = 0; i < info_length; i++) {
+                        if (ourData[i].email == email && ourData[i].password == password)    //find books under faculty
+                        {
+                            window.localStorage.setItem("emai", ourData[i].email);
+                            window.localStorage.setItem("Alreadr_member", "1");
+                            window.localStorage.setItem("id", ourData[i].id);
+                            window.location.replace("userPage.html");
+
+                        }
+                        //books++;
+                        else
+                        {
+                                
+                        }
+
+                    }
+                    if (books == 0) {
+                        //alert("No books available");
+                        //No books in the div
+                        $("#Par_empty").text("Email/Password combination is not valid");
+
+                    }
+
+                    /*var par = document.createElement('p');
+                    par.id = "paragraph" + i;*-
+                    par.innerHTML = '<strong>' + ourData2[1].title + '</strong>' + '<br />' + 'R400' + '&nbsp &nbsp &nbsp' + '0739995999';
+                    outDiv.appendChild(par);
+                  */
+
+                }
+                ourRequest.send();
+                            //Go to succeeded page
+            
+
+
+
+
+
         });
       
       function logout() {
@@ -169,7 +225,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Modal Header</h4>
-                    <p class="danger" id="message"></p>
+                    <p class="text-danger" id="message"></p>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -192,6 +248,12 @@
                             <input class="form-control" name="mytext[]" placeholder="Enter Price" id="price" />
                         </div>
 
+                        <div class="form-group input_fields_wrap3">
+                            <label>Contact</label>
+                            <input class="form-control" name="mytext[]" placeholder="Enter Phone number" id="contact" />
+                        </div>
+
+
                         <div class="form-group input_fields_wrap2">
                             <label>Faculty</label>
                             <select class="form-control" id="faculty_chosen" name="mytext[]">
@@ -208,7 +270,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" id="sub" onclick="submitBooks">Submit</button>
+                    <button type="submit" class="btn btn-default" id="sub">Submit</button>
                 </div>
             </div>
 
@@ -273,7 +335,7 @@
             });
            
         });
-        function submitBooks() {
+      /*  function submitBooks() {
 
             var el = document.getElementById("faculty_chosen");
             var title = $("#title").val();
@@ -315,10 +377,64 @@
 
         }
         
-
+        */
     </script>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            
+                $("#sub").click(function () {
+
+                    var el = document.getElementById("faculty_chosen");
+                    var title = $("#title").val();
+                    var price = $("#price").val();
+                    var faculty = el.options[el.selectedIndex].value
+                    var contact = $("#contact").val();
+                    var uploader = window.localStorage.getItem("id");
+                    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;   //Regexp to check if email is valid
+
+                    var dataString = "title=" + title + "&price=" + price + "&faculty=" + faculty + "&contact=" + contact + "&uploader=" + uploader + "&insert=";
+
+                    if ($.trim(title).length > 0 & $.trim(price).length > 0) {
+                        $.ajax({
+                            type: "POST",
+                            url: "http://forwardingenuity.com/insert_book.php",
+                            data: dataString,
+                            crossDomain: true,
+                            cache: false,
+                            beforeSend: function () { $("#insert").val('Connecting...'); },
+                            success: function (data) {
+                                if (data == "success") {
+                                    alert("inserted");                      
+                                    $("#Par_empty").text("");
+                                    $("#insert").val('submit');
     
+                                }
+                                else if (data == "error") {
+                                    alert("error");
+                                }
+                            }
+                        });
+                                    //Go to succeeded page
+                    }
+                    else {
+                        $("#message").text("Invalid");
+
+                    }
+
+                    return false;
+
+                });
+
+            
+
+        });
+
+
+
+
+    </script>
 
 
 
