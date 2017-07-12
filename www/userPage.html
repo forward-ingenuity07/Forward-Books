@@ -286,7 +286,7 @@
             var add_button = $(".add_field_button"); //Add button ID
             var rmv_button = $(".remove_field_button");
             var x = 1; //initlal text box count
-            
+            window.localStorage.setItem("elems", x);
             $(add_button).click(function (e) { //on add input button click
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
@@ -385,23 +385,81 @@
 
             
                 $("#sub").click(function () {
-                    var title1 = $('[name="mytext1[]"]');
-                    console.log(title1[0]);
-                    alert(title1[0]);
+                    var title2 = "#title2";
+                    var price2 = "#price2";
+                    var faculty_chosen2 = "#faculty_chosen2";
+                    var title3 = "#title3";
+                    var price3 = "#price3";
+                    var faculty_chosen3 = "#faculty_chosen3";
+                    var title4 = "#title4";
+                    var price4 = "#price4";
+                    var faculty_chosen4 = "#faculty_chosen4";
+                    var title5 = "#title5";
+                    var price5 = "#price5";
+                    var faculty_chosen5 = "#faculty_chosen5";
+                    var datastring1='';
+                    var elements = window.localStorage.getItem("elems");
+                    if (window.localStorage.getItem("elems") >= "2") {
+
+                    switch(elements){
+                        case "5":
+
+                        titleC5 = $(title5).val();
+                        priceC5 = $(price5).val();
+                        titleC5 = $(title5).val();
+                        el5 = document.getElementById("faculty_chosen5");
+                        faculty5 = el5.options[el5.selectedIndex].value;
+                        datastring1 += "&title5=" + titleC5 + "&price5=" + priceC5 + "&faculty5=" + faculty5;
+                        case "4":
+                        titleC4 = $(title4).val();
+                        priceC4 = $(price4).val();
+                        titleC4 = $(title4).val();
+                        el4 = document.getElementById("faculty_chosen4");
+                        faculty4 = el4.options[el4.selectedIndex].value;
+                        datastring1 += "&title4=" + titleC4 + "&price4=" + priceC4 + "&faculty4=" + faculty4;
+                        case "3":
+                        titleC3 = $(title3).val();
+                        priceC3 = $(price3).val();
+                        titleC3 = $(title3).val();
+                        el3 = document.getElementById("faculty_chosen3");
+                        faculty3 = el3.options[el3.selectedIndex].value;
+                        datastring1 += "&title3=" + titleC3 + "&price3=" + priceC3 + "&faculty3=" + faculty3;
+                        case "2":
+                            titleC2 = $(title2).val();
+                            priceC2 = $(price2).val();
+                            titleC2 = $(title2).val();
+                            el2 = document.getElementById("faculty_chosen2");
+                            faculty2 = el2.options[el2.selectedIndex].value;
+                            datastring1 += "&title2=" + titleC2 + "&price2=" + priceC2 + "&faculty2=" + faculty2;
+                            break;
+                        default:
+                            break;
+
+                    }
+                        
+
+                    }
+                    
                     var el = document.getElementById("faculty_chosen");
                     var title = $("#title").val();
                     var price = $("#price").val();
-                    var faculty = el.options[el.selectedIndex].value
+                    var faculty = el.options[el.selectedIndex].value;
                     var contact = $("#contact").val();
                     var uploader = window.localStorage.getItem("id");
                     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;   //Regexp to check if email is valid
-
+                    if (elements< "2")
+                     {
                     var dataString = "title=" + title + "&price=" + price + "&faculty=" + faculty + "&contact=" + contact + "&uploader=" + uploader + "&insert=";
+                    }
 
+                    else {
+                        var dataString = "title=" + title + "&price=" + price + "&elements=" + elements + "&faculty=" + faculty + "&contact=" + contact + datastring1 + "&uploader=" + uploader + "&insert=";
+
+                    }
                     if ($.trim(title).length > 0 & $.trim(price).length > 0) {
                         $.ajax({
                             type: "POST",
-                            url: "http://forwardingenuity.com/insert_book.php",
+                            url: "http://forwardingenuity.com/insert_book1.php",
                             data: dataString,
                             crossDomain: true,
                             cache: false,
@@ -445,7 +503,7 @@
 
                 window.location.replace("userPage.html");
 
-            }, 300);
+            }, 100);
         });
 
 
