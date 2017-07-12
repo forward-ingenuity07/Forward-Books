@@ -41,6 +41,7 @@
                 console.log("Here");
 
                 $('#loading-indicator').attr('src', 'newEdu.png');
+                $('#loading-indicator').css('top', '0px');
                 //request has loaded
                 //window.localStorage.setItem("Holding", ourRequest.responseText);
                 var ourData = JSON.parse(ourRequest.responseText);      //change the received response text to an actuall array of objects
