@@ -24,25 +24,23 @@
         <hr />
         
     </div>
+    <img src="ajax-loader.gif" id="loading-indicator" style="display:none" />
+
     <script type="text/javascript">
         "use strict";
-         //Get url of php file containing json
-        
-        document.addEventListener('online', awake(), false);
-        document.addEventListener('offline', asleep(), false);
-        function awake() {
-            window.localStorage.setItem("online","1");
+        $(document).ready(function () {
 
-        }
 
-        function asleep() {
-            window.localStorage.setItem("online", "0");
+            document.addEventListener('online', awake(), false);
+            document.addEventListener('offline', asleep(), false);
 
-        }
-        
-        setTimeout(function () {
-            if (window.localStorage.getItem("online") == "1") {
-                var url1 = "http://forwardingenuity.com/json.php";
+
+            function awake() {
+                $('#loading-indicator').hide();
+                //$('#loading-indicator').css("display", "none");
+                var url1 = "http://forwardingenuity.com/json.php"; //Get url of php file containing json
+
+
                 var ourRequest = new XMLHttpRequest(); //create XMLHttpRequest object to request for the JSON data
                 ourRequest.open("GET", url1);   //Opening...    
                 var outDiv = document.getElementById("containment"); //container div
@@ -94,16 +92,13 @@
 
             }
 
-            else if (window.localStorage.getItem("online") == "0") {
+            function asleep() {
 
-                alert("Offline: Kindly check internet connection");
+                $('#loading-indicator').show();
             }
 
 
-
-        }, 5000)
-
-
+        });
     </script>
 
     <script type="text/javascript" src="scripts/FindBooks.js"></script>

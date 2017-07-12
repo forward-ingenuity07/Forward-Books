@@ -3169,6 +3169,13 @@ fieldset[disabled] a.btn {
 
 }
 
+#loading-indicator {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  
+}
+
 .btn-dan {
   color: gray;
   background-color: white;
