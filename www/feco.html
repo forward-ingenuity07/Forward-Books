@@ -28,15 +28,14 @@
 
     <script type="text/javascript">
         "use strict";
-        $(document).ready(function () {
-
+        
 
             document.addEventListener('online', awake(), false);
             document.addEventListener('offline', asleep(), false);
 
 
             function awake() {
-                $('#loading-indicator').hide();
+                
                 //$('#loading-indicator').css("display", "none");
                 var url1 = "http://forwardingenuity.com/json.php"; //Get url of php file containing json
 
@@ -44,14 +43,16 @@
                 var ourRequest = new XMLHttpRequest(); //create XMLHttpRequest object to request for the JSON data
                 ourRequest.open("GET", url1);   //Opening...    
                 var outDiv = document.getElementById("containment"); //container div
+                
                 ourRequest.onload = function () {
                     console.log("Here");
 
-
+                    $('#loading-indicator').attr('src', 'new.png');
                     //request has loaded
                     //window.localStorage.setItem("Holding", ourRequest.responseText);
                     var ourData = JSON.parse(ourRequest.responseText);      //change the received response text to an actuall array of objects
                     var books = 0;        //any books under the faculty?
+
 
 
                     //var ourData2 = JSON.parse(window.localStorage.getItem("Holding"));
@@ -98,7 +99,7 @@
             }
 
 
-        });
+        
     </script>
 
     <script type="text/javascript" src="scripts/FindBooks.js"></script>
