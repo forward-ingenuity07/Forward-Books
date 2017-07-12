@@ -9,6 +9,11 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+
+.borderD{
+    border-color:#e4b9c0;
+
+}
 body {
   margin: 0;
 }
@@ -2572,6 +2577,7 @@ output {
 .form-control {
   display: block;
   width: 100%;
+  
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -3160,6 +3166,13 @@ fieldset[disabled] a.btn {
   color: gray;
   background-color: white;
   border-color: gray;
+
+}
+
+.btn-dan {
+  color: gray;
+  background-color: white;
+  border-color: red;
 
 }
 

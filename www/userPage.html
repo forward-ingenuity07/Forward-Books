@@ -19,6 +19,15 @@
     
     <script type="text/javascript">
         $(document).ready(function () {
+            if (window.localStorage.getItem("success") == "1")
+            {
+                setTimeout(function () {
+
+                    alert("Success");
+                },500)
+                
+            }
+            window.localStorage.setItem("success", "0");
             var email_stred = window.localStorage.getItem("emai");
             var userName = email_stred.substr(0, email_stred.indexOf('@'));
             window.localStorage.setItem("UserName", userName);
@@ -270,7 +279,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal"  class="btn btn-default" id="sub">Submit</button>
+                    <button type="button" class="btn btn-default" id="sub">Submit</button>
                 </div>
             </div>
 
@@ -397,7 +406,24 @@
                     var title5 = "#title5";
                     var price5 = "#price5";
                     var faculty_chosen5 = "#faculty_chosen5";
-                    var datastring1='';
+                    var datastring1 = '';
+                    
+                    var titleElem2 = document.getElementById("title2");
+                    var priceElem2 = document.getElementById("price2");
+                    
+                    var titleElem3 = document.getElementById("title3");
+                    var priceElem3 = document.getElementById("price3");
+                    
+                    var titleElem4 = document.getElementById("title4");
+                    var priceElem4 = document.getElementById("price4");
+                    
+                    var titleElem5 = document.getElementById("title5");
+                    var priceElem5 = document.getElementById("price5");
+
+
+                    window.localStorage.setItem("title_check", "1");
+                    window.localStorage.setItem("price_check", "1");
+                    
                     var elements = window.localStorage.getItem("elems");
                     if (window.localStorage.getItem("elems") >= "2") {
 
@@ -410,6 +436,30 @@
                         el5 = document.getElementById("faculty_chosen5");
                         faculty5 = el5.options[el5.selectedIndex].value;
                         datastring1 += "&title5=" + titleC5 + "&price5=" + priceC5 + "&faculty5=" + faculty5;
+                        if(titleC5=='' && priceC5!='')
+                            {
+                            $("#message").text("5th Title field left empty");
+                            window.localStorage.setItem("title_check", "0");
+                            window.localStorage.setItem("price_check", "0");
+                            titleElem5.className += " btn-dan";
+                            return;
+                        }
+                        else if (titleC5 != '' && priceC5 == '') {
+                            $("#message").text("5th Price field left empty");
+                            window.localStorage.setItem("title_check", "0");
+                            window.localStorage.setItem("price_check", "0");
+                            priceElem5.className += " btn-dan";
+                            return;
+                        }
+                        else if (titleC5 == '' && priceC5 == '') {
+                            $("#message").text("5th Price and Title fields left empty");
+                            window.localStorage.setItem("title_check", "0");
+                            window.localStorage.setItem("price_check", "0");
+                            titleElem5.className += " btn-dan";
+                            priceElem5.className += " btn-dan";
+                            return;
+                        }
+
                         case "4":
                         titleC4 = $(title4).val();
                         priceC4 = $(price4).val();
@@ -417,6 +467,35 @@
                         el4 = document.getElementById("faculty_chosen4");
                         faculty4 = el4.options[el4.selectedIndex].value;
                         datastring1 += "&title4=" + titleC4 + "&price4=" + priceC4 + "&faculty4=" + faculty4;
+
+                        if (titleC4 == '' && priceC4 != '') {
+                            $("#message").text("4th Title field left empty");
+                            window.localStorage.setItem("title_check", "0");
+                            window.localStorage.setItem("price_check", "0");
+                            titleElem4.className += " btn-dan";
+                            
+                            return;
+                        }
+                        else if (titleC4 != '' && priceC4 == '') {
+                            $("#message").text("4th Price field left empty");
+                            window.localStorage.setItem("title_check", "0");
+                            window.localStorage.setItem("price_check", "0");
+
+                            
+                            priceElem4.className += " btn-dan";
+                            return;
+                        }
+                        else if (titleC4 == '' && priceC4 == '') {
+                            $("#message").text("4th Price and Title fields left empty");
+                            window.localStorage.setItem("title_check", "0");
+                            window.localStorage.setItem("price_check", "0");
+
+                            titleElem4.className += " btn-dan";
+                            priceElem4.className += " btn-dan";
+
+                            return;
+                        }
+
                         case "3":
                         titleC3 = $(title3).val();
                         priceC3 = $(price3).val();
@@ -424,6 +503,32 @@
                         el3 = document.getElementById("faculty_chosen3");
                         faculty3 = el3.options[el3.selectedIndex].value;
                         datastring1 += "&title3=" + titleC3 + "&price3=" + priceC3 + "&faculty3=" + faculty3;
+                        if (titleC3 == '' && priceC3 != '') {
+                            $("#message").text("3rd Title field left empty");
+
+                            titleElem3.className += " btn-dan";
+                            
+                            return;
+                        }
+                        else if (titleC3 != '' && priceC3 == '') {
+                            $("#message").text("3rd Price field left empty");
+                            window.localStorage.setItem("title_check", "0");
+                            window.localStorage.setItem("price_check", "0");
+                            
+                            priceElem3.className += " btn-dan";
+
+                            return;
+                        }
+                        else if (titleC3 == '' && priceC3 == '') {
+                            $("#message").text("3rd Price and Title fields left empty");
+                            window.localStorage.setItem("title_check", "0");
+                            window.localStorage.setItem("price_check", "0");
+
+                            titleElem3.className += " btn-dan";
+                            priceElem3.className += " btn-dan";
+                            return;
+                        }
+
                         case "2":
                             titleC2 = $(title2).val();
                             priceC2 = $(price2).val();
@@ -431,8 +536,54 @@
                             el2 = document.getElementById("faculty_chosen2");
                             faculty2 = el2.options[el2.selectedIndex].value;
                             datastring1 += "&title2=" + titleC2 + "&price2=" + priceC2 + "&faculty2=" + faculty2;
-                            break;
+                            if (titleC2 == '' && priceC2 != '') {
+                                $("#message").text("2nd Title field left empty");
+
+                                titleElem2.className += " btn-dan";
+                                
+
+                                return;
+                            }
+                            else if (titleC2 != '' && priceC2 == '') {
+                                $("#message").text("2nd Price field left empty");
+                                window.localStorage.setItem("title_check", "0");
+                                window.localStorage.setItem("price_check", "0");
+
+                                
+                                priceElem2.className += " btn-dan";
+
+                                return;
+                            }
+                            else if (titleC2 == '' && priceC2 == '') {
+                                $("#message").text("2nd Price and Title fields left empty");
+                                window.localStorage.setItem("title_check", "0");
+                                window.localStorage.setItem("price_check", "0");
+
+                                titleElem2.className += " btn-dan";
+                                priceElem2.className += " btn-dan";
+                                return;
+                            }
+
+                            
                         default:
+                            if (title == '' && price != '') {
+                                $("#message").text("1st Title field left empty");
+                                window.localStorage.setItem("title_check", "0");
+                                window.localStorage.setItem("price_check", "0");
+                                return;
+                            }
+                            else if (title != '' && price == '') {
+                                $("#message").text("1st Price field left empty");
+                                window.localStorage.setItem("title_check", "0");
+                                window.localStorage.setItem("price_check", "0");
+                                return;
+                            }
+                            else if (title == '' && price == '') {
+                                $("#message").text("1st Price and Title fields left empty");
+                                window.localStorage.setItem("title_check", "0");
+                                window.localStorage.setItem("price_check", "0");
+                                return;
+                            }
                             break;
 
                     }
@@ -440,11 +591,48 @@
 
                     }
                     
+                    
                     var el = document.getElementById("faculty_chosen");
                     var title = $("#title").val();
                     var price = $("#price").val();
+                    var titleElem = document.getElementById("title");
+                    var priceElem = document.getElementById("price");
+
                     var faculty = el.options[el.selectedIndex].value;
                     var contact = $("#contact").val();
+
+                    if ($.trim(contact).length == 0) {
+                        $("#message").text("Contact field left empty");
+                        window.localStorage.setItem("title_check", "0");
+                        return;
+                    }
+
+                    if (title == '' && price != '') {
+                        $("#message").text("1st Title field left empty");
+                        window.localStorage.setItem("title_check", "0");
+                        window.localStorage.setItem("price_check", "0");
+                        titleElem.className += " btn-dan";
+                        return;
+                    }
+                    else if (title != '' && price == '') {
+                        $("#message").text("1st Price field left empty");
+                        window.localStorage.setItem("title_check", "0");
+                        window.localStorage.setItem("price_check", "0");
+                        priceElem.className += " btn-dan";
+                        return;
+                    }
+                    else if (title == '' && price == '') {
+                        $("#message").text("1st Price and Title fields left empty");
+                        window.localStorage.setItem("title_check", "0");
+                        window.localStorage.setItem("price_check", "0");
+                        titleElem.className += " btn-dan";
+                        priceElem.className += " btn-dan";
+                        return;
+                    }
+
+
+                    
+
                     var uploader = window.localStorage.getItem("id");
                     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;   //Regexp to check if email is valid
                     if (elements< "2")
@@ -456,7 +644,7 @@
                         var dataString = "title=" + title + "&price=" + price + "&elements=" + elements + "&faculty=" + faculty + "&contact=" + contact + datastring1 + "&uploader=" + uploader + "&insert=";
 
                     }
-                    if ($.trim(title).length > 0 & $.trim(price).length > 0) {
+                    if ($.trim(contact).length > 0) {
                         $.ajax({
                             type: "POST",
                             url: "http://forwardingenuity.com/insert_book1.php",
@@ -479,8 +667,9 @@
                                     //Go to succeeded page
                     }
                     else {
-                        $("#message").text("Invalid");
-
+                        $("#message").text("Contact field left empty");
+                        window.localStorage.setItem("title_check", "0");
+                        return;
                     }
 
                     return false;
@@ -500,10 +689,15 @@
         $("#sub").click(function () {
 
             setTimeout(function () {
-
+                if (window.localStorage.getItem("title_check") == "1" && window.localStorage.getItem("price_check") == "1")
+                {
+                    window.localStorage.setItem("success", "1");
                 window.location.replace("userPage.html");
-
-            }, 100);
+                }
+                else {
+                    alert("Fields left empty");
+                }
+            }, 300);
         });
 
 
