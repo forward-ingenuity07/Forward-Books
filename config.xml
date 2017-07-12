@@ -107,4 +107,5 @@
   <platform name="wp8">
     <splash src="res/screens/wp8/SplashScreenImage.png" width="768" height="1280" />
   </platform>
+  <plugin name="cordova-plugin-network-information" version="1.3.3" />
 </widget>
