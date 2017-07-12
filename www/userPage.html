@@ -600,10 +600,11 @@
 
                     var faculty = el.options[el.selectedIndex].value;
                     var contact = $("#contact").val();
-
+                    var contactElem = document.getElementById("contact");
                     if ($.trim(contact).length == 0) {
                         $("#message").text("Contact field left empty");
                         window.localStorage.setItem("title_check", "0");
+                        contactElem.className += " btn-dan";
                         return;
                     }
 
