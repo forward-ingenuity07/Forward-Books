@@ -54,7 +54,7 @@
                 par.id = "paragraph" + i;                       //id
                 par.style.fontSize = "large";                   //font-size
                 par.className += "animated fadeInLeft";         //fade in from animate.css
-                par.innerHTML = '<strong>' + ourData[i].title + '</strong>' + '<br />' + 'R400' + '<span class="pull-right">0739995999</span>'; //putting info in paragraph
+                par.innerHTML = '<strong>' + ourData[i].title + '</strong>' + '<br />' + 'R' + ourData[i].price + '<span class="pull-right">' + ourData[i].contact + '</span>'; //putting info in paragraph
                 outDiv.appendChild(par);            //add paragraph to container
                 outDiv.appendChild(hzr);            //add horizontal rulr to div
 
