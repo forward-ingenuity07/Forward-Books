@@ -10,10 +10,17 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <link rel="stylesheet" type="text/css" href="css/anime.css">
+    
+    <link rel="stylesheet" type="text/css" href="css/offline-language-english.css">
+    
+    <link rel="stylesheet" type="text/css" href="css/offline-theme-chrome.css">
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
+   <style>
+       .alert{
+           display:none;
+       }
 
-
+   </style>
 </head>
 <body style="background-color:#eee;">
     <div class="container" style="min-height:100%; height:100%; width:100%; position:absolute; top:15%">
@@ -36,7 +43,7 @@
                         <input type="password" class="form-control" placeholder="Confirm Password" id="pas_conf" />
 
                     </div>
-                    <button type="submit" class="btn btn-primary form-control" id="insert">Submit</button>
+                    <button type="button" class="btn btn-primary form-control" id="insert">Submit</button>
                 </form>
             </div>
 
@@ -48,13 +55,61 @@
 
     </div>
 
+    <div class="alert alert-success online">online</div>
+    <div class="alert alert-danger offline">offline</div>
+
+    <script type="text/javascript" src="scripts/offline.js"></script>
+    <script type="text/javascript" src="scripts/reconnect.js"></script>
+    <script type="text/javascript" src="scripts/requests.js"></script>
+    
+    
+    <script type="text/javascript" src="scripts/jquery-3.1.1.min.js"></script>
+
+    
+
     <script type="text/javascript">
-        $(document).ready(function () {
+       
+
+        $(function () {
+            var $online = $('.online'), $offline = $('.offline');
+            Offline.on('confirmed-down', function () {
+                
+                $online.fadeOut(function () {
+                    $offline.fadeIn();
+
+                });
+
+            });
+
+            Offline.on('confirmed-up', function () {
+
+                $offline.fadeOut(function () {
+                    $online.fadeIn();
+
+                });
+
+            });
+            Offline.check();
+        });
+        
+
+
+/* ///       
+        var submi = document.getElementById("insert");
+       
+         //   document.addEventListener('online', awake_signUp(), false);
+          //  document.addEventListener('offline', asleep_signUp(), false);
+
+
+        document.addEventListener('online', function () { awake() }, false);
+        document.addEventListener('offline', function () { asleep() }, false);
+        
+
+       
 
             window.localStorage.setItem("succeeding", "0");
-            if (window.localStorage.getItem("logged_in") != "1")
-                {
-            
+            if (window.localStorage.getItem("logged_in") != "1") {
+
                 $("#insert").click(function () {
 
                     var email = $("#ema").val();
@@ -68,7 +123,7 @@
                     if ($.trim(email).length > 0 & $.trim(password).length > 0 & email.match(re) !== null & password == confirm_password) {
                         /*$.ajax({
                             type: "POST",
-                            url: "http://forwardingenuity.com/insert_user.php",
+                            url: "http://forwardingenuity.com/json.php",
                             data: dataString,
                             crossDomain: true,
                             cache: false,
@@ -85,7 +140,17 @@
                                 }
                             }
                         });*/
-                        window.location.href = "userPage.html";            //Go to succeeded page
+  /*///                      if (window.localStorage.getItem("connect")== "1") {
+
+                            window.location.replace("userPage.html");            //Go to succeeded page
+                            
+                        }
+                        
+                        else {
+
+                            alert("error with connection, refresh page");
+                        }
+
                     }
                     else if (email.match(re) === null & $.trim(email).length > 0) {
                         $("#Par_empty").text("Email is not valid");
@@ -106,18 +171,17 @@
 
                 });
 
-}
-            else
-            {
+            }
+            else {
                 window.location.replace("index.html");
 
 
             }
-            
 
-            });
+
+
         
-   
+
 
         /*
 
@@ -169,6 +233,21 @@
           /*      return false;
             });
         });*/
+        /*///
+
+            var awake=function() {
+                window.localStorage.setItem("connect", "1");
+
+            }
+
+            var asleep = function () {
+
+                //$('#loading-indicator').show();
+                window.localStorage.setItem("connect", "0");
+            }
+
+            */
+
 
 
 
