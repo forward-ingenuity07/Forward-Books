@@ -61,8 +61,6 @@
     <script type="text/javascript" src="scripts/offline.js"></script>
     <script type="text/javascript" src="scripts/reconnect.js"></script>
     <script type="text/javascript" src="scripts/requests.js"></script>
-    
-    
     <script type="text/javascript" src="scripts/jquery-3.1.1.min.js"></script>
 
     
@@ -70,20 +68,31 @@
     <script type="text/javascript">
        
 
-        $(function () {
+        $(document).ready(function () {
+            if (window.localStorage.getItem("erring") == "1") {
+                alert('Network error');
+
+            }
+            
+
+
+            Offline.options = { checkOnLoad: true, checks: { image: { url: 'http://www.forwardingenuity.com/LogoProgress2.jpg' }, active: 'image' }, interceptRequests: true, reconnect: { initialDelay: 1 }, requests: true};
+            
             var $online = $('.online'), $offline = $('.offline');
-            Offline.on('confirmed-down', function () {
+            Offline.on('down', function () {
                 
                 $online.fadeOut(function () {
+                    window.localStorage.setItem("connects", "0");
                     $offline.fadeIn();
 
                 });
 
             });
 
-            Offline.on('confirmed-up', function () {
+            Offline.on('up', function () {
 
                 $offline.fadeOut(function () {
+                    window.localStorage.setItem("connects", "1");
                     $online.fadeIn();
 
                 });
@@ -94,23 +103,15 @@
         
 
 
-/* ///       
-        var submi = document.getElementById("insert");
-       
-         //   document.addEventListener('online', awake_signUp(), false);
-          //  document.addEventListener('offline', asleep_signUp(), false);
-
-
-        document.addEventListener('online', function () { awake() }, false);
-        document.addEventListener('offline', function () { asleep() }, false);
         
 
        
 
             window.localStorage.setItem("succeeding", "0");
-            if (window.localStorage.getItem("logged_in") != "1") {
+            if (window.localStorage.getItem("logged_in") != "1" || window.localStorage.getItem("erring") != "0") {
 
                 $("#insert").click(function () {
+
 
                     var email = $("#ema").val();
                     var password = $("#pas").val();
@@ -140,17 +141,17 @@
                                 }
                             }
                         });*/
-  /*///                      if (window.localStorage.getItem("connect")== "1") {
-
+                        
+                        if (window.localStorage.getItem("connects") == "1")
+                            {
                             window.location.replace("userPage.html");            //Go to succeeded page
-                            
                         }
                         
                         else {
 
-                            alert("error with connection, refresh page");
+                            alert("No connection");
                         }
-
+                        
                     }
                     else if (email.match(re) === null & $.trim(email).length > 0) {
                         $("#Par_empty").text("Email is not valid");
@@ -172,7 +173,7 @@
                 });
 
             }
-            else {
+            else if (window.localStorage.getItem("logged_in") != "1" && window.localStorage.getItem("erring")=="0") {
                 window.location.replace("index.html");
 
 

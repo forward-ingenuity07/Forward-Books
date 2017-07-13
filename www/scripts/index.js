@@ -23,7 +23,7 @@ function clickFunc() {
 
     function onDeviceReady() {
         // Handle the Cordova pause and resume events
-
+        window.localStorage.setItem("erring", "2");
         var butFindBooks = document.getElementById("FindBooks");
         butFindBooks.addEventListener("click", function () {
             window.location.href = 'FindBooks.html';
