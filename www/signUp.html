@@ -82,7 +82,7 @@
             Offline.on('down', function () {
                 
                 $online.fadeOut(function () {
-                    window.localStorage.setItem("connects", "0");
+                   
                     $offline.fadeIn();
 
                 });
@@ -92,7 +92,7 @@
             Offline.on('up', function () {
 
                 $offline.fadeOut(function () {
-                    window.localStorage.setItem("connects", "1");
+                   
                     $online.fadeIn();
 
                 });
@@ -142,15 +142,11 @@
                             }
                         });*/
                         
-                        if (window.localStorage.getItem("connects") == "1")
-                            {
-                            window.location.replace("userPage.html");            //Go to succeeded page
-                        }
                         
-                        else {
-
-                            alert("No connection");
-                        }
+                            window.location.replace("userPage.html");            //Go to succeeded page
+                        
+                        
+                        
                         
                     }
                     else if (email.match(re) === null & $.trim(email).length > 0) {
