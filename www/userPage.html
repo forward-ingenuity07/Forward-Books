@@ -36,7 +36,7 @@
             $("#user").text(userName);
             if (window.localStorage.getItem("logged_in") != "1") {
 
-                $("#wrapper").ready(function () {
+                
 
                     //Regexp to check if email is valid
 
@@ -97,7 +97,7 @@
 
 
 
-                });
+                
 
             }
             
@@ -162,6 +162,7 @@
       
       function logout() {
           var Logout_button = document.getElementById("logout");
+          window.localStorage.clear();
           window.localStorage.setItem("logged_in", "0");
           window.location.replace("index.html");
 
