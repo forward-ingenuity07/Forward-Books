@@ -68,23 +68,23 @@
                                 alert("error");
                             }
                         },
-                        error: function (data) {
+                        error: function (jqXHR,exception) {
                             window.localStorage.setItem("erring", "1");
                             window.localStorage.setItem("logged_in", "0");
                             window.location.replace("signUp.html");
-                            window.location.href="signUp.html";
+                            //window.location.href="signUp.html";
                             if (data) {
                                 window.localStorage.setItem("erring", "1");
                                 window.localStorage.setItem("logged_in", "0");
                                 window.location.replace("signUp.html");
-                                window.location.href = "signUp.html";
+                              //  window.location.href = "signUp.html";
                             }
                             else {
 
                                 window.localStorage.setItem("erring", "1");
                                 window.localStorage.setItem("logged_in", "0");
                                 window.location.replace("signUp.html");
-                                window.location.href = "signUp.html";
+                                //window.location.href = "signUp.html";
                             }
 
                         }
