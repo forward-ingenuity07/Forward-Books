@@ -786,20 +786,32 @@
                     window.localStorage.setItem("book_price", JSON.stringify(stored_price));
                     window.localStorage.setItem("book_contact", JSON.stringify(stored_contact));
                     window.localStorage.setItem("book_faculty", JSON.stringify(stored_faculty));
-                    window.localStorage.setItem("index"+books, books);
-                    books++;
+                    window.localStorage.setItem("index" + books, books);
+                    var modal = document.createElement('div');
+                    modal.id = "mod" + books;
+                    modal.className = "modal fade";
+                    modal.setAttribute('role', 'dialog');
+                   /* modal.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit Book info</h4><p class="text-danger" id="message"></p></div>';
+                    modal.innerHTML += '<div class="modal-body"><form><div class="form-group"><label>' + ourData[i].title + '<span class="pull-right"><button class="btn3 btn-white" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button>';
+                    modal.innerHTML += '</span></label></div><div class="form-group"> <label>' + ourData[i].price + '</label></div><div class="form-group"> <label>' + ourData[i].contact + '</label></div><div class="form-group"> <label>' + ourData[i].faculty + '</label></div></form></div></div>';
+                   */
+                    modal.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit book info</h4><p class="text-danger" id="message"></p></div><div class="modal-body"><form><div class="form-group"><label>' + ourData[i].title + '<span class="pull-right"><button class="btn3 btn-white add_field_button" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span></label></div><div class="form-group input_fields_wrap1"><label>R' + ourData[i].price + '<span class="pull-right"><button class="btn3 btn-white add_field_button" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span></label></div><div class="form-group input_fields_wrap1"><label>' + ourData[i].contact + '<span class="pull-right"><button class="btn3 btn-white add_field_button" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span></label></div><div class="form-group input_fields_wrap1"><label>' + ourData[i].faculty + '<span class="pull-right"><button class="btn3 btn-white add_field_button" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span></label></div></div>'
+
+
                     var inDiv = document.createElement('div');
                     var edit_button = document.createElement('button');
                     edit_button.innerHTML = '<strong>Edit</strong>';
                     edit_button.className += "btn1 btn-black";
-                    edit_button.onclick = function () {
+                    edit_button.setAttribute('data-toggle', 'modal');
+                    edit_button.setAttribute('data-target', '#mod'+books);
+                    /*edit_button.onclick = function () {
                         var ind = JSON.parse(window.localStorage.getItem("book_title")).length;
                         var titles = JSON.parse(window.localStorage.getItem("book_title"));
                         for (var i = 0; i < ind; i++) {
                             toggle(titles[i]);
                         }
                         
-                    }
+                    }*/
 
                     var sold_button = document.createElement('button');
                     sold_button.innerHTML = '<strong>SOLD!!</strong>';
@@ -808,7 +820,7 @@
                     var remove_button = document.createElement('button');
                     remove_button.innerHTML = '<strong>Remove</strong>';
                     remove_button.className += "btn1 btn-black";
-
+                    books++;
                     inDiv.className += "container";
                     inDiv.innerHTML = '<p style="font-size:20px;">' + ourData[i].title +' - R'+ourData[i].price +'</p><br/>';
                     inDiv.appendChild(edit_button);
@@ -824,7 +836,7 @@
                     */
                     outDiv.appendChild(inDiv);            //add paragraph to container
                     outDiv.appendChild(hzr);            //add horizontal rulr to div
-
+                    outDiv.appendChild(modal);
 
 
                 }
