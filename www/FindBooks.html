@@ -11,10 +11,61 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+
+
     <link rel="stylesheet" type="text/css" href="css/FindBooks.css">
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
     
+    <script type="text/javascript">
+
+
+
+        var url1 = "http://forwardingenuity.com/json.php"; //Get url of php file containing json
+
+
+        var ourRequest = new XMLHttpRequest(); //create XMLHttpRequest object to request for the JSON data
+        ourRequest.open("GET", url1);   //Opening...    
+        var outDiv = document.getElementById("containment"); //container div
+
+        ourRequest.onload = function () {
+            console.log("Here");
+            //request has loaded
+            //window.localStorage.setItem("Holding", ourRequest.responseText);
+            var ourData = JSON.parse(ourRequest.responseText);      //change the received response text to an actuall array of objects
+            var books = 0;        //any books under the faculty?
+
+            var searched_book = [];
+
+            //var ourData2 = JSON.parse(window.localStorage.getItem("Holding"));
+            var info_length = (ourData.length);
+            for (var i = 0; i < info_length; i++) {
+                searched_book[i] = ourData[i].title;
+                
+                
+
+            }
+
+            
+            $("#searched_book").select2({
+                data: searched_book
+            });
+            
+
+            /*var par = document.createElement('p');
+            par.id = "paragraph" + i;*-
+            par.innerHTML = '<strong>' + ourData2[1].title + '</strong>' + '<br />' + 'R400' + '&nbsp &nbsp &nbsp' + '0739995999';
+            outDiv.appendChild(par);
+          */
+
+        }
+        ourRequest.send();      //send request
+			$(document).ready(function() {
+				
+			});
+     </script>
 
 </head>
 <body style="background:#f8f8f8;">
@@ -34,7 +85,7 @@
                 </nav>!-->
 
 
-  
+
             <nav class="navbar navbar-toggleable-md navbar-default navbar-fixed-top bg-inverse" >
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display !-->
@@ -46,7 +97,10 @@
                         <div class="col-xs-7 pull-right">
                             <form class="navbar-form pull-right" role="search">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search" name="q">
+                                    <!--<input type="text" class="form-control" placeholder="Search" name="q">-->
+                                    <select id="searched_book" type="text" class="form-control" placeholder="Search">
+                                        <!-- Dropdown List Option -->
+                                    </select>
                                     <div class="input-group-btn">
                                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                                     </div>
@@ -59,7 +113,7 @@
 
                 </div><!-- /.container-fluid -->
             </nav>
-       
+
         <!--The are "Are you sure you want to delete modal"-->
         <!--<div class="modal fade bs-are-you-sure-modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -130,13 +184,13 @@
             <hr />
             <a href="fvet.html" style="height:25px; width:100%"><li class="list-group-item list-group-item-danger" style="width:100%"><strong>Faculty of Veterinary Science</strong></li></a>
             <hr />
-             
+
         </ul>
-        
+
        </div>
-    
+
 <!--        <div id="list"><p id="par"></p></div>-->
-       
+
         <script type="text/javascript" src="scripts/jayq.js"></script>
 
 </body>
