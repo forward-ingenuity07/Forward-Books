@@ -246,7 +246,13 @@
                 <a href="index.html" class="nav nav-navbar navbar navbar-brand" style="z-index:100;"><img src="images/goBooks5.png" style="position:absolute; min-height:30px; width:77px; top:1px; z-index:100;"/></a>
 
 
-                    <button class="navbar navbar-brand2 navbar-center btn btn-black1 btn-lg" type="button" id="add" style="display:inline-block" data-toggle="modal" data-target="#myModal">
+                <button class="btn1 btn-black navbar-pull-right pull-right" type="button" id="logout" aria-expanded="false" onclick="logout()">
+                    <center>Logout</center>
+                </button>
+                <span class="pull-right col-sm-1" style="color:black;">Logged in as:&nbsp<span id="user"></span></span>
+
+
+                    <button class="navbar navbar-brand2 navbar-pull-right pull-right btn btn-black1 btn-lg" type="button" id="add" style="display:inline-block" data-toggle="modal" data-target="#myModal">
                         <span class="glyphicon glyphicon-plus white"></span>
                     </button>
 
@@ -256,11 +262,7 @@
            </button>
             -->
 
-                    <button class="btn1 btn-black pull-right" type="button" id="logout" aria-expanded="false" onclick="logout()">
-                        <center>Logout</center>
-                    </button>
-                    <span class="pull-right col-sm-1" style="color:black;">Logged in as:&nbsp<span id="user"></span></span>
-
+                
 </nav>
         </div>
         </div>
