@@ -301,12 +301,12 @@
                         </div>
                         <div class="form-group input_fields_wrap1">
                             <label>Price</label>
-                            <input class="form-control" name="mytext[]" placeholder="Enter Price" id="price" />
+                            <input type="number" class="form-control" name="mytext[]" placeholder="Enter Price" id="price" />
                         </div>
 
                         <div class="form-group input_fields_wrap3">
                             <label>Contact</label>
-                            <input class="form-control" name="mytext[]" placeholder="Enter Phone number" id="contact" />
+                            <input type="number" class="form-control" name="mytext[]" placeholder="Enter Phone number" id="contact" />
                         </div>
 
 
@@ -318,7 +318,8 @@
                                 <option value="Engineering, Built Environment and IT">Engineering, Built Environment & IT</option>
                                 <option value="Health Sciences">Health Sciences</option>
                                 <option value="Humanities">Humanities</option>
-                                <option value="Natural & Agricultural Sciences">Natural & Agricultural Sciences</option>
+                                <option value="Law">Law</option>
+                                <option value="Natural and Agricultural Sciences">Natural & Agricultural Sciences</option>
                                 <option value="Theology">Theology</option>
                                 <option value="Vertinary Science">Vertinary Science</option>
                             </select>
@@ -349,8 +350,8 @@
                     
                     x++; //text box increment
                     $(wrapper).append('<div id="titl' + x + '"><input type="text" name="mytext1[]" class="form-control" placeholder="Enter title" id="title'+x+'" /></div>'); //add input box
-                    $(wrapper1).append('<div id="pri' + x + '"><input class="form-control" name="mytext2[]" placeholder="Enter Price" id="price' + x + '" /></div>');
-                    $(wrapper2).append('<div id="facul' + x + '"><select class="form-control" id="faculty_chosen' + x + '" name="mytext3[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment and IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural & Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div>');
+                    $(wrapper1).append('<div id="pri' + x + '"><input type="number" class="form-control" name="mytext2[]" placeholder="Enter Price" id="price' + x + '" /></div>');
+                    $(wrapper2).append('<div id="facul' + x + '"><select class="form-control" id="faculty_chosen' + x + '" name="mytext3[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment and IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Humanities">Humanities</option><option value="Natural and Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div>');
                     window.localStorage.setItem("elems", x);
                 }
             });
@@ -492,7 +493,7 @@
                             return;
                         }
                         else if (titleC5 != '' && priceC5 == '') {
-                            $("#message").text("5th Price field left empty");
+                            $("#message").text("5th Price field left empty or contains non-numeric text(Do not put an R ahead of the price)");
                             window.localStorage.setItem("title_check", "0");
                             window.localStorage.setItem("price_check", "0");
                             priceElem5.className += " btn-dan";
@@ -524,7 +525,7 @@
                             return;
                         }
                         else if (titleC4 != '' && priceC4 == '') {
-                            $("#message").text("4th Price field left empty");
+                            $("#message").text("4th Price field left empty or contains non-numeric text(Do not put an R ahead of the price)");
                             window.localStorage.setItem("title_check", "0");
                             window.localStorage.setItem("price_check", "0");
 
@@ -558,7 +559,7 @@
                             return;
                         }
                         else if (titleC3 != '' && priceC3 == '') {
-                            $("#message").text("3rd Price field left empty");
+                            $("#message").text("3rd Price field left empty or contains non-numeric text(Do not put an R ahead of the price)");
                             window.localStorage.setItem("title_check", "0");
                             window.localStorage.setItem("price_check", "0");
                             
@@ -592,7 +593,7 @@
                                 return;
                             }
                             else if (titleC2 != '' && priceC2 == '') {
-                                $("#message").text("2nd Price field left empty");
+                                $("#message").text("2nd Price field left empty or contains non-numeric text(Do not put an R ahead of the price)");
                                 window.localStorage.setItem("title_check", "0");
                                 window.localStorage.setItem("price_check", "0");
 
@@ -620,7 +621,7 @@
                                 return;
                             }
                             else if (title != '' && price == '') {
-                                $("#message").text("1st Price field left empty");
+                                $("#message").text("1st Price field left empty or contains non-numeric text(Do not put an R ahead of the price)");
                                 window.localStorage.setItem("title_check", "0");
                                 window.localStorage.setItem("price_check", "0");
                                 return;
@@ -663,7 +664,7 @@
                         return;
                     }
                     else if (title != '' && price == '') {
-                        $("#message").text("1st Price field left empty");
+                        $("#message").text("1st Price field left empty or contains non-numeric text(Do not put an R ahead of the price)");
                         window.localStorage.setItem("title_check", "0");
                         window.localStorage.setItem("price_check", "0");
                         priceElem.className += " btn-dan";
@@ -715,7 +716,7 @@
                                     //Go to succeeded page
                     }
                     else {
-                        $("#message").text("Contact field left empty");
+                        $("#message").text("Contact field left empty or contains non-numeric text(use numbers only)");
                         window.localStorage.setItem("title_check", "0");
                         return;
                     }
@@ -800,7 +801,7 @@
                     modal.innerHTML += '<div class="modal-body"><form><div class="form-group"><label>' + ourData[i].title + '<span class="pull-right"><button class="btn3 btn-white" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button>';
                     modal.innerHTML += '</span></label></div><div class="form-group"> <label>' + ourData[i].price + '</label></div><div class="form-group"> <label>' + ourData[i].contact + '</label></div><div class="form-group"> <label>' + ourData[i].faculty + '</label></div></form></div></div>';
                    */
-                    modal.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit book info</h4><p class="text-danger" id="edit_message"></p></div><div class="modal-body"><form><div class="form-group input_fields"><label>' + ourData[i].title + '</label><span class="pull-right"><button class="btn3 btn-white add_field_button" id="butti" type="button" onclick="buttonTitle()" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span><input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="edit_title' + books + '" /></div><div class="form-group input_fields1"><label>R' + ourData[i].price + '</label><span class="pull-right"><button class="btn3 btn-white add_field_button" id="butti2" onclick="buttonPrice()" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span><input type="text" name="mytext[]" class="form-control" placeholder="Enter price" id="edit_price' + books + '" /></div><div class="form-group input_fields2"><label>' + ourData[i].contact + '</label><span class="pull-right"><button class="btn3 btn-white add_field_button" id="butti3" type="button" onclick="buttonContact()" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span></div><input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="edit_contact' + books + '" /><div class="form-group input_fields3"><label>' + ourData[i].faculty + '</label><span class="pull-right"><button class="btn3 btn-white add_field_button" id="butti4" type="button" onclick="buttonFaculty()" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span><select class="form-control" id="edit_faculty' + books + '" name="mytext3[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment and IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural & Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div></form><div class="modal-footer"><button type="button" class="btn btn-default editing" onclick="trying();refreshing()" id="edit_submit' + books + '" value="' + ourData[i].id + '">Submit - Double Tap!</button></div>';
+                    modal.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit book info</h4><p class="text-danger" id="edit_message"></p></div><div class="modal-body"><form><div class="form-group input_fields"><label>' + ourData[i].title + '</label><span class="pull-right"><button class="btn3 btn-white add_field_button" id="butti" type="button" onclick="buttonTitle()" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span><input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="edit_title' + books + '" /></div><div class="form-group input_fields1"><label>R' + ourData[i].price + '</label><span class="pull-right"><button class="btn3 btn-white add_field_button" id="butti2" onclick="buttonPrice()" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span><input type="number" name="mytext[]" class="form-control" placeholder="Enter price" id="edit_price' + books + '" /></div><div class="form-group input_fields2"><label>' + ourData[i].contact + '</label><span class="pull-right"><button class="btn3 btn-white add_field_button" id="butti3" type="button" onclick="buttonContact()" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span></div><input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="edit_contact' + books + '" /><div class="form-group input_fields3"><label>' + ourData[i].faculty + '</label><span class="pull-right"><button class="btn3 btn-white add_field_button" id="butti4" type="button" onclick="buttonFaculty()" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span><select class="form-control" id="edit_faculty' + books + '" name="mytext3[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment and IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural and Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div></form><div class="modal-footer"><button type="button" class="btn btn-default editing" onclick="trying();refreshing()" id="edit_submit' + books + '" value="' + ourData[i].id + '">Submit - Double Tap!</button></div>';
 
 
                     var inDiv = document.createElement('div');
@@ -905,7 +906,7 @@
                 if (window.localStorage.getItem("price_ind") != "1") { //max input box allowed
                     window.localStorage.setItem("price_ind","1");
                     x++; //text box increment
-                    $(wrapper).append('<div id="titl' + x + '"><input type="text" name="mytext1[]" class="form-control" placeholder="Enter Price" id="Edit_price"/></div>'); //add input box
+                    $(wrapper).append('<div id="titl' + x + '"><input type="number" name="mytext1[]" class="form-control" placeholder="Enter Price" id="Edit_price"/></div>'); //add input box
 
                 }
             
@@ -926,7 +927,7 @@
                     window.localStorage.setItem("contact_ind","1");
                     x++; //text box increment
 
-                    $(wrapper).append('<div id="titl' + x + '"><input type="text" name="mytext1[]" class="form-control" placeholder="Enter Phone Number" id="Edit_contact"/></div>'); //add input box
+                    $(wrapper).append('<div id="titl' + x + '"><input type="number" name="mytext1[]" class="form-control" placeholder="Enter Phone Number" id="Edit_contact"/></div>'); //add input box
 
                 }
             
@@ -945,7 +946,7 @@
            //     e.preventDefault();
                 if (window.localStorage.getItem("faculty_ind") != "1") { //max input box allowed
                     window.localStorage.setItem("faculty_ind","1");                    x++; //text box increment
-                    $(wrapper).append('<div id="facul' + x + '"><select class="form-control" id="faculty_chosen' + x + '" name="mytext3[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment and IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural & Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div>'); //add input box
+                    $(wrapper).append('<div id="facul' + x + '"><select class="form-control" id="faculty_chosen' + x + '" name="mytext3[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment and IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural and Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div>'); //add input box
 
                 }
             

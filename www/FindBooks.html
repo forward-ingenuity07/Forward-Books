@@ -38,16 +38,15 @@
             var books = 0;        //any books under the faculty?
 
             var searched_book = [];
-
+            var searched_faculty = [];
             //var ourData2 = JSON.parse(window.localStorage.getItem("Holding"));
             var info_length = (ourData.length);
             for (var i = 0; i < info_length; i++) {
                 searched_book[i] = ourData[i].title;
-                
-                
-
+                searched_faculty[i] = ourData[i].faculty;
             }
-
+            window.localStorage.setItem("array_of_searched_books", JSON.stringify(searched_book));
+            window.localStorage.setItem("array_of_searched_faculties", JSON.stringify(searched_faculty));
             
             $("#searched_book").select2({
                 data: searched_book
@@ -102,7 +101,7 @@
                                         <!-- Dropdown List Option -->
                                     </select>
                                     <div class="input-group-btn">
-                                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                        <button class="btn btn-default" type="button" id="search_icon"><i class="glyphicon glyphicon-search"></i></button>
                                     </div>
                                 </div>
                             </form>
@@ -164,6 +163,96 @@
 
 
     </div>
+
+
+    <script type="text/javascript">
+        $('#search_icon').click(function () {
+            
+            var value_searched = $("#searched_book").val();
+            var array_of_books = JSON.parse(window.localStorage.getItem("array_of_searched_books"));
+            var array_of_faculties = JSON.parse(window.localStorage.getItem("array_of_searched_faculties"));
+            var search_length = array_of_books.length;
+            var index;
+            var booking = 0;
+            var goto='';
+            for (var i = 0; i < search_length; i++) {
+                if (value_searched == array_of_books[i]) {
+                    index = i;
+                    booking++;
+                    break;
+                }
+
+            }
+            if (booking != 0) {
+                if(array_of_faculties[index]=="Economic and Management Sciences")
+                {
+                    goto = 'feco.html';
+
+                }
+
+                else if (array_of_faculties[index] == "Education") {
+                    goto = 'fedu.html';
+
+                }
+
+                else if (array_of_faculties[index] == "Engineering, Built Environment and IT") {
+                    goto = 'feng.html';
+
+                }
+                else if (array_of_faculties[index] == "Health Sciences") {
+                    goto = 'fhea.html';
+
+                }
+
+                else if (array_of_faculties[index] == "Humanities") {
+                    goto = 'fhum.html';
+
+                }
+
+                else if (array_of_faculties[index] == "Law") {
+                    goto = 'flaw.html';
+
+                }
+
+                else if (array_of_faculties[index] == "Natural and Agricultural Sciences") {
+                    goto = 'fnat.html';
+
+                }
+
+                else if (array_of_faculties[index] == "Theology") {
+                    goto = 'ftheo.html';
+
+                }
+
+                else if (array_of_faculties[index] == "Vertinary Science") {
+                    goto = 'fvet.html';
+
+                }
+                else {
+                    alert('Book not available');
+
+                }
+                if(goto!=''){
+                window.localStorage.setItem("book_searched", array_of_books[index]);
+                //alert(window.localStorage.getItem("book_searched"));
+                window.localStorage.setItem("did_they_search", "1");
+                setTimeout(function () {
+                    window.location.href = goto;
+                }, 100);
+                }
+            }
+            else {
+
+                alert('Book not available');
+            }
+
+
+        });
+
+
+    </script>
+
+
     <div class="container" style="min-height:100%; height:100%; width:100%; position:absolute; top:15%">
         <ul class="list-group" style="min-height:100%; height:100%; width:100%;">
             <a href="feco.html" style="height:25px; width:100%"><li class="list-group-item list-group-item-success" style="width:100%"><strong>Faculty of Economic and Management Sciences</strong></li></a>

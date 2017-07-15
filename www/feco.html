@@ -66,11 +66,16 @@
                         books++;
                         var par = document.createElement('p');          //create paragraph to hold content coming in
                         var hzr = document.createElement('hr');         //Horizontal rule
-                        par.id = "paragraph" + i;                       //id
+                        var divHold = document.createElement('div');
+                        divHold.id = ourData[i].title;
+                        par.id = "Paragraph"+i;                       //id
                         par.style.fontSize = "large";                   //font-size
                         par.className += "animated fadeInLeft";         //fade in from animate.css
                         par.innerHTML = '<strong>' + ourData[i].title + '</strong>' + '<br />' + 'R' + ourData[i].price + '<span class="pull-right">' + ourData[i].contact + '</span>'; //putting info in paragraph
-                        outDiv.appendChild(par);            //add paragraph to container
+                        divHold.appendChild(par);
+                        outDiv.appendChild(divHold);
+
+                        //outDiv.appendChild(par);            //add paragraph to container
                         outDiv.appendChild(hzr);            //add horizontal rulr to div
 
 
@@ -102,6 +107,30 @@
 
         
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if(window.localStorage.getItem("did_they_search")=="1")
+            {
+                var ident = "#";
+                ident += window.localStorage.getItem("book_searched");
+                    $('html, body').animate({
+                        scrollTop: $(ident).offset().top
+                    }, 2000);
+                    window.localStorage.setItem("did_they_search", "0");
+
+                    var check = document.getElementById(window.localStorage.getItem("book_searched"));
+                    check.className += " animated2 shake";
+
+            }
+
+
+
+        });
+
+    </script>
+
+
 
     <script type="text/javascript" src="scripts/FindBooks.js"></script>
     <script type="text/javascript" src="scripts/jayq.js"></script>
