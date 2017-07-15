@@ -4410,6 +4410,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   font-size: 18px;
   line-height: 20px;
 }
+.navbar-brand-logo {
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+}
 .navbar-brand2 {
   display:inline-block;
   height: 50px;
