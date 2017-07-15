@@ -15,7 +15,7 @@
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
     <style>
         hr{
-            border-color:#3b3c3d;
+            border-color:#adffd6;
 
         }
 
@@ -258,7 +258,7 @@
                     <button class="btn1 btn-black pull-right" type="button" id="logout" aria-expanded="false" onclick="logout()">
                         <center>Logout</center>
                     </button>
-                <span class="pull-right white col-sm-1">Logged in as:&nbsp<span id="user"></span></span>
+                <span class="pull-right col-sm-1" style="color:black;">Logged in as:&nbsp<span id="user"></span></span>
                 
             </nav>
         </div>
@@ -266,7 +266,8 @@
    <br/>
     <br />
     <div class="container" id="book_case">
-        <h3><strong>My Books</strong></h3>
+        <center> <h3 style="color:#a1a2a3;"><strong>My Books</strong></h3></center>
+
         <hr/>
 
 
@@ -806,8 +807,9 @@
 
                     var inDiv = document.createElement('div');
                     var edit_button = document.createElement('button');
+                    
                     edit_button.innerHTML = '<strong>Edit</strong>';
-                    edit_button.className += "btn1 btn-black";
+                    edit_button.className += "btn1 btn-info";
                     edit_button.setAttribute('data-toggle', 'modal');
                     edit_button.setAttribute('data-target', '#mod'+books);
                     /*edit_button.onclick = function () {
@@ -821,11 +823,11 @@
 
                     var sold_button = document.createElement('button');
                     sold_button.innerHTML = '<strong>SOLD!!</strong>';
-                    sold_button.className += "btn1 btn-black";
+                    sold_button.className += "btn1 btn-success";
 
                     var remove_button = document.createElement('button');
                     remove_button.innerHTML = '<strong>Remove</strong>';
-                    remove_button.className += "btn1 btn-black";
+                    remove_button.className += "btn1 btn-danger";
                     books++;
                     inDiv.className += "container";
                     inDiv.innerHTML = '<p style="font-size:20px;">' + ourData[i].title +' - R'+ourData[i].price +'</p><br/>';
@@ -1017,13 +1019,7 @@
                                 error: function (jqXHR, exception) {
                                     alert("Change not made, check internet connection");
                                     //window.location.href="signUp.html";
-                                    if (data) {
-                                        alert("Change not made, check internet connection");
-                                        //  window.location.href = "signUp.html";
-                                    }
-                                    else {
-                                        alert("Change not made, check internet connection");
-                                    }
+                                    
 
                                 }
                             });
