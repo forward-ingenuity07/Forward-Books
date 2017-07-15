@@ -27,6 +27,11 @@
     
     <script type="text/javascript">
         $(document).ready(function () {
+            window.localStorage.setItem("faculty_ind", "0");
+            window.localStorage.setItem("contact_ind", "0");
+            window.localStorage.setItem("Title_ind", "0");
+            window.localStorage.setItem("price_ind", "0");
+            window.localStorage.setItem("pressed", "0");
             if (window.localStorage.getItem("success") == "1")
             {
                 setTimeout(function () {
@@ -281,7 +286,7 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group input_fields_wrap">
-                            <label>Title
+                            <label>Title</label>
                             <span class="pull-right"><button class="btn3 btn-white add_field_button" type="button" id="#add_more" style="display:inline-block">
                                         <span class="glyphicon glyphicon-plus gray"></span>
                                         </button>
@@ -290,7 +295,7 @@
                                 </button>
                                 
                                 </span>
-                            </label>
+                            
                             <input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="title" />
 
                         </div>
@@ -795,7 +800,7 @@
                     modal.innerHTML += '<div class="modal-body"><form><div class="form-group"><label>' + ourData[i].title + '<span class="pull-right"><button class="btn3 btn-white" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button>';
                     modal.innerHTML += '</span></label></div><div class="form-group"> <label>' + ourData[i].price + '</label></div><div class="form-group"> <label>' + ourData[i].contact + '</label></div><div class="form-group"> <label>' + ourData[i].faculty + '</label></div></form></div></div>';
                    */
-                    modal.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit book info</h4><p class="text-danger" id="message"></p></div><div class="modal-body"><form><div class="form-group"><label>' + ourData[i].title + '<span class="pull-right"><button class="btn3 btn-white add_field_button" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span></label></div><div class="form-group input_fields_wrap1"><label>R' + ourData[i].price + '<span class="pull-right"><button class="btn3 btn-white add_field_button" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span></label></div><div class="form-group input_fields_wrap1"><label>' + ourData[i].contact + '<span class="pull-right"><button class="btn3 btn-white add_field_button" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span></label></div><div class="form-group input_fields_wrap1"><label>' + ourData[i].faculty + '<span class="pull-right"><button class="btn3 btn-white add_field_button" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span></label></div></div>'
+                    modal.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit book info</h4><p class="text-danger" id="edit_message"></p></div><div class="modal-body"><form><div class="form-group input_fields"><label>' + ourData[i].title + '</label><span class="pull-right"><button class="btn3 btn-white add_field_button" id="butti" type="button" onclick="buttonTitle()" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span><input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="edit_title' + books + '" /></div><div class="form-group input_fields1"><label>R' + ourData[i].price + '</label><span class="pull-right"><button class="btn3 btn-white add_field_button" id="butti2" onclick="buttonPrice()" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span><input type="text" name="mytext[]" class="form-control" placeholder="Enter price" id="edit_price' + books + '" /></div><div class="form-group input_fields2"><label>' + ourData[i].contact + '</label><span class="pull-right"><button class="btn3 btn-white add_field_button" id="butti3" type="button" onclick="buttonContact()" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span></div><input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="edit_contact' + books + '" /><div class="form-group input_fields3"><label>' + ourData[i].faculty + '</label><span class="pull-right"><button class="btn3 btn-white add_field_button" id="butti4" type="button" onclick="buttonFaculty()" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button></span><select class="form-control" id="edit_faculty' + books + '" name="mytext3[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment & IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural & Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div></form><div class="modal-footer"><button type="button" class="btn btn-default editing" onclick="trying();refreshing()" id="edit_submit' + books + '" value="' + ourData[i].id + '">Submit - Double Tap!</button></div>';
 
 
                     var inDiv = document.createElement('div');
@@ -867,7 +872,209 @@
 
         }
 
-    </script>
+        function buttonTitle(){
 
+            
+            var max_fields = 1; //maximum input boxes allowed
+            var wrapper = $(".input_fields"); //Fields wrapper
+            var add_button = $("#butti");
+            var x = 0; //initlal text box count
+            
+             //on add input button click
+             //   e.preventDefault();
+                if (window.localStorage.getItem("Title_ind")!="1") { //max input box allowed
+                    window.localStorage.setItem("Title_ind", "1");
+                    x++; //text box increment
+                    
+                    $(wrapper).append('<div id="titl' + x + '"><input type="text" name="mytext1[]" class="form-control" placeholder="Enter title" id="Edit_title"/></div>'); //add input box
+                    
+                }
+            
+
+        }
+
+        function buttonPrice() {
+
+
+            var max_fields = 1; //maximum input boxes allowed
+            var wrapper = $(".input_fields1"); //Fields wrapper
+            var add_button = $("#butti2");
+            var x = 0; //initlal text box count
+            
+            
+                if (window.localStorage.getItem("price_ind") != "1") { //max input box allowed
+                    window.localStorage.setItem("price_ind","1");
+                    x++; //text box increment
+                    $(wrapper).append('<div id="titl' + x + '"><input type="text" name="mytext1[]" class="form-control" placeholder="Enter Price" id="Edit_price"/></div>'); //add input box
+
+                }
+            
+
+        }
+
+        function buttonContact() {
+
+
+            var max_fields = 1; //maximum input boxes allowed
+            var wrapper = $(".input_fields2"); //Fields wrapper
+            var add_button = $("#butti3");
+            var x = 0; //initlal text box count
+            
+             //on add input button click
+         //       e.preventDefault();
+                if (window.localStorage.getItem("contact_ind") != "1") { //max input box allowed
+                    window.localStorage.setItem("contact_ind","1");
+                    x++; //text box increment
+
+                    $(wrapper).append('<div id="titl' + x + '"><input type="text" name="mytext1[]" class="form-control" placeholder="Enter Phone Number" id="Edit_contact"/></div>'); //add input box
+
+                }
+            
+
+        }
+
+        function buttonFaculty() {
+
+
+            var max_fields = 1; //maximum input boxes allowed
+            var wrapper = $(".input_fields3"); //Fields wrapper
+            var add_button = $("#butti4");
+            var x = 0; //initlal text box count
+            
+             //on add input button click
+           //     e.preventDefault();
+                if (window.localStorage.getItem("faculty_ind") != "1") { //max input box allowed
+                    window.localStorage.setItem("faculty_ind","1");                    x++; //text box increment
+                    $(wrapper).append('<div id="facul' + x + '"><select class="form-control" id="faculty_chosen' + x + '" name="mytext3[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment & IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural & Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div>'); //add input box
+
+                }
+            
+
+        }
+        function trying() {
+            
+            $(document).ready(function () {
+
+
+                $(".editing").click(function () {
+
+
+                    if (window.localStorage.getItem("pressed") != "1") {
+                        var ident = this.id;
+                        var num = ident.replace(/^\D+/g, "");
+                        var tagi = "#";
+                        tagi += ident;
+                        var price1 = "#edit_price" + num;
+                        var title1 = "#edit_title" + num;
+                        var faculty1 = "edit_faculty" + num;
+                        var e = document.getElementById(faculty1);
+                        var faculty = e.options[e.selectedIndex].value;
+                        var contact1 = "#edit_contact" + num;
+                        var book_id = $(tagi).val();
+                        var price = $(price1).val();
+                        var title = $(title1).val();
+                        var contact = $(contact1).val();
+
+                        if (title == null) {
+                            title = '';
+
+                        }
+
+                        if (price == null) {
+                            price = '';
+
+                        }
+
+                        if (contact == null) {
+                            contact = '';
+
+                        }
+
+
+                        var dataString = "&title=" + title + "&contact=" + contact + "&price=" + price + "&faculty=" + faculty + "&id=" + book_id + "&update=";
+
+                        if (1 == 1) {
+
+                            $.ajax({
+                                type: "POST",
+                                url: "http://forwardingenuity.com/update_book.php",
+                                data: dataString,
+                                crossDomain: true,
+                                cache: false,
+                                beforeSend: function () { $("#insert").val('Connecting...'); },
+                                success: function (data) {
+                                    if (data == "success") {
+                             //           alert("inserted");
+                                        $("#Par_empty").text("");
+                                        $("#insert").val('submit');
+
+                                    }
+                                    else if (data == "error") {
+                                        alert("error");
+                                    }
+                                },
+                                error: function (jqXHR, exception) {
+                                    alert("Change not made, check internet connection");
+                                    //window.location.href="signUp.html";
+                                    if (data) {
+                                        alert("Change not made, check internet connection");
+                                        //  window.location.href = "signUp.html";
+                                    }
+                                    else {
+                                        alert("Change not made, check internet connection");
+                                    }
+
+                                }
+                            });
+                           // alert("here");
+                            return false;
+
+                            //Go to succeeded page
+                        }
+
+
+
+                    }
+
+
+                  
+
+
+
+
+                    //
+
+
+
+
+
+                });
+            });
+            
+
+        }
+
+
+
+        function refreshing() {
+            $(document).ready(function () {
+
+                $(".editing").click(function () {
+                    setTimeout(function () {
+                        window.location.replace("userPage.html");
+
+                    }, 1000);
+                    
+
+                })
+
+            })
+
+
+        }
+        
+
+    </script>
+    
 </body>
 </html>
