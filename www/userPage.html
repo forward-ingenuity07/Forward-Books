@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
+    <link href="css/anime.css" rel="stylesheet">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
@@ -814,7 +815,7 @@
                     var edit_button = document.createElement('button');
                     
                     edit_button.innerHTML = '<strong>Edit</strong>';
-                    edit_button.className += "btn1 btn-info";
+                    edit_button.className += "btn1 btn-info animated fadeInLeft";
                     edit_button.setAttribute('data-toggle', 'modal');
                     edit_button.setAttribute('data-target', '#mod'+books);
                     /*edit_button.onclick = function () {
@@ -828,14 +829,15 @@
 
                     var sold_button = document.createElement('button');
                     sold_button.innerHTML = '<strong>SOLD!!</strong>';
-                    sold_button.className += "btn1 btn-success";
-
+                    sold_button.className += "btn1 btn-success animated fadeInLeft";
+                    var wrapperDiv = document.createElement('div');
+                    wrapperDiv.className = "animated fadeInLeft";
                     var remove_button = document.createElement('button');
                     remove_button.innerHTML = '<strong>Remove</strong>';
-                    remove_button.className += "btn1 btn-danger";
+                    remove_button.className += "btn1 btn-danger animated fadeInLeft";
                     books++;
-                    outDiv.className += " animated fadeInLeft";
-                    inDiv.className += "container animated fadeInLeft";
+                    
+                    inDiv.className += "animated fadeInLeft";
                     inDiv.innerHTML = '<p style="font-size:20px;">' + ourData[i].title +' - R'+ourData[i].price +'</p><br/>';
                     inDiv.appendChild(edit_button);
                     inDiv.appendChild(sold_button);
@@ -848,7 +850,8 @@
                     par.className += "animated fadeInLeft";         //fade in from animate.css
                     par.innerHTML = '<strong>' + ourData[i].title + '</strong>' + '<br />' + 'R' + ourData[i].price + '<span class="pull-right">' + ourData[i].contact + '</span>'; //putting info in paragraph
                     */
-                    outDiv.appendChild(inDiv);            //add paragraph to container
+                    wrapperDiv.appendChild(inDiv);            //add paragraph to container
+                    outDiv.appendChild(wrapperDiv);
                     outDiv.appendChild(hzr);            //add horizontal rulr to div
                     outDiv.appendChild(modal);
 
