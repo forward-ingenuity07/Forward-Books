@@ -43,6 +43,7 @@
             }
             window.localStorage.setItem("success", "0");
             var email_stred = window.localStorage.getItem("emai");
+           // alert(window.localStorage.getItem("emai"));
             var userName = email_stred.substr(0, email_stred.indexOf('@'));
             window.localStorage.setItem("UserName", userName);
             $("#user").text(userName);
@@ -120,24 +121,35 @@
                 ourRequest.open("GET", url1);   //Opening...    
                  //container div
                 ourRequest.onload = function () {
-                   
+                  
 
 
                     //request has loaded
                     //window.localStorage.setItem("Holding", ourRequest.responseText);
                     var ourData = JSON.parse(ourRequest.responseText);      //change the received response text to an actuall array of objects
                     var books = 0;        //any books under the faculty?
-                    console.log(ourData);
-
+                   // console.log(ourData);
+                    
                     //var ourData2 = JSON.parse(window.localStorage.getItem("Holding"));
                     var info_length = (ourData.length);
                     
+                    for (var j = 0; j < info_length; j++) {
+                        if (ourData[j].email == window.localStorage.getItem("emai")) {
+                            window.localStorage.setItem("id", ourData[j].id);
+                            //alert(ourData[j].id);
+                            break;
+                            
+                        }
+                        
+                    }
+
                     for (var i = 0; i < info_length; i++) {
                         if (ourData[i].email == email && ourData[i].password == password)    //find books under faculty
                         {
                             window.localStorage.setItem("emai", ourData[i].email);
                             window.localStorage.setItem("Alreadr_member", "1");
                             window.localStorage.setItem("id", ourData[i].id);
+                            alert(ourData[i].id);
                             window.location.replace("userPage.html");
 
                         }
@@ -688,7 +700,7 @@
 
 
                     
-
+                    //alert(window.localStorage.getItem("id"));
                     var uploader = window.localStorage.getItem("id");
                     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;   //Regexp to check if email is valid
                     if (elements< "2")
