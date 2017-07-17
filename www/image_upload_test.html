@@ -17,6 +17,8 @@
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
+        
+        $("#putImage").click(function () {
         function getImage() {
             var image=("#image").val();
  navigator.camera.getPicture(uploadPhoto, function(message) {
@@ -30,7 +32,7 @@
 }
 
  function uploadPhoto(imageURI) {
-     $("#putImage").click(function () {
+     
 
 
          var options = new FileUploadOptions();
@@ -52,10 +54,11 @@
          }, options);
 
 
-     });
+     
  
 
- }
+     }
+     });
     </script>
 
     
