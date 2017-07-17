@@ -16,6 +16,10 @@ function clickFunc() {
     }
 }
 
+function test() {
+    window.location.href = "image_upload_test.html";
+
+}
 (function () {
     "use strict";
 
