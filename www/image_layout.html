@@ -12,21 +12,19 @@
     <meta name="msapplication-tap-highlight" content="no">
     <link href="css/anime.css" rel="stylesheet">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    
+
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
-    
+
     <style>
-        hr{
-            border-color:#adffd6;
-
+        hr {
+            border-color: #adffd6;
         }
-
     </style>
 </head>
 <body style="background-color:white;">
 
 
-    
+
     <script type="text/javascript">
         $(document).ready(function () {
             window.localStorage.setItem("faculty_ind", "0");
@@ -40,7 +38,7 @@
 
                     alert("Success");
                 },500)
-                
+
             }
             window.localStorage.setItem("success", "0");
             var email_stred = window.localStorage.getItem("emai");
@@ -50,7 +48,7 @@
             $("#user").text(userName);
             if (window.localStorage.getItem("logged_in") != "1") {
 
-                
+
 
                     //Regexp to check if email is valid
 
@@ -63,7 +61,7 @@
                     if(window.localStorage.getItem("Alreadr_member")!="1"){
                     $.ajax({
                         type: "POST",                                           //method
-                        url: "http://forwardingenuity.com/insert_user.php",     //url   
+                        url: "http://forwardingenuity.com/insert_user.php",     //url
                         data: dataString,                                       //data sent as concatinated string
                         crossDomain: true,
                         cache: false,
@@ -103,26 +101,26 @@
 
                         }
 
-                        
+
                     });
-                    
+
                     return false;
                     }
 
 
 
-                
+
 
             }
-            
+
 
                var url1 = "http://forwardingenuity.com/json_users.php"; //Get url of php file containing json
 
                 var ourRequest = new XMLHttpRequest(); //create XMLHttpRequest object to request for the JSON data
-                ourRequest.open("GET", url1);   //Opening...    
+                ourRequest.open("GET", url1);   //Opening...
                  //container div
                 ourRequest.onload = function () {
-                  
+
 
 
                     //request has loaded
@@ -130,18 +128,18 @@
                     var ourData = JSON.parse(ourRequest.responseText);      //change the received response text to an actuall array of objects
                     var books = 0;        //any books under the faculty?
                    // console.log(ourData);
-                    
+
                     //var ourData2 = JSON.parse(window.localStorage.getItem("Holding"));
                     var info_length = (ourData.length);
-                    
+
                     for (var j = 0; j < info_length; j++) {
                         if (ourData[j].email == window.localStorage.getItem("emai")) {
                             window.localStorage.setItem("id", ourData[j].id);
                             //alert(ourData[j].id);
                             break;
-                            
+
                         }
-                        
+
                     }
 
                     for (var i = 0; i < info_length; i++) {
@@ -157,7 +155,7 @@
                         //books++;
                         else
                         {
-                                
+
                         }
 
                     }
@@ -177,14 +175,14 @@
                 }
                 ourRequest.send();
                             //Go to succeeded page
-            
+
 
 
 
 
 
         });
-      
+
       function logout() {
           var Logout_button = document.getElementById("logout");
           window.localStorage.clear();
@@ -192,17 +190,17 @@
           window.location.replace("index.html");
 
       }
-      
+
       $("#sub").click(function () {
 
           //Regexp to check if email is valid
 
           var dataString = window.localStorage.getItem("datstr");     //from previous page
           window.localStorage.setItem("logged_in", "1");
-          
+
           $.ajax({
               type: "POST",                                           //method
-              url: "http://forwardingenuity.com/insert_book.php",     //url   
+              url: "http://forwardingenuity.com/insert_book.php",     //url
               data: dataString,                                       //data sent as concatinated string
               crossDomain: true,
               cache: false,
@@ -249,7 +247,7 @@
       */
     </script>
 
-    
+
     <div class="bd-example">
         <div id="wrapper" style="text-align: center">
             <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
@@ -270,24 +268,24 @@
                 <span class="pull-right col-sm-1" style="color:black;">Logged in as:&nbsp<span id="user"></span></span>
 
 
-                    
 
 
-                    <!--   <button class="btn btn-black pull-right" type="button" id="logout" aria-expanded="false" onclick="logout()">
-               Logout
-           </button>
-            -->
 
-                
-</nav>
+                <!--   <button class="btn btn-black pull-right" type="button" id="logout" aria-expanded="false" onclick="logout()">
+                    Logout
+                </button>
+                 -->
+
+
+            </nav>
         </div>
-        </div>
-   <br/>
+    </div>
+    <br />
     <br />
     <div class="container" id="book_case">
         <center> <h3 style="color:#a1a2a3;"><strong>My Books</strong></h3></center>
 
-        <hr/>
+        <hr />
 
 
     </div>
@@ -307,15 +305,16 @@
                     <form>
                         <div class="form-group input_fields_wrap">
                             <label>Title</label>
-                            <span class="pull-right"><button class="btn3 btn-white add_field_button" type="button" id="#add_more" style="display:inline-block">
-                                        <span class="glyphicon glyphicon-plus gray"></span>
-                                        </button>
+                            <span class="pull-right">
+                                <button class="btn3 btn-white add_field_button" type="button" id="#add_more" style="display:inline-block">
+                                    <span class="glyphicon glyphicon-plus gray"></span>
+                                </button>
                                 <button class="btn3 btn-white remove_field_button" type="button" id="#remove" style="display:inline-block">
                                     <span class="glyphicon glyphicon-minus gray"></span>
                                 </button>
-                                
-                                </span>
-                            
+
+                            </span>
+
                             <input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="title" />
 
                         </div>
@@ -367,7 +366,7 @@
             $(add_button).click(function (e) { //on add input button click
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
-                    
+
                     x++; //text box increment
                     $(wrapper).append('<div id="titl' + x + '"><input type="text" name="mytext1[]" class="form-control" placeholder="Enter title" id="title'+x+'" /></div>'); //add input box
                     $(wrapper1).append('<div id="pri' + x + '"><input type="number" class="form-control" name="mytext2[]" placeholder="Enter Price" id="price' + x + '" /></div>');
@@ -410,7 +409,7 @@
                     window.localStorage.setItem("elems", x);
                 }
             });
-           
+
         });
       /*  function submitBooks() {
 
@@ -419,9 +418,9 @@
             var price = $("#price").val();
             var faculty = el.options[el.selectedIndex].value
             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;   //Regexp to check if email is valid
-          
+
             var dataString = "title=" + title + "&price=" + price + "&faculty=" + faculty + "&insert=";
-            
+
             if ($.trim(title).length > 0 & $.trim(price).length > 0) {
                 $.ajax({
                     type: "POST",
@@ -432,7 +431,7 @@
                     beforeSend: function () { $("#insert").val('Connecting...'); },
                     success: function (data) {
                         if (data == "success") {
-                            alert("inserted");                      
+                            alert("inserted");
                             $("#message").text("");
                             $("#insert").val('submit');
 
@@ -453,14 +452,14 @@
 
 
         }
-        
+
         */
     </script>
 
     <script type="text/javascript">
         $(document).ready(function () {
 
-            
+
                 $("#sub").click(function () {
                     var title2 = "#title2";
                     var price2 = "#price2";
@@ -475,23 +474,23 @@
                     var price5 = "#price5";
                     var faculty_chosen5 = "#faculty_chosen5";
                     var datastring1 = '';
-                    
+
                     var titleElem2 = document.getElementById("title2");
                     var priceElem2 = document.getElementById("price2");
-                    
+
                     var titleElem3 = document.getElementById("title3");
                     var priceElem3 = document.getElementById("price3");
-                    
+
                     var titleElem4 = document.getElementById("title4");
                     var priceElem4 = document.getElementById("price4");
-                    
+
                     var titleElem5 = document.getElementById("title5");
                     var priceElem5 = document.getElementById("price5");
 
 
                     window.localStorage.setItem("title_check", "1");
                     window.localStorage.setItem("price_check", "1");
-                    
+
                     var elements = window.localStorage.getItem("elems");
                     if (window.localStorage.getItem("elems") >= "2") {
 
@@ -541,7 +540,7 @@
                             window.localStorage.setItem("title_check", "0");
                             window.localStorage.setItem("price_check", "0");
                             titleElem4.className += " btn-dan";
-                            
+
                             return;
                         }
                         else if (titleC4 != '' && priceC4 == '') {
@@ -549,7 +548,7 @@
                             window.localStorage.setItem("title_check", "0");
                             window.localStorage.setItem("price_check", "0");
 
-                            
+
                             priceElem4.className += " btn-dan";
                             return;
                         }
@@ -575,14 +574,14 @@
                             $("#message").text("3rd Title field left empty");
 
                             titleElem3.className += " btn-dan";
-                            
+
                             return;
                         }
                         else if (titleC3 != '' && priceC3 == '') {
                             $("#message").text("3rd Price field left empty or contains non-numeric text(Do not put an R ahead of the price)");
                             window.localStorage.setItem("title_check", "0");
                             window.localStorage.setItem("price_check", "0");
-                            
+
                             priceElem3.className += " btn-dan";
 
                             return;
@@ -608,7 +607,7 @@
                                 $("#message").text("2nd Title field left empty");
 
                                 titleElem2.className += " btn-dan";
-                                
+
 
                                 return;
                             }
@@ -617,7 +616,7 @@
                                 window.localStorage.setItem("title_check", "0");
                                 window.localStorage.setItem("price_check", "0");
 
-                                
+
                                 priceElem2.className += " btn-dan";
 
                                 return;
@@ -632,7 +631,7 @@
                                 return;
                             }
 
-                            
+
                         default:
                             if (title == '' && price != '') {
                                 $("#message").text("1st Title field left empty");
@@ -655,11 +654,11 @@
                             break;
 
                     }
-                        
+
 
                     }
-                    
-                    
+
+
                     var el = document.getElementById("faculty_chosen");
                     var title = $("#title").val();
                     var price = $("#price").val();
@@ -673,7 +672,7 @@
                         $("#message").text("Contact field left empty");
                         window.localStorage.setItem("title_check", "0");
                         contactElem.className += " btn-dan";
-                        
+
                     }
 
                     if (title == '' && price != '') {
@@ -700,7 +699,7 @@
                     }
 
 
-                    
+
                     //alert(window.localStorage.getItem("id"));
                     var uploader = window.localStorage.getItem("id");
                     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;   //Regexp to check if email is valid
@@ -723,10 +722,10 @@
                             beforeSend: function () { $("#insert").val('Connecting...'); },
                             success: function (data) {
                                 if (data == "success") {
-                                    //alert("inserted");                      
+                                    //alert("inserted");
                                     $("#Par_empty").text("");
                                     $("#insert").val('submit');
-    
+
                                 }
                                 else if (data == "error") {
                                     alert("error");
@@ -745,7 +744,7 @@
 
                 });
 
-            
+
 
         });
 
@@ -754,7 +753,7 @@
 
     </script>
     <script type="text/javascript">
-        
+
         $("#sub").click(function () {
 
             setTimeout(function () {
@@ -779,7 +778,7 @@
 
 
             var ourRequest = new XMLHttpRequest(); //create XMLHttpRequest object to request for the JSON data
-            ourRequest.open("GET", url1);   //Opening...    
+            ourRequest.open("GET", url1);   //Opening...
             var outDiv = document.getElementById("book_case"); //container div
 
             ourRequest.onload = function () {
@@ -826,7 +825,7 @@
 
                     var inDiv = document.createElement('div');
                     var edit_button = document.createElement('button');
-                    
+
                     edit_button.innerHTML = '<strong>Edit</strong>';
                     edit_button.className += "btn1 btn-info animated fadeInLeft";
                     edit_button.setAttribute('data-toggle', 'modal');
@@ -837,7 +836,7 @@
                         for (var i = 0; i < ind; i++) {
                             toggle(titles[i]);
                         }
-                        
+
                     }*/
 
                     var sold_button = document.createElement('button');
@@ -849,8 +848,9 @@
                     remove_button.innerHTML = '<strong>Remove</strong>';
                     remove_button.className += "btn1 btn-danger animated fadeInLeft";
                     books++;
-                    
+
                     inDiv.className += "animated fadeInLeft";
+                    //inDiv.css('height', '100px');
                     inDiv.innerHTML = '<div id="photo_chosen" style="float:left; margin-right: 10px; height:95px; border: 1px solid black; width:100px; margin-top:0px; margin-left:3px; display:inline-block; border-color:black; top:2px;"><img src="3dBook3.png" style="width:100%; height:100%; object-fit:contain;" /></div><p style="font-size:20px;">' + ourData[i].title + ' - R' + ourData[i].price + '</p><br/>';
                     inDiv.appendChild(edit_button);
                     inDiv.appendChild(sold_button);
@@ -899,22 +899,22 @@
 
         function buttonTitle(){
 
-            
+
             var max_fields = 1; //maximum input boxes allowed
             var wrapper = $(".input_fields"); //Fields wrapper
             var add_button = $("#butti");
             var x = 0; //initlal text box count
-            
+
              //on add input button click
              //   e.preventDefault();
                 if (window.localStorage.getItem("Title_ind")!="1") { //max input box allowed
                     window.localStorage.setItem("Title_ind", "1");
                     x++; //text box increment
-                    
+
                     $(wrapper).append('<div id="titl' + x + '"><input type="text" name="mytext1[]" class="form-control" placeholder="Enter title" id="Edit_title"/></div>'); //add input box
-                    
+
                 }
-            
+
 
         }
 
@@ -925,15 +925,15 @@
             var wrapper = $(".input_fields1"); //Fields wrapper
             var add_button = $("#butti2");
             var x = 0; //initlal text box count
-            
-            
+
+
                 if (window.localStorage.getItem("price_ind") != "1") { //max input box allowed
                     window.localStorage.setItem("price_ind","1");
                     x++; //text box increment
                     $(wrapper).append('<div id="titl' + x + '"><input type="number" name="mytext1[]" class="form-control" placeholder="Enter Price" id="Edit_price"/></div>'); //add input box
 
                 }
-            
+
 
         }
 
@@ -944,7 +944,7 @@
             var wrapper = $(".input_fields2"); //Fields wrapper
             var add_button = $("#butti3");
             var x = 0; //initlal text box count
-            
+
              //on add input button click
          //       e.preventDefault();
                 if (window.localStorage.getItem("contact_ind") != "1") { //max input box allowed
@@ -954,7 +954,7 @@
                     $(wrapper).append('<div id="titl' + x + '"><input type="number" name="mytext1[]" class="form-control" placeholder="Enter Phone Number" id="Edit_contact"/></div>'); //add input box
 
                 }
-            
+
 
         }
 
@@ -965,7 +965,7 @@
             var wrapper = $(".input_fields3"); //Fields wrapper
             var add_button = $("#butti4");
             var x = 0; //initlal text box count
-            
+
              //on add input button click
            //     e.preventDefault();
                 if (window.localStorage.getItem("faculty_ind") != "1") { //max input box allowed
@@ -973,11 +973,11 @@
                     $(wrapper).append('<div id="facul' + x + '"><select class="form-control" id="faculty_chosen' + x + '" name="mytext3[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment and IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural and Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div>'); //add input box
 
                 }
-            
+
 
         }
         function trying() {
-            
+
             $(document).ready(function () {
 
 
@@ -1041,7 +1041,7 @@
                                 error: function (jqXHR, exception) {
                                     alert("Change not made, check internet connection");
                                     //window.location.href="signUp.html";
-                                    
+
 
                                 }
                             });
@@ -1056,7 +1056,7 @@
                     }
 
 
-                  
+
 
 
 
@@ -1069,7 +1069,7 @@
 
                 });
             });
-            
+
 
         }
 
@@ -1083,7 +1083,7 @@
                         window.location.replace("userPage.html");
 
                     }, 10);
-                    
+
 
                 })
 
@@ -1091,9 +1091,9 @@
 
 
         }
-        
+
 
     </script>
-    
+
 </body>
 </html>

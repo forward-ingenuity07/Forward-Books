@@ -4646,6 +4646,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-left {
     float: left !important;
   }
+
+.forImage {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
   .navbar-right {
     float: right !important;
     margin-right: -15px;
