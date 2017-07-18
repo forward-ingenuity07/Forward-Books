@@ -18,7 +18,7 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
  function getImage() {
-     navigator.camera.getPicture(uploadPhoto, function (message) {
+ navigator.camera.getPicture(uploadPhoto, function(message) {
  alert('get picture failed');
  }, {
  quality: 100,
@@ -31,7 +31,6 @@ function uploadPhoto(imageURI) {
  var options = new FileUploadOptions();
  options.fileKey = "file";
  options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
- $("#photo_chosen").val(imageURI.substr(imageURI.lastIndexOf('/') + 1) + ' inserted');
  options.mimeType = "image/jpeg";
  console.log(options.fileName);
  var params = new Object();
@@ -50,8 +49,6 @@ var ft = new FileTransfer();
     </script>
 </head>
 <body>
-    <button onclick="getImage()">Choose a Photo</button><span id="photo_chosen"></span>
-    
-    
+    <button onclick="getImage()">Upload a Photo</button>
 </body>
 </html>
