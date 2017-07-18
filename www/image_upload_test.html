@@ -31,7 +31,7 @@ function uploadPhoto(imageURI) {
  var options = new FileUploadOptions();
  options.fileKey = "file";
  options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
- $("#photo_chosen").text(imageURI.substr(imageURI.lastIndexOf('/') + 1) + ' inserted');
+ $("#photo_chosen").text(imageURI.substr(imageURI.lastIndexOf('/') + 1));
  options.mimeType = "image/jpeg";
  console.log(options.fileName);
  var params = new Object();
@@ -40,18 +40,30 @@ function uploadPhoto(imageURI) {
  options.params = params;
  options.chunkedMode = false;
 
-var ft = new FileTransfer();
- ft.upload(imageURI, "http://forwardingenuity.com/insert_image1.php", function(result){
- console.log(JSON.stringify(result));
- }, function(error){
- console.log(JSON.stringify(error));
- }, options);
+ $("#uplo").click(function () {
+
+
+
+     var ft = new FileTransfer();
+     ft.upload(imageURI, "http://forwardingenuity.com/insert_image1.php", function (result) {
+         console.log(JSON.stringify(result));
+     }, function (error) {
+         console.log(JSON.stringify(error));
+     }, options);
+ });
+
  }
     </script>
 </head>
 <body>
-    <button onclick="getImage()">Choose a Photo</button><span id="photo_chosen"></span>
+    <div class="container">
+        <button onclick="getImage()">Choose a Photo</button><div id="photo_chosen" style="width:300px; border: 1px solid black; padding:10px; margin-top:10px; margin-left:3px; display:inline-block; border-color:black; top:2px;"></div>
     
+        <br />
+        <button id="uplo">Upload</button>
+
+
+        </div>
     
 </body>
 </html>
