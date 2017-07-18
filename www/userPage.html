@@ -34,6 +34,7 @@
             window.localStorage.setItem("Title_ind", "0");
             window.localStorage.setItem("price_ind", "0");
             window.localStorage.setItem("pressed", "0");
+            window.localStorage.setItem("image_pressed", "0");
             if (window.localStorage.getItem("success") == "1" && window.localStorage.getItem("book_inserted")== "1")
             {
                 setTimeout(function () {
@@ -835,6 +836,16 @@
                    */
                     modal.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit book info -</h4><span>&nbsp Enter only the fields you want to edit</span><br/><p class="text-danger" id="edit_message"></p></div><div class="modal-body"><form><div class="form-group input_fields"><label>' + ourData[i].title + '</label><input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="edit_title' + books + '" /></div><div class="form-group input_fields1"><label>R' + ourData[i].price + '</label><input type="number" name="mytext[]" class="form-control" placeholder="Enter price" id="edit_price' + books + '" /></div><div class="form-group input_fields2"><label>' + ourData[i].contact + '</label><input type="number" name="mytext[]" class="form-control" placeholder="Enter Phone Number" id="edit_contact' + books + '" /><div class="form-group input_fields3"><label>' + ourData[i].faculty + '</label><select class="form-control" id="edit_faculty' + books + '" name="mytext3[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment and IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural and Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div></form><div class="modal-footer"><button type="button" class="btn btn-default editing" onclick="trying();refreshing()" id="edit_submit' + books + '" value="' + ourData[i].id + '">Submit - Double Tap!</button></div>';
 
+                    var modal_image = document.createElement('div');
+                    modal_image.id = "image_mod" + books;
+                    modal_image.className = "modal fade";
+                    modal_image.setAttribute('role', 'dialog');
+                    /* modal.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit Book info</h4><p class="text-danger" id="message"></p></div>';
+                     modal.innerHTML += '<div class="modal-body"><form><div class="form-group"><label>' + ourData[i].title + '<span class="pull-right"><button class="btn3 btn-white" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button>';
+                     modal.innerHTML += '</span></label></div><div class="form-group"> <label>' + ourData[i].price + '</label></div><div class="form-group"> <label>' + ourData[i].contact + '</label></div><div class="form-group"> <label>' + ourData[i].faculty + '</label></div></form></div></div>';
+                    */
+                    modal_image.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Upload an image -</h4></div><div class="modal-body"><button onclick="getImage()">Choose a Photo</button><div id="photo_chosen" style="width:300px; border: 1px solid black; padding:10px; margin-top:10px; margin-left:3px; display:inline-block; border-color:black; top:2px;"></div><div class="modal-footer"><button type="button" class="btn btn-default image_submit" id="uplo' + books + '" value="' + ourData[i].id + '>Submit</button></div>';
+
 
                     var inDiv = document.createElement('div');
                     var edit_button = document.createElement('button');
@@ -863,7 +874,7 @@
                     books++;
                     
                     inDiv.className += "animated fadeInLeft";
-                    inDiv.innerHTML = '<div id="photo_chosen" style="float:left; margin-right: 10px; height:95px; border: 1px solid black; width:100px; margin-top:0px; margin-left:3px; display:inline-block; border-color:black; top:2px;"><a href=""><img src="3dBook3.png" style="width:100%; height:100%; object-fit:contain;" /></a></div><p style="font-size:20px;">' + ourData[i].title + ' - R' + ourData[i].price + '</p><br/>';
+                    inDiv.innerHTML = '<div id="photo_chosen' + books + '" style="float:left; margin-right: 10px; height:95px; border: 1px solid black; width:100px; margin-top:0px; margin-left:3px; display:inline-block; border-color:black; top:2px;"><a role="button" data-toggle="modal" data-target="#image_mod'+books+'"><img id=image_number' + books + ' src="3dBook3.png" style="width:100%; height:100%; object-fit:contain;" /></a></div><p style="font-size:20px;">' + ourData[i].title + ' - R' + ourData[i].price + '</p><br/>';
                     inDiv.appendChild(edit_button);
                     inDiv.appendChild(sold_button);
                     inDiv.appendChild(remove_button);
@@ -879,13 +890,13 @@
                     outDiv.appendChild(wrapperDiv);
                     outDiv.appendChild(hzr);            //add horizontal rulr to div
                     outDiv.appendChild(modal);
-
+                    outDiv.appendChild(modal_image);
 
                 }
                 if (books == 0) {
                     //alert("No books available");
                     //No books in the div
-                    setTimeout(function () { alert("No books available"); }, 1200);     //delay before alert
+                   // setTimeout(function () { alert(""); }, 1200);     //delay before alert
 
                 }
 
@@ -1108,5 +1119,129 @@
 
     </script>
     
+
+
+
+
+
+    <script type="text/javascript">
+
+
+        function getImage() {
+            navigator.camera.getPicture(uploadPhoto, function (message) {
+                alert('get picture failed');
+            }, {
+                quality: 100,
+                destinationType: navigator.camera.DestinationType.FILE_URI,
+                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+            });
+        }
+
+        function uploadPhoto(imageURI) {
+            var options = new FileUploadOptions();
+            options.fileKey = "file";
+            options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+            $("#photo_chosen").text(imageURI.substr(imageURI.lastIndexOf('/') + 1));
+            options.mimeType = "image/jpeg";
+            console.log(options.fileName);
+            var params = new Object();
+            params.value1 = "test";
+            params.value2 = "param";
+            options.params = params;
+            options.chunkedMode = false;
+
+            $(".image_submit").click(function () {
+
+                if (window.localStorage.getItem("image_pressed") != "1") {
+                    var ident = this.id;
+                    var num = ident.replace(/^\D+/g, "");
+                    var tagi = "#";
+                    tagi += "image_number"+num;
+                    
+
+                var ft = new FileTransfer();
+                ft.upload(imageURI, "http://forwardingenuity.com/insert_image1.php", function (result) {
+                    console.log(JSON.stringify(result));
+                }, function (error) {
+                    console.log(JSON.stringify(error));
+                }, options);
+                    
+                window.location.replace("image_upload_test.html");
+            }
+            });
+
+        }
+
+
+
+
+
+
+
+        //
+
+
+        function trying() {
+
+            $(document).ready(function () {
+
+
+                $(".editing").click(function () {
+
+
+                    if (window.localStorage.getItem("image_pressed") != "1") {
+                        var ident = this.id;
+                        var num = ident.replace(/^\D+/g, "");
+                        var tagi = "#";
+                        tagi += ident;
+                        
+
+                        
+
+
+
+                    }
+
+
+
+
+
+
+
+                    //
+
+
+
+
+
+                });
+            });
+
+
+        }
+
+
+
+        function refreshing() {
+            $(document).ready(function () {
+
+                $(".editing").click(function () {
+                    setTimeout(function () {
+                        window.location.replace("userPage.html");
+
+                    }, 10);
+
+
+                })
+
+            })
+
+
+        }
+
+
+    </script>
+
+
 </body>
 </html>
