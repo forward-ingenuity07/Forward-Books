@@ -15,7 +15,7 @@
 
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
 
-    <script type="text/javascript" src="scripts/cordova-2.4.0.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
  function getImage() {
  navigator.camera.getPicture(uploadPhoto, function(message) {
@@ -27,14 +27,7 @@
  });
 }
 
- function uploadPhoto(imageURI) {
-     $("#upl").click(function () {
-
-
-     
-
-
-     
+function uploadPhoto(imageURI) {
  var options = new FileUploadOptions();
  options.fileKey = "file";
  options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
@@ -52,12 +45,11 @@ var ft = new FileTransfer();
  }, function(error){
  console.log(JSON.stringify(error));
  }, options);
-     });
  }
     </script>
 </head>
 <body>
-    <button onclick="getImage()">choose Photo</button><span id="name_of"></span>
-    <button id="upl">Upload a Photo</button>
+    <button onclick="getImage()">Upload a Photo</button>
+    <button onclick="getImage()">Upload a Photo</button>
 </body>
 </html>
