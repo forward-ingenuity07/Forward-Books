@@ -57,17 +57,37 @@ function uploadPhoto(imageURI) {
     </script>
 </head>
 <body>
+
     <div class="container">
-        
-            
-                <button onclick="getImage()">Choose a Photo</button><div id="photo_chosen" style="width:300px; border: 1px solid black; padding:10px; margin-top:10px; margin-left:3px; display:inline-block; border-color:black; top:2px;"></div>
+        <button class="btn btn-black1 btn-lg" type="button" id="add" style="display:inline-block" data-toggle="modal" data-target="#myModal">
+            <span class="glyphicon glyphicon-plus white"></span>
+        </button>
 
-                <br />
-                <button id="uplo">Upload</button>
+
+    </div>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                    <p class="text-danger" id="message"></p>
+                </div>
+                <div class="modal-body">
+                    <button onclick="getImage()">Choose a Photo</button><div id="photo_chosen" style="width:300px; border: 1px solid black; padding:10px; margin-top:10px; margin-left:3px; display:inline-block; border-color:black; top:2px;"></div>
+
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="uplo">Submit</button>
+                </div>
             </div>
-                
 
-      
+        </div>
+    </div>
     
 </body>
 </html>
