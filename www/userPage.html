@@ -67,6 +67,7 @@
                         data: dataString,                                       //data sent as concatinated string
                         crossDomain: true,
                         cache: false,
+                        timeout:7000,
                         beforeSend: function () { $("#insert").val('Connecting...'); },
 
 
@@ -206,6 +207,7 @@
               data: dataString,                                       //data sent as concatinated string
               crossDomain: true,
               cache: false,
+              timeout: 7777,
               beforeSend: function () { $("#insert").val('Connecting...'); },
               success: function (data) {
                   if (data == "success") {
@@ -1027,6 +1029,7 @@
                                 data: dataString,
                                 crossDomain: true,
                                 cache: false,
+                                timeout:7000,
                                 beforeSend: function () { $("#insert").val('Connecting...'); },
                                 success: function (data) {
                                     if (data == "success") {
