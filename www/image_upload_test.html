@@ -20,26 +20,28 @@
 
 
         function getImage() {
-            var image=("#image").val();
+            
  navigator.camera.getPicture(uploadPhoto, function(message) {
  alert('get picture failed');
  }, {
  quality: 100,
- //destinationType: navigator.camera.DestinationType.FILE_URI,
-     //sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
- sourceType: image
+ destinationType: navigator.camera.DestinationType.FILE_URI,
+     sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+ 
  });
 }
 
  function uploadPhoto(imageURI) {
+     $('#photo_name').val(imageURI.substr(imageURI.lastIndexOf('/') + 1));
+     $("#submit").click(function () {
 
-
+     
      image1 = document.getElementById("image");
          var options = new FileUploadOptions();
          options.fileKey = "file";
-         //options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-
-         options.fileName = image1;
+         options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+         
+         
          options.mimeType = "image/jpeg";
          console.log(options.fileName);
          var params = new Object();
@@ -58,8 +60,9 @@
 
 
 
-
+     });
      }
+     
     </script>
        <script type="text/javascript" charset="utf-8" src="scripts/cordova-2.4.0.js"></script>
    
@@ -78,7 +81,7 @@
         </label>
     </div>
 
-    <button id="submit" onclick="uploadPhoto();" type="submit" class="btn btn-default">Submit</button>
+    <button id="submit" onclick="uploadPhoto();" type="submit" class="btn btn-default">Submit</button><span id="photo_name"></span>
     </form>        
 </body>
 </html>
