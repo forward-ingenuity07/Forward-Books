@@ -50,7 +50,7 @@ function uploadPhoto(imageURI) {
      }, function (error) {
          console.log(JSON.stringify(error));
      }, options);
-     //window.location.replace("image_upload_test.html");
+     window.location.replace("image_upload_test.html");
  });
 
  }
@@ -58,16 +58,16 @@ function uploadPhoto(imageURI) {
 </head>
 <body>
     <div class="container">
-        <form>
-            <div class="form-group">
+        
+            
                 <button onclick="getImage()">Choose a Photo</button><div id="photo_chosen" style="width:300px; border: 1px solid black; padding:10px; margin-top:10px; margin-left:3px; display:inline-block; border-color:black; top:2px;"></div>
 
                 <br />
                 <button id="uplo">Upload</button>
             </div>
-                </form>
+                
 
-        </div>
+      
     
 </body>
 </html>
