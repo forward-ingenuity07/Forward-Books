@@ -720,6 +720,7 @@
                             data: dataString,
                             crossDomain: true,
                             cache: false,
+                            timeout:7000,
                             beforeSend: function () { $("#insert").val('Connecting...'); },
                             success: function (data) {
                                 if (data == "success") {
