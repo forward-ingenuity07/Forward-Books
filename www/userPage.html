@@ -720,10 +720,8 @@
                             type: "POST",
                             url: "http://forwardingenuity.com/insert_book1.php",
                             data: dataString,
-                            crossDomain: true,
-                            cache: false,
+                           
                             timeout:7000,
-                            beforeSend: function () { $("#insert").val('Connecting...'); },
                             success: function (data) {
                                 if (data == "success") {
                                     //alert("inserted");                      
