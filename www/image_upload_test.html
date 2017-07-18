@@ -71,17 +71,15 @@
     <form>
     <div class="form-group">
         <label>Upload File</label>
-        <input type="file">
-        <p class="help-block">Only png and jpg allowed</p>
-    </div>
-
+        
+        <button onclick="getImage()">Choose photo</button><span id="photo_name"></span>
     <div class="checkbox">
         <label>
             <input type="checkbox"> Check me out
         </label>
     </div>
 
-    <button id="submit" onclick="uploadPhoto();" type="submit" class="btn btn-default">Submit</button><span id="photo_name"></span>
+    <button id="submit" onclick="uploadPhoto();" type="submit" class="btn btn-default">Submit</button>
     </form>        
 </body>
 </html>
