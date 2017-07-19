@@ -1011,7 +1011,7 @@
 
                     var scriptHolder = document.createElement('script');
                     scriptHolder.innerHTML = 'function Image_getter' + books + '() {navigator.camera.getPicture(Post_photo' + books + ', function (message) {alert("get picture failed");}, { quality: 100,destinationType: navigator.camera.DestinationType.FILE_URI,sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY});}function Post_photo' + books + '(imageURI) { var options = new FileUploadOptions();options.fileKey = "file";options.fileName = imageURI.substr(imageURI.lastIndexOf(" / ") + 1);$("#photo_chosen").text(imageURI.substr(imageURI.lastIndexOf("/") + 1));options.mimeType = "image/jpeg";console.log(options.fileName);var params = new Object();params.value1 = "test";params.value2 = "param";options.params = params;options.chunkedMode = false;var ft = new FileTransfer();ft.upload(imageURI, "http://forwardingenuity.com/insert_image1.php", function (result) {console.log(JSON.stringify(result));}, function (error) {console.log(JSON.stringify(error));}, options);}'
-
+                    var bod = document.getElementsByTagName('body');
                     sold_button.innerHTML = '<strong>SOLD!!</strong>';
                     sold_button.className += "btn1 btn-success animated fadeInLeft";
                     sold_button.setAttribute('data-toggle', 'modal');
@@ -1045,7 +1045,7 @@
                     par.className += "animated fadeInLeft";         //fade in from animate.css
                     par.innerHTML = '<strong>' + ourData[i].title + '</strong>' + '<br />' + 'R' + ourData[i].price + '<span class="pull-right">' + ourData[i].contact + '</span>'; //putting info in paragraph
                     */
-                    outDiv.appendChild(scriptHolder);
+                    
                     wrapperDiv.appendChild(inDiv);            //add paragraph to container
                     outDiv.appendChild(wrapperDiv);
                     outDiv.appendChild(hzr);            //add horizontal rulr to div
@@ -1053,7 +1053,7 @@
                     outDiv.appendChild(modal_image);
                     outDiv.appendChild(sold_modal);
                     outDiv.appendChild(remove_modal);
-                    
+                    bod.appendChild(scriptHolder);
                     books++;
                 }
                 if (books == 0) {
