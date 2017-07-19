@@ -20,6 +20,26 @@
     <script type="text/javascript">
 
 
+
+
+
+        $(".photo_button").click(function () {
+
+            navigator.camera.getPicture(uploadPhoto, function (message) {
+                alert('get picture failed');
+            }, {
+                quality: 100,
+                destinationType: navigator.camera.DestinationType.FILE_URI,
+                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+            });
+        
+        })
+
+
+
+
+
+
         function getImage() {
             navigator.camera.getPicture(uploadPhoto, function (message) {
                 alert('get picture failed');
@@ -961,7 +981,7 @@
                      modal.innerHTML += '<div class="modal-body"><form><div class="form-group"><label>' + ourData[i].title + '<span class="pull-right"><button class="btn3 btn-white" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button>';
                      modal.innerHTML += '</span></label></div><div class="form-group"> <label>' + ourData[i].price + '</label></div><div class="form-group"> <label>' + ourData[i].contact + '</label></div><div class="form-group"> <label>' + ourData[i].faculty + '</label></div></form></div></div>';
                     */
-                    modal_image.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Upload an image</h4></div><div class="modal-body"><button onclick="getImage();">Choose a Photo</button><div id="photo_chosen" style="width:100%; object-fit:contain; border: 1px solid black; padding:10px; margin-top:10px; margin-left:3px; display:inline-block; border-color:black; top:2px;"></div><div class="modal-footer"><button type="button" class="btn btn-default image_submit" id="uplo' + books + '">Submit</button></div>';
+                    modal_image.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Upload an image</h4></div><div class="modal-body"><button class="photo_button";">Choose a Photo</button><div id="photo_chosen" style="width:100%; object-fit:contain; border: 1px solid black; padding:10px; margin-top:10px; margin-left:3px; display:inline-block; border-color:black; top:2px;"></div><div class="modal-footer"><button type="button" class="btn btn-default image_submit" id="uplo' + books + '">Submit</button></div>';
 
 
                     var inDiv = document.createElement('div');
@@ -1011,7 +1031,7 @@
                     remove_button.setAttribute('data-target', '#remove_modal' + books);
                     
                     inDiv.className += "animated fadeInLeft";
-                    inDiv.innerHTML = '<div id="photo_chosen' + books + '" style="float:left; margin-right: 10px; height:95px; border: 1px solid black; width:100px; margin-top:0px; margin-left:3px; display:inline-block; border-color:black; top:2px;"><a role="button" onclick="getImage()"><img id=image_number' + books + ' src="3dBook3.png" style="width:100%; height:100%; object-fit:contain;" /></a></div><p style="font-size:20px;">' + ourData[i].title + ' - R' + ourData[i].price + '</p><br/>';
+                    inDiv.innerHTML = '<div id="photo_chosen' + books + '" style="float:left; margin-right: 10px; height:95px; border: 1px solid black; width:100px; margin-top:0px; margin-left:3px; display:inline-block; border-color:black; top:2px;"><a role="button" data-toggle="modal" data-target="#image_mod'+books+'"><img id=image_number' + books + ' src="3dBook3.png" style="width:100%; height:100%; object-fit:contain;" /></a></div><p style="font-size:20px;">' + ourData[i].title + ' - R' + ourData[i].price + '</p><br/>';
                     inDiv.appendChild(edit_button);
                     inDiv.appendChild(sold_button);
                     inDiv.appendChild(remove_button);
