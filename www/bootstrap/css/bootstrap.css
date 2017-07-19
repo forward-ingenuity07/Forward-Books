@@ -3170,9 +3170,10 @@ fieldset[disabled] a.btn {
 
 }
 .btn-white {
-  color: gray;
+  color: black;
   background-color: white;
-  border-color: gray;
+  border-color: black;
+  
 
 }
 

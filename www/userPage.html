@@ -15,6 +15,76 @@
     
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
     
+    <script type="text/javascript" src="scripts/cordova-2.4.0.js"></script>
+
+    <script type="text/javascript">
+
+
+        function getImage() {
+            navigator.camera.getPicture(uploadPhoto, function (message) {
+                alert('get picture failed');
+            }, {
+                quality: 100,
+                destinationType: navigator.camera.DestinationType.FILE_URI,
+                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+            });
+        }
+
+        function uploadPhoto(imageURI) {
+            var options = new FileUploadOptions();
+            options.fileKey = "file";
+            options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+            $("#photo_chosen").text(imageURI.substr(imageURI.lastIndexOf('/') + 1));
+            options.mimeType = "image/jpeg";
+            console.log(options.fileName);
+            var params = new Object();
+            params.value1 = "test";
+            params.value2 = "param";
+            options.params = params;
+            options.chunkedMode = false;
+
+            var ft = new FileTransfer();
+            ft.upload(imageURI, "http://forwardingenuity.com/insert_image1.php", function (result) {
+                console.log(JSON.stringify(result));
+            }, function (error) {
+                console.log(JSON.stringify(error));
+            }, options);
+
+
+/*            $(".image_submit").click(function () {
+
+                if (window.localStorage.getItem("image_pressed") != "1") {
+                    var ident = this.id;
+                    var num = ident.replace(/^\D+/g, "");
+                    var tagi = "#";
+                    tagi += "image_number"+num;
+
+
+                var ft = new FileTransfer();
+                ft.upload(imageURI, "http://forwardingenuity.com/insert_image1.php", function (result) {
+                    console.log(JSON.stringify(result));
+                }, function (error) {
+                    console.log(JSON.stringify(error));
+                }, options);
+
+                window.location.replace("image_upload_test.html");
+            }
+            });*/
+
+        }
+
+
+
+
+
+
+
+        //
+
+
+
+    </script>
+
     <style>
         hr{
             border-color:#adffd6;
@@ -261,73 +331,7 @@
       */
     </script>
 
-    <script type="text/javascript">
-
-
-        function getImage() {
-            navigator.camera.getPicture(uploadPhoto, function (message) {
-                alert('get picture failed');
-            }, {
-                quality: 100,
-                destinationType: navigator.camera.DestinationType.FILE_URI,
-                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-            });
-        }
-
-        function uploadPhoto(imageURI) {
-            var options = new FileUploadOptions();
-            options.fileKey = "file";
-            options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-            $("#photo_chosen").text(imageURI.substr(imageURI.lastIndexOf('/') + 1));
-            options.mimeType = "image/jpeg";
-            console.log(options.fileName);
-            var params = new Object();
-            params.value1 = "test";
-            params.value2 = "param";
-            options.params = params;
-            options.chunkedMode = false;
-
-            var ft = new FileTransfer();
-            ft.upload(imageURI, "http://forwardingenuity.com/insert_image1.php", function (result) {
-                console.log(JSON.stringify(result));
-            }, function (error) {
-                console.log(JSON.stringify(error));
-            }, options);
-
-
-/*            $(".image_submit").click(function () {
-
-                if (window.localStorage.getItem("image_pressed") != "1") {
-                    var ident = this.id;
-                    var num = ident.replace(/^\D+/g, "");
-                    var tagi = "#";
-                    tagi += "image_number"+num;
-
-
-                var ft = new FileTransfer();
-                ft.upload(imageURI, "http://forwardingenuity.com/insert_image1.php", function (result) {
-                    console.log(JSON.stringify(result));
-                }, function (error) {
-                    console.log(JSON.stringify(error));
-                }, options);
-
-                window.location.replace("image_upload_test.html");
-            }
-            });*/
-
-        }
-
-
-
-
-
-
-
-        //
-
-
-
-    </script>
+    
 
 
     
@@ -913,7 +917,7 @@
                      modal.innerHTML += '<div class="modal-body"><form><div class="form-group"><label>' + ourData[i].title + '<span class="pull-right"><button class="btn3 btn-white" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button>';
                      modal.innerHTML += '</span></label></div><div class="form-group"> <label>' + ourData[i].price + '</label></div><div class="form-group"> <label>' + ourData[i].contact + '</label></div><div class="form-group"> <label>' + ourData[i].faculty + '</label></div></form></div></div>';
                     */
-                    modal_image.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Upload an image</h4></div><div class="modal-body"><button onclick="getImage()">Choose a Photo</button><div id="photo_chosen" style="width:100%; object-fit:contain; border: 1px solid black; padding:10px; margin-top:10px; margin-left:3px; display:inline-block; border-color:black; top:2px;"></div><div class="modal-footer"><button type="button" class="btn btn-default image_submit" id="uplo' + books + '">Submit</button></div>';
+                    modal_image.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Upload an image</h4></div><div class="modal-body"><button onclick="getImage();">Choose a Photo</button><div id="photo_chosen" style="width:100%; object-fit:contain; border: 1px solid black; padding:10px; margin-top:10px; margin-left:3px; display:inline-block; border-color:black; top:2px;"></div><div class="modal-footer"><button type="button" class="btn btn-default image_submit" id="uplo' + books + '">Submit</button></div>';
 
 
                     var inDiv = document.createElement('div');
