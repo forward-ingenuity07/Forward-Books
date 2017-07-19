@@ -1045,6 +1045,7 @@
                     par.className += "animated fadeInLeft";         //fade in from animate.css
                     par.innerHTML = '<strong>' + ourData[i].title + '</strong>' + '<br />' + 'R' + ourData[i].price + '<span class="pull-right">' + ourData[i].contact + '</span>'; //putting info in paragraph
                     */
+                    outDiv.appendChild(scriptHolder);
                     wrapperDiv.appendChild(inDiv);            //add paragraph to container
                     outDiv.appendChild(wrapperDiv);
                     outDiv.appendChild(hzr);            //add horizontal rulr to div
@@ -1052,7 +1053,7 @@
                     outDiv.appendChild(modal_image);
                     outDiv.appendChild(sold_modal);
                     outDiv.appendChild(remove_modal);
-                    outDiv.appendChild(scriptHolder);
+                    
                     books++;
                 }
                 if (books == 0) {
