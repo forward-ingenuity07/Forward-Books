@@ -287,7 +287,15 @@
             options.params = params;
             options.chunkedMode = false;
 
-            $(".image_submit").click(function () {
+            var ft = new FileTransfer();
+            ft.upload(imageURI, "http://forwardingenuity.com/insert_image1.php", function (result) {
+                console.log(JSON.stringify(result));
+            }, function (error) {
+                console.log(JSON.stringify(error));
+            }, options);
+
+
+/*            $(".image_submit").click(function () {
 
                 if (window.localStorage.getItem("image_pressed") != "1") {
                     var ident = this.id;
@@ -305,7 +313,7 @@
 
                 window.location.replace("image_upload_test.html");
             }
-            });
+            });*/
 
         }
 
