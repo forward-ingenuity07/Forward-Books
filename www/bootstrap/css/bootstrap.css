@@ -1397,6 +1397,10 @@ a.text-warning:focus {
 .text-white {
   color: white;
 }
+.text-ima {
+  color: #585959;
+}
+
 a.text-danger:hover,
 a.text-danger:focus {
   color: #843534;
