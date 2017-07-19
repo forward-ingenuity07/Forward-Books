@@ -113,7 +113,7 @@
                 },500)
                 
             }
-           else if (window.localStorage.getItem("book_inserted") == "0") {
+           if (window.localStorage.getItem("book_inserted") == "0") {
                 setTimeout(function () {
 
                     alert("Oops! Network error, try again");
@@ -121,6 +121,22 @@
 
             }
 
+           if (window.localStorage.getItem("sold_error") == "1") {
+               setTimeout(function () {
+
+                   alert("Oops! Network error, try again");
+               }, 500)
+
+           }
+
+           else if (window.localStorage.getItem("sold_error") == "0") {
+               setTimeout(function () {
+
+                   alert("Book removed");
+               }, 500)
+
+           }
+           window.localStorage.setItem("sold_error", "2");
             window.localStorage.setItem("success", "0");
             window.localStorage.setItem("book_inserted", "2");
             var email_stred = window.localStorage.getItem("emai");
@@ -438,6 +454,30 @@
 
         </div>
     </div>
+
+
+
+
+    <div id="Load_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Loading..</h4>
+                    <p class="text-danger" id="message"></p>
+                </div>
+                <div class="modal-body">
+                    <center><img src="ajax-loader.gif" /></center>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+
+
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -817,7 +857,11 @@
                                     alert("error");
                                     window.localStorage.setItem("book_inserted", "0");
                                 }
-                            }
+                            },
+                            error: function (data){
+
+                                window.localStorage.setItem("book_inserted", "0");
+                        }
                         });
                                     //Go to succeeded page
                     }
@@ -842,7 +886,7 @@
     <script type="text/javascript">
         
         $("#sub").click(function () {
-
+            $("#Load_modal").modal('show');
             setTimeout(function () {
                 if (window.localStorage.getItem("title_check") == "1" && window.localStorage.getItem("price_check") == "1")
                 {
@@ -852,7 +896,7 @@
                 else {
                     alert("Fields left empty");
                 }
-            }, 2000);
+            }, 3000);
         });
 
 
@@ -907,7 +951,7 @@
                     modal.innerHTML += '<div class="modal-body"><form><div class="form-group"><label>' + ourData[i].title + '<span class="pull-right"><button class="btn3 btn-white" type="button" style="display:inline-block"><span class="glyphicon glyphicon-plus gray"></span></button>';
                     modal.innerHTML += '</span></label></div><div class="form-group"> <label>' + ourData[i].price + '</label></div><div class="form-group"> <label>' + ourData[i].contact + '</label></div><div class="form-group"> <label>' + ourData[i].faculty + '</label></div></form></div></div>';
                    */
-                    modal.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit book info -</h4><span>&nbsp Enter only the fields you want to edit</span><br/><p class="text-danger" id="edit_message"></p></div><div class="modal-body"><form><div class="form-group input_fields"><label>' + ourData[i].title + '</label><input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="edit_title' + books + '" /></div><div class="form-group input_fields1"><label>R' + ourData[i].price + '</label><input type="number" name="mytext[]" class="form-control" placeholder="Enter price" id="edit_price' + books + '" /></div><div class="form-group input_fields2"><label>' + ourData[i].contact + '</label><input type="number" name="mytext[]" class="form-control" placeholder="Enter Phone Number" id="edit_contact' + books + '" /><div class="form-group input_fields3"><label>' + ourData[i].faculty + '</label><select class="form-control" id="edit_faculty' + books + '" name="mytext3[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment and IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural and Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div></form><div class="modal-footer"><button type="button" class="btn btn-default editing" onclick="trying();refreshing()" id="edit_submit' + books + '" value="' + ourData[i].id + '">Submit - Double Tap!</button></div>';
+                    modal.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit book info -</h4><span>&nbsp Enter only the fields you want to edit</span><br/><p class="text-danger" id="edit_message"></p></div><div class="modal-body"><form><div class="form-group input_fields"><label>' + ourData[i].title + '</label><input type="text" name="mytext[]" class="form-control" placeholder="Enter title" id="edit_title' + books + '" /></div><div class="form-group input_fields1"><label>R' + ourData[i].price + '</label><input type="number" name="mytext[]" class="form-control" placeholder="Enter price" id="edit_price' + books + '" /></div><div class="form-group input_fields2"><label>' + ourData[i].contact + '</label><input type="number" name="mytext[]" class="form-control" placeholder="Enter Phone Number" id="edit_contact' + books + '" /><div class="form-group input_fields3"><label>' + ourData[i].faculty + '</label><select class="form-control" id="edit_faculty' + books + '" name="mytext3[]"><option value="Economic and Management Sciences">Economic and Management Sciences</option><option value="Education">Education</option><option value="Engineering, Built Environment and IT">Engineering, Built Environment & IT</option><option value="Health Sciences">Health Sciences</option><option value="Humanities">Humanities</option><option value="Natural and Agricultural Sciences">Natural & Agricultural Sciences</option><option value="Theology">Theology</option><option value="Vertinary Science">Vertinary Science</option></select></div></form><div class="modal-footer"><button type="button" class="btn btn-info editing" onclick="trying();refreshing()" id="edit_submit' + books + '" value="' + ourData[i].id + '">Submit - Double Tap!</button></div>';
 
                     var modal_image = document.createElement('div');
                     modal_image.id = "image_mod" + books;
@@ -937,17 +981,37 @@
                     }*/
 
                     var sold_button = document.createElement('button');
+                    var sold_modal = document.createElement('div');
+                    sold_modal.id = "sold_modal" + books;
+                    sold_modal.className = "modal fade";
+                    sold_modal.setAttribute('role', 'dialog');
+                    
+                    sold_modal.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">CONGRATULATIONS!!</h4></div><div class="modal-body">Congratulations on selling a book, dont spend it all in one place :)</div><div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-default">Close</button><button onclick="trying_sold();refreshing_sold()" type="button" class="btn btn-success selling_class" id="confirm_sell' + books + '" value="' + ourData[i].id + '">Confirm-double tap</button></div>';
+
+
+                    
                     sold_button.innerHTML = '<strong>SOLD!!</strong>';
                     sold_button.className += "btn1 btn-success animated fadeInLeft";
+                    sold_button.setAttribute('data-toggle', 'modal');
+                    sold_button.setAttribute('data-target', '#sold_modal' + books);
                     var wrapperDiv = document.createElement('div');
                     wrapperDiv.className = "animated fadeInLeft";
                     var remove_button = document.createElement('button');
+                    var remove_modal = document.createElement('div');
+                    remove_modal.id = "remove_modal" + books;
+                    remove_modal.className = "modal fade";
+                    remove_modal.setAttribute('role', 'dialog');
+
+                    remove_modal.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Remove book</h4></div><div class="modal-body">Are you sure you want to remove this book?</div><div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-default">Close</button><button onclick="trying_sold();refreshing_sold()" type="button" class="btn btn-danger selling_class" id="confirm_remove' + books + '" value="' + ourData[i].id + '">Delete-double tap</button></div>';
+
+
                     remove_button.innerHTML = '<strong>Remove</strong>';
-                    remove_button.className += "btn1 btn-danger animated fadeInLeft";
-                    
+                    remove_button.className += "btn1 btn-danger animated fadeInLeft ";
+                    remove_button.setAttribute('data-toggle', 'modal');
+                    remove_button.setAttribute('data-target', '#remove_modal' + books);
                     
                     inDiv.className += "animated fadeInLeft";
-                    inDiv.innerHTML = '<div id="photo_chosen' + books + '" style="float:left; margin-right: 10px; height:95px; border: 1px solid black; width:100px; margin-top:0px; margin-left:3px; display:inline-block; border-color:black; top:2px;"><a role="button" data-toggle="modal" data-target="#image_mod'+books+'"><img id=image_number' + books + ' src="3dBook3.png" style="width:100%; height:100%; object-fit:contain;" /></a></div><p style="font-size:20px;">' + ourData[i].title + ' - R' + ourData[i].price + '</p><br/>';
+                    inDiv.innerHTML = '<div id="photo_chosen' + books + '" style="float:left; margin-right: 10px; height:95px; border: 1px solid black; width:100px; margin-top:0px; margin-left:3px; display:inline-block; border-color:black; top:2px;"><a role="button" onclick="getImage()"><img id=image_number' + books + ' src="3dBook3.png" style="width:100%; height:100%; object-fit:contain;" /></a></div><p style="font-size:20px;">' + ourData[i].title + ' - R' + ourData[i].price + '</p><br/>';
                     inDiv.appendChild(edit_button);
                     inDiv.appendChild(sold_button);
                     inDiv.appendChild(remove_button);
@@ -964,6 +1028,8 @@
                     outDiv.appendChild(hzr);            //add horizontal rulr to div
                     outDiv.appendChild(modal);
                     outDiv.appendChild(modal_image);
+                    outDiv.appendChild(sold_modal);
+                    outDiv.appendChild(remove_modal);
                     books++;
                 }
                 if (books == 0) {
@@ -1189,6 +1255,113 @@
 
         }
         
+
+        function trying_sold() {
+
+            $(document).ready(function () {
+
+
+                $(".selling_class").click(function () {
+
+
+                    if (window.localStorage.getItem("pressed") != "1") {
+                        var ident = this.id;
+                        var num = ident.replace(/^\D+/g, "");
+                        var tagi = "#";
+                        tagi += ident;
+                        book_id = $(tagi).val();
+
+
+                        var dataString = "id=" + book_id + "&insert=";
+
+                        if (1 == 1) {
+
+                            $.ajax({
+                                type: "POST",
+                                url: "http://forwardingenuity.com/delete_book.php",
+                                data: dataString,
+                                crossDomain: true,
+                                cache: false,
+                                timeout: 7000,
+                                beforeSend: function () { $("#insert").val('Connecting...'); },
+                                success: function (data) {
+                                    if (data == "success") {
+                                        //           alert("inserted");
+                                        $("#Par_empty").text("");
+                                        $("#insert").val('submit');
+                                        window.localStorage.setItem("sold_error", "0");
+
+                                    }
+                                    else if (data == "error") {
+                                        alert("error");
+                                        window.localStorage.setItem("sold_error", "1");
+                                    }
+                                }
+                                
+                            });
+                            // alert("here");
+                            return false;
+
+                            //Go to succeeded page
+                        }
+
+
+
+                    }
+
+
+
+
+
+
+
+                    //
+
+
+
+
+
+                });
+            });
+
+
+        }
+
+
+
+        function refreshing() {
+            $(document).ready(function () {
+
+                $(".editing").click(function () {
+                    setTimeout(function () {
+                        window.location.replace("userPage.html");
+
+                    }, 10);
+
+
+                })
+
+            })
+
+
+        }
+
+        function refreshing_sold() {
+            $(document).ready(function () {
+
+                $(".selling_class").click(function () {
+                    setTimeout(function () {
+                        window.location.replace("userPage.html");
+
+                    }, 500);
+
+
+                })
+
+            })
+
+
+        }
 
     </script>
     
