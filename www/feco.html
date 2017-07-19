@@ -68,6 +68,7 @@
                         var hzr = document.createElement('hr');         //Horizontal rule
                         var divHold = document.createElement('div');
                         divHold.id = ourData[i].title;
+                        divHold.innerHTML='<div id="photo_list' + books + '" style="float:left; margin-right: 10px; height:70px; border: 1px solid black; width:100px; margin-left:3px; display:inline-block; border-color:black; top:2px;"><a role="button" data-toggle="modal" data-target="#image_mod'+books+'"><img id=image_number' + books + ' src="3dBook3.png" style="width:100%; height:100%; object-fit:contain;" /></a></div>'
                         par.id = "Paragraph"+i;                       //id
                         par.style.fontSize = "large";                   //font-size
                         par.className += "animated fadeInLeft";         //fade in from animate.css
