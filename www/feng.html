@@ -97,6 +97,20 @@
             }
             ourRequest.send();      //send request
 
+
+            if (window.localStorage.getItem("did_they_search") == "1") {
+                var ident = "#";
+                ident += window.localStorage.getItem("book_searched");
+                $('html, body').animate({
+                    scrollTop: $(ident).offset().top
+                }, 2000);
+                window.localStorage.setItem("did_they_search", "0");
+
+                var check = document.getElementById(window.localStorage.getItem("book_searched"));
+                check.className += " animated2 shake";
+
+            }
+
         }
 
         function asleep() {
@@ -110,19 +124,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            if(window.localStorage.getItem("did_they_search")=="1")
-            {
-                var ident = "#";
-                ident += window.localStorage.getItem("book_searched");
-                    $('html, body').animate({
-                        scrollTop: $(ident).offset().top
-                    }, 2000);
-                    window.localStorage.setItem("did_they_search", "0");
-
-                    var check = document.getElementById(window.localStorage.getItem("book_searched"));
-                    check.className += " animated2 shake";
-
-            }
+            
 
 
 
