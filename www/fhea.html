@@ -46,48 +46,131 @@
                 //window.localStorage.setItem("Holding", ourRequest.responseText);
                 var ourData = JSON.parse(ourRequest.responseText);      //change the received response text to an actuall array of objects
                 var books = 0;        //any books under the faculty?
+                
+
+                if (window.localStorage.getItem("did_they_search") == "1") {
+
+                    var info_length = (ourData.length);
+                    for (var i = 0; i < info_length; i++) {
+                        if (ourData[i].faculty != "Health Sciences" || ourData[i].title != window.localStorage.getItem("book_searched"))    //find books under faculty
+                        {
+                            continue;
+                        }
+                        books++;
+                        var par = document.createElement('p');          //create paragraph to hold content coming in
+                        var hzr = document.createElement('hr');         //Horizontal rule
+                        var divHold = document.createElement('div');
+                        divHold.id = ourData[i].title;
+
+                        divHold.className += 'animated fadeInLeft';
+                        par.className += "animated fadeInLeft text-white";         //fade in from animate.css
+                        if (window.localStorage.getItem("book_searched") == ourData[i].title) {
+                            divHold.className = 'animated2 flash';
+                            par.className = "animated2 flash text-white";
+                        }
+                        divHold.innerHTML = '<div id="photo_list' + books + '" style="background-color:#e3e5e5; float:left; margin-right: 10px; height:70px; border: 1px solid black; width:100px; margin-left:3px; display:inline-block; border-color:black; top:0px;"><a role="button" data-toggle="modal" data-target="#image_mod' + books + '"><img id=image_number' + books + ' src="3dBook3.png" style="width:100%; height:100%; object-fit:contain;" /></a></div>'
+                        par.id = "Paragraph" + i;                       //id
+                        par.style.fontSize = "large";                   //font-size
+
+                        par.innerHTML = '<strong>' + ourData[i].title + '</strong>' + '<br />' + 'R' + ourData[i].price + '<span class="pull-right">' + ourData[i].contact + '</span>'; //putting info in paragraph
+                        divHold.appendChild(par);
+                        outDiv.appendChild(divHold);
+
+                        //outDiv.appendChild(par);            //add paragraph to container
+                        outDiv.appendChild(hzr);            //add horizontal rulr to div
 
 
-                //var ourData2 = JSON.parse(window.localStorage.getItem("Holding"));
-                var info_length = (ourData.length);
-                for (var i = 0; i < info_length; i++) {
-                    if (ourData[i].faculty != "Health Sciences")    //find books under faculty
-                    {
-                        continue;
+
+
                     }
-                    books++;
-                    var par = document.createElement('p');          //create paragraph to hold content coming in
-                    var hzr = document.createElement('hr');         //Horizontal rule
-                    var divHold = document.createElement('div');
-                    divHold.id = ourData[i].title;
-                    divHold.className += 'animated fadeInLeft';
-                    divHold.innerHTML = '<div id="photo_list' + books + '" style="background-color:#e3e5e5; float:left; margin-right: 10px; height:70px; border: 1px solid black; width:100px; margin-left:3px; display:inline-block; border-color:black; top:0px;"><a role="button" data-toggle="modal" data-target="#image_mod' + books + '"><img id=image_number' + books + ' src="3dBook3.png" style="width:100%; height:100%; object-fit:contain;" /></a></div>'
-                    par.id = "Paragraph" + i;                       //id
-                    par.style.fontSize = "large";                   //font-size
-                    par.className += "animated fadeInLeft text-white";         //fade in from animate.css        //fade in from animate.css
-                    par.innerHTML = '<strong>' + ourData[i].title + '</strong>' + '<br />' + 'R' + ourData[i].price + '<span class="pull-right">' + ourData[i].contact + '</span>'; //putting info in paragraph
-                    divHold.appendChild(par);
-                    outDiv.appendChild(divHold);
 
-                    //outDiv.appendChild(par);            //add paragraph to container
-                    outDiv.appendChild(hzr);            //add horizontal rulr to div
+                    for (var i = 0; i < info_length; i++) {
+                        if (ourData[i].faculty != "Health Sciences" || window.localStorage.getItem("book_searched") == ourData[i].title)    //find books under faculty
+                        {
+                            continue;
+                        }
+                        books++;
+                        var par = document.createElement('p');          //create paragraph to hold content coming in
+                        var hzr = document.createElement('hr');         //Horizontal rule
+                        var divHold = document.createElement('div');
+                        divHold.id = ourData[i].title;
 
+                        divHold.className += 'animated fadeInLeft';
+                        par.className += "animated fadeInLeft text-white";         //fade in from animate.css
+
+                        divHold.innerHTML = '<div id="photo_list' + books + '" style="background-color:#e3e5e5; float:left; margin-right: 10px; height:70px; border: 1px solid black; width:100px; margin-left:3px; display:inline-block; border-color:black; top:0px;"><a role="button" data-toggle="modal" data-target="#image_mod' + books + '"><img id=image_number' + books + ' src="3dBook3.png" style="width:100%; height:100%; object-fit:contain;" /></a></div>'
+                        par.id = "Paragraph" + i;                       //id
+                        par.style.fontSize = "large";                   //font-size
+
+                        par.innerHTML = '<strong>' + ourData[i].title + '</strong>' + '<br />' + 'R' + ourData[i].price + '<span class="pull-right">' + ourData[i].contact + '</span>'; //putting info in paragraph
+                        divHold.appendChild(par);
+                        outDiv.appendChild(divHold);
+
+                        //outDiv.appendChild(par);            //add paragraph to container
+                        outDiv.appendChild(hzr);            //add horizontal rulr to div
+
+
+
+
+                    }
+
+                    window.localStorage.setItem("did_they_search", "0");
+
+                    if (books == 0) {
+                        //alert("No books available");
+                        //No books in the div
+                        setTimeout(function () { alert("No books available"); }, 1200);     //delay before alert
+
+                    }
 
 
                 }
-                if (books == 0) {
-                    //alert("No books available");
-                    //No books in the div
-                    setTimeout(function () { alert("No books available"); }, 1200);     //delay before alert
+                else {
 
+
+                    //var ourData2 = JSON.parse(window.localStorage.getItem("Holding"));
+                    var info_length = (ourData.length);
+                    for (var i = 0; i < info_length; i++) {
+                        if (ourData[i].faculty != "Health Sciences")    //find books under faculty
+                        {
+                            continue;
+                        }
+                        books++;
+                        var par = document.createElement('p');          //create paragraph to hold content coming in
+                        var hzr = document.createElement('hr');         //Horizontal rule
+                        var divHold = document.createElement('div');
+                        divHold.id = ourData[i].title;
+
+                        divHold.className += 'animated fadeInLeft';
+                        par.className += "animated fadeInLeft text-white";         //fade in from animate.css
+
+                        divHold.innerHTML = '<div id="photo_list' + books + '" style="background-color:#e3e5e5; float:left; margin-right: 10px; height:70px; border: 1px solid black; width:100px; margin-left:3px; display:inline-block; border-color:black; top:0px;"><a role="button" data-toggle="modal" data-target="#image_mod' + books + '"><img id=image_number' + books + ' src="3dBook3.png" style="width:100%; height:100%; object-fit:contain;" /></a></div>'
+                        par.id = "Paragraph" + i;                       //id
+                        par.style.fontSize = "large";                   //font-size
+
+                        par.innerHTML = '<strong>' + ourData[i].title + '</strong>' + '<br />' + 'R' + ourData[i].price + '<span class="pull-right">' + ourData[i].contact + '</span>'; //putting info in paragraph
+                        divHold.appendChild(par);
+                        outDiv.appendChild(divHold);
+
+                        //outDiv.appendChild(par);            //add paragraph to container
+                        outDiv.appendChild(hzr);            //add horizontal rulr to div
+
+
+
+
+                    }
+                    if (books == 0) {
+                        //alert("No books available");
+                        //No books in the div
+                        setTimeout(function () { alert("No books available"); }, 1200);     //delay before alert
+
+                    }
                 }
-
                 /*var par = document.createElement('p');
                 par.id = "paragraph" + i;*-
                 par.innerHTML = '<strong>' + ourData2[1].title + '</strong>' + '<br />' + 'R400' + '&nbsp &nbsp &nbsp' + '0739995999';
                 outDiv.appendChild(par);
               */
-
             }
             ourRequest.send();      //send request
 
