@@ -29,21 +29,21 @@
     <script type="text/javascript">
         "use strict";
         
-
+        $(document).ready(function () {
             document.addEventListener('online', awake(), false);
             document.addEventListener('offline', asleep(), false);
 
 
             function awake() {
-               
+
                 //$('#loading-indicator').css("display", "none");
                 var url1 = "http://forwardingenuity.com/json.php"; //Get url of php file containing json
 
-
+                window.localStorage.setItem("found", "0");
                 var ourRequest = new XMLHttpRequest(); //create XMLHttpRequest object to request for the JSON data
                 ourRequest.open("GET", url1);   //Opening...    
                 var outDiv = document.getElementById("containment"); //container div
-                
+
                 ourRequest.onload = function () {
                     console.log("Here");
 
@@ -68,9 +68,10 @@
                         var hzr = document.createElement('hr');         //Horizontal rule
                         var divHold = document.createElement('div');
                         divHold.id = ourData[i].title;
+
                         divHold.className += 'animated fadeInLeft';
                         divHold.innerHTML = '<div id="photo_list' + books + '" style="background-color:#e3e5e5; float:left; margin-right: 10px; height:70px; border: 1px solid black; width:100px; margin-left:3px; display:inline-block; border-color:black; top:0px;"><a role="button" data-toggle="modal" data-target="#image_mod' + books + '"><img id=image_number' + books + ' src="3dBook3.png" style="width:100%; height:100%; object-fit:contain;" /></a></div>'
-                        par.id = "Paragraph"+i;                       //id
+                        par.id = "Paragraph" + i;                       //id
                         par.style.fontSize = "large";                   //font-size
                         par.className += "animated fadeInLeft text-white";         //fade in from animate.css
                         par.innerHTML = '<strong>' + ourData[i].title + '</strong>' + '<br />' + 'R' + ourData[i].price + '<span class="pull-right">' + ourData[i].contact + '</span>'; //putting info in paragraph
@@ -79,7 +80,8 @@
 
                         //outDiv.appendChild(par);            //add paragraph to container
                         outDiv.appendChild(hzr);            //add horizontal rulr to div
-
+                        
+                       
 
 
                     }
@@ -98,40 +100,42 @@
 
                 }
                 ourRequest.send();      //send request
+               
+                outDiv.addEventListener('deviceready', scrolling, false);
+                function scrolling() {
+                    var particular_div = document.getElementById(window.localStorage.getItem("book_searched"));
+                    particular_div.addEventListener('deviceready', scrolling2, false);
+                    function scrolling2() {
 
-                setTimeout(function () {
+
+                    
                     if (window.localStorage.getItem("did_they_search") == "1") {
-                        var ident = "#";
-                        ident += window.localStorage.getItem("book_searched");
-                        $('html, body').animate({
-                            scrollTop: $(ident).offset().top
-                        }, 2000);
-                        window.localStorage.setItem("did_they_search", "0");
+                    
+                    window.localStorage.setItem("found", "1");
+                    var ident = "#";
+                    ident += window.localStorage.getItem("book_searched");
+                    $('html, body').animate({
+                        scrollTop: $(ident).offset().top
+                    }, 2000);
+                    window.localStorage.setItem("did_they_search", "0");
 
-                        var check = document.getElementById(window.localStorage.getItem("book_searched"));
-                        check.className += " animated2 shake";
-
+                    var check = document.getElementById(window.localStorage.getItem("book_searched"));
+                    check.className += " animated2 shake";
+                }
                     }
-                },500);
+                }
             }
-
             function asleep() {
 
                 $('#loading-indicator').show();
             }
 
 
-        
+        });
     </script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            
-
-
-
-        });
-
+        
     </script>
 
 

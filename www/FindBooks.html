@@ -233,12 +233,13 @@
 
                 }
                 if(goto!=''){
-                window.localStorage.setItem("book_searched", array_of_books[index]);
+                    window.localStorage.setItem("book_searched", array_of_books[index]);
+                 //   alert(window.localStorage.getItem("book_searched"));
                 //alert(window.localStorage.getItem("book_searched"));
                 window.localStorage.setItem("did_they_search", "1");
                 setTimeout(function () {
                     window.location.href = goto;
-                }, 1);
+                }, 100);
                 }
             }
             else {
