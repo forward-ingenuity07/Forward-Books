@@ -29,7 +29,7 @@
                     var info_length = (ourData.length);
                     
                     for (var i = 0; i < info_length; i++) {
-                        if (ourData[i].email == email && ourData[i].password == password && ourData[i].removed!=1)    //find books under faculty
+                        if (ourData[i].email == email && ourData[i].password == password && ourData[i].removed=="0")    //find books under faculty
                         {
                             window.localStorage.setItem("emai", ourData[i].email);
                             window.localStorage.setItem("Alreadr_member", "1");
@@ -38,7 +38,7 @@
 
                         }
                         //books++;
-                        else if (ourData[i].removed == 1) {
+                        else if (ourData[i].removed !="0") {
 
                             $("#Par_empty").text("User blocked from site");
                             return;
