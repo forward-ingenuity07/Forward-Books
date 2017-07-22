@@ -39,6 +39,10 @@
                                 $("#Par_empty").text("User blocked from site");
                                 return;
                             }
+                            setTimeout(function () {
+                                $("#Load_modal").modal('show');
+
+                            }, 3000);
                             window.location.replace("userPage.html");
 
                         }
