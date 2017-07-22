@@ -12,9 +12,10 @@
     <meta name="msapplication-tap-highlight" content="no">
     <link href="css/anime.css" rel="stylesheet">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    
+    <script type="text/javascript" src="sweetalert/lib/sweetalert.js"></script>
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
-    
+    <script  type="text/javascript" src="scripts/sweetalert-dev.js"></script>
+    <link href="css/sweetalert.css" rel="stylesheet" />
     <script type="text/javascript" src="scripts/cordova-2.4.0.js"></script>
 
     <script type="text/javascript">
@@ -118,6 +119,7 @@
 
     
     <script type="text/javascript">
+        
         $(document).ready(function () {
             window.localStorage.setItem("faculty_ind", "0");
             window.localStorage.setItem("contact_ind", "0");
@@ -129,30 +131,31 @@
             {
                 setTimeout(function () {
 
-                    alert("Success");
+                    swal("Insertion Successful", "Book inserted", "success");
                 },500)
                 
             }
+            
            if (window.localStorage.getItem("book_inserted") == "0") {
                 setTimeout(function () {
-
-                    alert("Oops! Network error, try again");
+                    sweetAlert("Oops...", "Network error, please try again", "error");
+                    //alert("Oops! Network error, try again");
                 }, 500)
 
             }
 
            if (window.localStorage.getItem("sold_error") == "1") {
                setTimeout(function () {
-
-                   alert("Oops! Network error, try again");
+                   sweetAlert("Oops...", "Network error, please try again", "error");
+                   //alert("Oops! Network error, try again");
                }, 500)
 
            }
 
            else if (window.localStorage.getItem("sold_error") == "0") {
                setTimeout(function () {
-
-                   alert("Book removed");
+                   swal("Insertion Successful", "Book removed", "success");
+                  // alert("Book removed");
                }, 500)
 
            }
@@ -196,7 +199,7 @@
                             }
                             else if (data == "error") {
                                 window.location.replace("signUp.html");
-                                alert("error");
+                                sweetAlert("Oops...", "Network error, please try again", "error");
                             }
                         },
                         error: function (jqXHR,exception) {
@@ -267,7 +270,7 @@
                             window.localStorage.setItem("emai", ourData[i].email);
                             window.localStorage.setItem("Alreadr_member", "1");
                             window.localStorage.setItem("id", ourData[i].id);
-                            alert(ourData[i].id);
+                           // alert(ourData[i].id);
                             window.location.replace("userPage.html");
 
                         }
@@ -332,7 +335,7 @@
 
                   }
                   else if (data == "error") {
-                      alert("error");
+                      sweetAlert("Oops...", "error, please try again", "error");
                   }
               }
           });
@@ -690,7 +693,7 @@
 
                                         }
                                         else if (data == "error") {
-                                            alert("error");
+                                            sweetAlert("Oops...", "Error, please try again", "error");
                                             window.localStorage.setItem("book_inserted", "0");
                                         }
                                     },
@@ -767,7 +770,7 @@
 
                                     }
                                     else if (data == "error") {
-                                        alert("error");
+                                        sweetAlert("Oops...", "error, please try again", "error");
                                         window.localStorage.setItem("book_inserted", "0");
                                     }
                                 },
@@ -843,7 +846,7 @@
 
                                     }
                                     else if (data == "error") {
-                                        alert("error");
+                                        sweetAlert("Oops...", "Error, please try again", "error");
                                         window.localStorage.setItem("book_inserted", "0");
                                     }
                                 },
@@ -919,7 +922,7 @@
 
                                         }
                                         else if (data == "error") {
-                                            alert("error");
+                                            sweetAlert("Oops...", "Error, please try again", "error");
                                             window.localStorage.setItem("book_inserted", "0");
                                         }
                                     },
@@ -981,7 +984,7 @@
 
                                      }
                                      else if (data == "error") {
-                                         alert("error");
+                                         sweetAlert("Oops...", "error, please try again", "error");
                                          window.localStorage.setItem("book_inserted", "0");
                                      }
                                  },
@@ -1069,7 +1072,7 @@
 
                                 }
                                 else if (data == "error") {
-                                    alert("error");
+                                    sweetAlert("Oops...", "Error, please try again", "error");
                                     window.localStorage.setItem("book_inserted", "0");
                                 }
                             },
@@ -1120,7 +1123,7 @@
     
                                 }
                                 else if (data == "error") {
-                                    alert("error");
+                                    sweetAlert("Oops...", "Error, please try again", "error");
                                     window.localStorage.setItem("book_inserted", "0");
                                 }
                             },
@@ -1154,7 +1157,12 @@
         $("#sub").click(function () {
 
             
-            $("#Load_modal").modal('show');
+            swal({
+                title: "Loading...",
+                imageUrl: "ajax-loader.gif",
+                timer: 2000,
+                showConfirmButton: false
+            });
             setTimeout(function () {
                 if (window.localStorage.getItem("title_check") == "1" && window.localStorage.getItem("price_check") == "1")
                 {
@@ -1162,8 +1170,8 @@
                 window.location.replace("userPage.html");
                 }
                 else {
-                    alert("Fields left empty");
-                    $("#Load_modal").modal('hide');
+                    swal("Please complete all fields");
+                    
                 }
             }, 1000);
             
@@ -1203,6 +1211,10 @@
                     if (ourData[i].uploader != window.localStorage.getItem("id"))    //find books under faculty
                     {
                         continue;
+                    }
+                    if (ourData[i].removed == "1") {
+                        window.location.replace('SellBooksLogin.html');
+
                     }
                     stored_title[books] = ourData[i].title;
                     stored_price[books] = ourData[i].price;
@@ -1472,11 +1484,11 @@
 
                                     }
                                     else if (data == "error") {
-                                        alert("error");
+                                        sweetAlert("Oops...", "Error, please try again", "error");
                                     }
                                 },
                                 error: function (jqXHR, exception) {
-                                    alert("Change not made, check internet connection");
+                                    sweetAlert("Oops...", "Network error, please try again", "error");
                                     //window.location.href="signUp.html";
                                     
 
@@ -1567,7 +1579,7 @@
 
                                     }
                                     else if (data == "error") {
-                                        alert("error");
+                                        sweetAlert("Oops...", "Error, please try again", "error");
                                         window.localStorage.setItem("sold_error", "1");
                                     }
                                 }
