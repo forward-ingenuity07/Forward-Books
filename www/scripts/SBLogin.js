@@ -29,28 +29,29 @@
                     var info_length = (ourData.length);
                     
                     for (var i = 0; i < info_length; i++) {
-                        if (ourData[i].email == email && ourData[i].password == password && ourData[i].removed=="0")    //find books under faculty
+                        if (ourData[i].email == email && ourData[i].password == password)    //find books under faculty
                         {
                             window.localStorage.setItem("emai", ourData[i].email);
                             window.localStorage.setItem("Alreadr_member", "1");
                             window.localStorage.setItem("id", ourData[i].id);
+                            if (ourData[i].removed !="0") {
+
+                                $("#Par_empty").text("User blocked from site");
+                                return;
+                            }
                             window.location.replace("userPage.html");
 
                         }
                         //books++;
-                        else if (ourData[i].removed !="0") {
-
-                            $("#Par_empty").text("User blocked from site");
-                            return;
-                        }
+                        
 
                         else
                         {
-                            $("#Par_empty").text("Email/Password combination is not valid");
+                            
                         }
 
                     }
-                    
+                    $("#Par_empty").text("Email/Password combination is not valid");
 
                     /*var par = document.createElement('p');
                     par.id = "paragraph" + i;*-
