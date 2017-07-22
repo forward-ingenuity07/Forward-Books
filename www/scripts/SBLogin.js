@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-
+    window.localStorage.setItem('deleted', "0");
     window.localStorage.setItem("succeeding", "0");
     if (window.localStorage.getItem("logged_in") != "1") {
 
