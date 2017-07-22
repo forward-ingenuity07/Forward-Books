@@ -41,6 +41,7 @@
                         else if (ourData[i].removed != 1) {
 
                             $("#Par_empty").text("User blocked from site");
+                            return;
                         }
 
                         else

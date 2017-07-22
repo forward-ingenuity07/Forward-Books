@@ -193,6 +193,7 @@
 
                             $("#Par_empty").text("User blocked from site");
                             window.localStorage.setItem("removed", "0");
+                            return;
                         }
                         else if (email.match(re) === null & $.trim(email).length > 0) {
                             $("#Par_empty").text("Email is not valid");
