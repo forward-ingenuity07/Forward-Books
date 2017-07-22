@@ -125,10 +125,6 @@
             window.localStorage.setItem("price_ind", "0");
             window.localStorage.setItem("pressed", "0");
             window.localStorage.setItem("image_pressed", "0");
-            if (window.localStorage.getItem('deleted') == "1") {
-                window.location.replace('SellBooksLogin.html');
-
-            }
             if (window.localStorage.getItem("success") == "1" && window.localStorage.getItem("book_inserted")== "1")
             {
                 setTimeout(function () {
@@ -704,8 +700,11 @@
                                     }
                                 });
                                 window.localStorage.clear();
+                                setTimeout(function () {
+
+                                    window.location.replace('SellBooksLogin.html');
+                                }, 990);
                                 
-                                window.localStorage.setItem('deleted', "1");
                                 return;
                             }
 
@@ -774,7 +773,11 @@
                                 }
                             });
                             window.localStorage.clear();
-                            window.localStorage.setItem('deleted', "1");
+                            setTimeout(function () {
+
+                                window.location.replace('SellBooksLogin.html');
+                            }, 990);
+
 
                             return;
                         }
@@ -842,7 +845,11 @@
                                 }
                             });
                             window.localStorage.clear();
-                            window.localStorage.setItem('deleted', "1");
+                            setTimeout(function () {
+
+                                window.location.replace('SellBooksLogin.html');
+                            }, 990);
+
                             return;
                         }
 
@@ -910,7 +917,11 @@
                                     }
                                 });
                                 window.localStorage.clear();
-                                window.localStorage.setItem('deleted', "1");
+                                setTimeout(function () {
+
+                                    window.location.replace('SellBooksLogin.html');
+                                }, 990);
+
                                 return;
                             }
                             
@@ -964,7 +975,11 @@
                                  }
                              });
                              window.localStorage.clear();
-                             window.localStorage.setItem('deleted', "1");
+                             setTimeout(function () {
+
+                                 window.location.replace('SellBooksLogin.html');
+                             }, 990);
+
                                 return;
                             }
                             break;
@@ -1044,7 +1059,11 @@
                             }
                         });
                         window.localStorage.clear();
-                        window.localStorage.setItem('deleted', "1");
+                        setTimeout(function () {
+
+                            window.location.replace('SellBooksLogin.html');
+                        }, 990);
+
                         return;
                     }
 
