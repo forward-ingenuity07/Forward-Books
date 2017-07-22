@@ -139,6 +139,10 @@
                             {
                                 window.localStorage.setItem("same", "1");
                             }
+                            if (ourData[i].removed == 1) {
+                                window.localStorage.setItem("removed", "1");
+
+                            }
                             
 
 
@@ -155,7 +159,8 @@
                         window.localStorage.setItem("pass", password);
                         window.localStorage.setItem("datstr", dataString);
                         var same = window.localStorage.getItem("same");
-                        if ($.trim(email).length > 0 & $.trim(password).length > 0 & email.match(re) !== null & password == confirm_password & same != 1) {
+                        var removed = window.localStorage.getItem("removed");
+                        if ($.trim(email).length > 0 & $.trim(password).length > 0 & email.match(re) !== null & password == confirm_password & same != 1&removed!=1) {
                             /*$.ajax({
                                 type: "POST",
                                 url: "http://forwardingenuity.com/json.php",
@@ -184,6 +189,11 @@
 
                         }
 
+                        else if (removed == 1) {
+
+                            $("#Par_empty").text("User blocked from site");
+                            window.localStorage.setItem("removed", "0");
+                        }
                         else if (email.match(re) === null & $.trim(email).length > 0) {
                             $("#Par_empty").text("Email is not valid");
 

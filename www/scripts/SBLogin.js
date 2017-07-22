@@ -8,7 +8,7 @@
             var email = $("#ema").val();
             var password = $("#pas").val();
             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;   //Regexp to check if email is valid
-           
+            
             if ($.trim(email).length > 0 & $.trim(password).length > 0 & email.match(re) !== null) {
                 var url1 = "http://forwardingenuity.com/json_users.php"; //Get url of php file containing json
 
@@ -29,7 +29,7 @@
                     var info_length = (ourData.length);
                     
                     for (var i = 0; i < info_length; i++) {
-                        if (ourData[i].email == email && ourData[i].password == password)    //find books under faculty
+                        if (ourData[i].email == email && ourData[i].password == password && ourData[i].removed!=1)    //find books under faculty
                         {
                             window.localStorage.setItem("emai", ourData[i].email);
                             window.localStorage.setItem("Alreadr_member", "1");
@@ -38,18 +38,18 @@
 
                         }
                         //books++;
+                        else if (ourData[i].removed != 1) {
+
+                            $("#Par_empty").text("User blocked from site");
+                        }
+
                         else
                         {
-                                
+                            $("#Par_empty").text("Email/Password combination is not valid");
                         }
 
                     }
-                    if (books == 0) {
-                        //alert("No books available");
-                        //No books in the div
-                        $("#Par_empty").text("Email/Password combination is not valid");
-
-                    }
+                    
 
                     /*var par = document.createElement('p');
                     par.id = "paragraph" + i;*-
