@@ -3201,7 +3201,7 @@ fieldset[disabled] a.btn {
 
 .btn-black1 {
   color: white;
-  background-color: #a3d1ff;
+  background-color: #c1e0ff;
   border-color: white;
 
 }
@@ -4768,14 +4768,14 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color: #3395f7;
+  background-color: #75baff;
   border-color: #6bb5ff;
 }
 .navbar .nav > li > a {
   line-height: 100px;
 }
 .navbar-inverse .navbar-brand {
-  color: #a3d1ff;
+  color: #c1e0ff;
   
 }
 .navbar-inverse .navbar-brand:hover,
