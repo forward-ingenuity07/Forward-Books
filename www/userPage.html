@@ -268,7 +268,7 @@
                     }
 
                     for (var i = 0; i < info_length; i++) {
-                        if (ourData[i].email == email && ourData[i].password == password)    //find books under faculty
+                        if (ourData[i].email == window.localStorage.getItem("emai") && ourData[i].password == password)    //find books under faculty
                         {
                             window.localStorage.setItem("emai", ourData[i].email);
                             window.localStorage.setItem("Alreadr_member", "1");
