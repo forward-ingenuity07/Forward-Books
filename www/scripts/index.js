@@ -17,9 +17,69 @@ function clickFunc() {
 }
 
 function test() {
-    window.location.href = "image_upload_test.html";
+    if (window.localStorage.getItem("already_answered") != "1")
+        {
+    swal({
+        title: "Feature coming soon",
+        text: "Is this a feature you would be interested in?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#6af41a",
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+function (isConfirm) {
+    if (isConfirm) {
+        swal("Thank you", "Your feedback is appreciated :)", "success");
+    } else {
+        swal("Thank you", "Your feedback is appreciated :)", "success");
+    }
+    window.localStorage.setItem("already_answered", "1");
+});
+    }
+
+
+    else {
+
+        swal("Feature coming soon","","success");
+
+    }
+}
+
+function become_tutor() {
+    if (window.localStorage.getItem("already_answered_2") != "1") {
+        swal({
+            title: "Feature coming soon",
+            text: "Is this a feature you would be interested in?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#6af41a",
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+    function (isConfirm) {
+        if (isConfirm) {
+            swal("Thank you", "Your feedback is appreciated :)", "success");
+        } else {
+            swal("Thank you", "Your feedback is appreciated :)", "success");
+        }
+        window.localStorage.setItem("already_answered_2", "1");
+    });
+    }
+
+
+    else {
+
+        swal("Feature coming soon", "", "success");
+
+    }
 
 }
+
 (function () {
     "use strict";
 

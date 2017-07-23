@@ -12,9 +12,10 @@
     <meta name="msapplication-tap-highlight" content="no">
     <link href="css/anime.css" rel="stylesheet">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <script type="text/javascript" src="sweetalert/lib/sweetalert.js"></script>
+    
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
     <script  type="text/javascript" src="scripts/sweetalert-dev.js"></script>
+    <script type="text/javascript" src="sweetalert/lib/sweetalert.js"></script>
     <link href="css/sweetalert.css" rel="stylesheet" />
     <script type="text/javascript" src="scripts/cordova-2.4.0.js"></script>
 
@@ -1556,7 +1557,12 @@
                         var tagi = "#";
                         tagi += ident;
                         book_id = $(tagi).val();
-                        $("#Load_modal").modal('show');
+                        swal({
+                            title: "Loading...",
+                            imageUrl: "ajax-loader.gif",
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
 
                         var dataString = "id=" + book_id + "&insert=";
 
