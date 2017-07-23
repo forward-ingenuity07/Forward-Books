@@ -29,7 +29,7 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
             <div class="jumbotron">
-                <center><h4 style="top:-200px">GoBooks Sign up</h4></center>
+                <center><h4 style="top:-200px">ForBooks Sign up</h4></center>
                 <p class="text-danger" id="Par_empty" style="font-size:small"></p>
                 <form>
                     <div class="form-group">
@@ -97,28 +97,10 @@
 
 //            Offline.options = { checkOnLoad: true, checks: { image: { url: 'http://www.forwardingenuity.com/LogoProgress2.jpg' }, active: 'image' }, interceptRequests: true, reconnect: { initialDelay: 1 }, requests: true};
             
-            var $online = $('.online'), $offline = $('.offline');
-            Offline.on('down', function () {
-                
-                $online.fadeOut(function () {
-                   
-                    $offline.fadeIn();
+           
 
-                });
-
-            });
-
-            Offline.on('up', function () {
-
-                $offline.fadeOut(function () {
-                   
-                    $online.fadeIn();
-
-                });
-
-            });
-            Offline.check();
-        });
+            
+                    });
         
 
 
