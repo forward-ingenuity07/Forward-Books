@@ -25,52 +25,9 @@
 
 
 
-        $(".photo_button").click(function () {
-
-            navigator.camera.getPicture(uploadPhoto, function (message) {
-                alert('get picture failed');
-            }, {
-                quality: 100,
-                destinationType: navigator.camera.DestinationType.FILE_URI,
-                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-            });
-        
-        })
 
 
 
-
-
-
-        function getImage() {
-            navigator.camera.getPicture(uploadPhoto, function (message) {
-                alert('get picture failed');
-            }, {
-                quality: 100,
-                destinationType: navigator.camera.DestinationType.FILE_URI,
-                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-            });
-        }
-
-        function uploadPhoto(imageURI) {
-            var options = new FileUploadOptions();
-            options.fileKey = "file";
-            options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-            $("#photo_chosen").text(imageURI.substr(imageURI.lastIndexOf('/') + 1));
-            options.mimeType = "image/jpeg";
-            console.log(options.fileName);
-            var params = new Object();
-            params.value1 = "test";
-            params.value2 = "param";
-            options.params = params;
-            options.chunkedMode = false;
-
-            var ft = new FileTransfer();
-            ft.upload(imageURI, "http://forwardingenuity.com/insert_image1.php", function (result) {
-                console.log(JSON.stringify(result));
-            }, function (error) {
-                console.log(JSON.stringify(error));
-            }, options);
 
 
 /*            $(".image_submit").click(function () {
@@ -93,7 +50,7 @@
             }
             });*/
 
-        }
+        
 
 
 
@@ -307,11 +264,23 @@
         });
       
       function logout() {
-          var Logout_button = document.getElementById("logout");
-          window.localStorage.clear();
-          window.localStorage.setItem("logged_in", "0");
-          window.location.replace("index.html");
-
+          
+          swal({
+              title: "Are you sure?",
+              text: "Confirm logout",
+              type: "warning",
+              confirmButtonText: "Yes",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              
+              closeOnConfirm: true
+          },
+function () {
+    var Logout_button = document.getElementById("logout");
+    window.localStorage.clear();
+    window.localStorage.setItem("logged_in", "0");
+    window.location.replace("index.html");
+});
       }
       
       $("#sub").click(function () {
@@ -493,7 +462,7 @@
                     <p class="text-danger" id="message"></p>
                 </div>
                 <div class="modal-body">
-                    <center><img src="ajax-loader.gif" /></center>
+                    <center><img src="ajax-loader2.gif" /></center>
                 </div>
                 
             </div>
@@ -1160,7 +1129,7 @@
             
             swal({
                 title: "Loading...",
-                imageUrl: "ajax-loader.gif",
+                imageUrl: "ajax-loader2.gif",
                 timer: 2000,
                 showConfirmButton: false
             });
@@ -1273,7 +1242,6 @@
 
 
                     var scriptHolder = document.createElement('script');
-                    scriptHolder.innerHTML = 'function Image_getter' + books + '() {navigator.camera.getPicture(Post_photo' + books + ', function (message) {alert("get picture failed");}, { quality: 100,destinationType: navigator.camera.DestinationType.FILE_URI,sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY});}function Post_photo' + books + '(imageURI) { var options = new FileUploadOptions();options.fileKey = "file";options.fileName = imageURI.substr(imageURI.lastIndexOf(" / ") + 1);$("#photo_chosen").text(imageURI.substr(imageURI.lastIndexOf("/") + 1));options.mimeType = "image/jpeg";console.log(options.fileName);var params = new Object();params.value1 = "test";params.value2 = "param";options.params = params;options.chunkedMode = false;var ft = new FileTransfer();ft.upload(imageURI, "http://forwardingenuity.com/insert_image1.php", function (result) {console.log(JSON.stringify(result));}, function (error) {console.log(JSON.stringify(error));}, options);}'
         
                     sold_button.innerHTML = '<strong>SOLD!!</strong>';
                     sold_button.className += "btn1 btn-success animated fadeInLeft";
@@ -1559,7 +1527,7 @@
                         book_id = $(tagi).val();
                         swal({
                             title: "Loading...",
-                            imageUrl: "ajax-loader.gif",
+                            imageUrl: "ajax-loader2.gif",
                             timer: 2000,
                             showConfirmButton: false
                         });

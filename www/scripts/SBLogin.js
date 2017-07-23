@@ -41,7 +41,7 @@
                             }
                             swal({
                                 title: "Loading...",
-                                imageUrl: "ajax-loader.gif",
+                                imageUrl: "ajax-loader2.gif",
                                 timer: 2500,
                                 showConfirmButton: false
                             });
