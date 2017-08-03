@@ -16,7 +16,6 @@
   <allow-intent href="sms:*" />
   <allow-intent href="mailto:*" />
   <allow-navigation href="http://*/*" />
-  
   <allow-intent href="geo:*" />
   <platform name="android">
     <allow-intent href="market:*" />
